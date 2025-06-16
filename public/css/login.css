@@ -1,0 +1,183 @@
+/* Prevent scrolling and make sure content fits on the screen */
+html, body {
+    margin: 0;
+    height: 100%;
+    overflow: hidden; /* Disable scrolling */
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #0a192f; /* Dark background */
+    color: #f5f5f5; /* Light text */
+}
+
+/* Container for the login box */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+/* Box for login content */
+.login-box {
+    background-color: #112240; /* Panel background */
+    padding: 30px;
+    width: 360px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    position: relative;
+}
+
+/* Styling for the logo at the top */
+.logo-top {
+    position: absolute;
+    top: -90px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 24px;
+    font-weight: bold;
+    color: #64ffda;
+    margin: 0;
+    padding: 5px 20px;
+    border-radius: 10px;
+}
+
+.custom-footer-col img {
+    max-height: 70px;
+    margin:auto;
+    margin-bottom:20px;
+  }
+  
+  .custom-footer-copy p{
+     color:white;
+     text-align:center;
+     font-weight:bold;
+     opacity:.7;
+  }
+
+/* Blue highlight for DASH */
+.dash-highlight {
+    color: #0dcaf0; 
+}
+
+/* Container for the logo image */
+.icon-container {
+    margin: 30px auto 20px;
+}
+
+/* Styling for the logo image */
+.logo-img {
+    width: 50px;
+    height: 50px;
+    display: inline-block;
+}
+
+/* Title and subtitle styling */
+.login-title {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.login-subtitle {
+    font-size: 14px;
+    margin-bottom: 20px;
+    color: #ccd6f6;
+}
+
+/* Form layout */
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Styling for form labels */
+.form-label {
+    font-size: 12px;
+    color: #8892b0;
+    text-align: left;
+}
+
+/* Styling for the form inputs */
+.form-input {
+    padding: 10px;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #64ffda;
+    color: #f5f5f5;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.form-input:focus {
+    border-bottom: 1px solid #0dcaf0; /* Blue highlight on focus */
+}
+
+/* Button styling */
+.login-button {
+    padding: 10px;
+    background: linear-gradient(90deg, #007bff, #64ffda);
+    border: none;
+    color: #f5f5f5;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: background-color 0.3s;
+}
+
+.login-button:hover {
+    background: linear-gradient(90deg, #0056b3, #1de9b6);
+}
+
+/* Forgot password link styling */
+.forgot-password {
+    display: block;
+    margin-top: 15px;
+    font-size: 12px;
+    color: #64ffda;
+    text-decoration: none;
+}
+
+.forgot-password:hover {
+    color: #0dcaf0;
+}
+
+/* Styling for the message box at the top */
+.message {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #4CAF50; /* Green color for success */
+    color: white;
+    padding: 12px 20px;
+    text-align: center;
+    font-size: 18px;
+    font-weight:500;
+    z-index: 9999;
+    display: none; /* Hidden by default */
+    border-radius: 0 0 10px 10px; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: top 0.3s ease-in-out;
+    width: 350px; /* Allow width to adjust based on message */
+    max-width: 100%; /* Ensure it doesn't overflow */
+    word-wrap: break-word; /* Break long words */
+}
+
+/* Error message box */
+.message.error {
+    background-color: #f44336; /* Red color for error */
+}
+
+/* Optional: Add padding to body to prevent the top message from hiding the content */
+body {
+    padding-top: 60px; /* Adjust padding for better UI */
+}

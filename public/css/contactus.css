@@ -1,0 +1,150 @@
+  body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #f7f9fc;
+      color: #333;
+  }
+
+  .container1 {
+      max-width: 75rem;
+      margin: auto;
+      margin-top: 10%;
+      padding: 2.5rem 1.25rem;
+  }
+
+  .container1 h1 {
+      font-size: 2.25rem;
+      margin-bottom: .625rem;
+      color: black;
+      text-align: center;
+  }
+
+  .contact-data {
+      font-size: 1rem;
+      text-align: center;
+      max-width: 43.75rem;
+      margin: 0 auto 2.5rem auto;
+      color: #555;
+  }
+
+  .card-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(16.25rem, 1fr));
+      gap: 1.25rem;
+      margin-bottom: 2.5rem;
+  }
+
+  .contact-card {
+      background: #fff;
+      border-radius: .625rem;
+      box-shadow: 0 .25rem .75rem rgba(0, 0, 0, 0.05);
+      text-align: center;
+      position: relative;
+      padding: 1.25rem;
+      transition: transform 0.3s ease;
+  }
+
+  .contact-card:hover {
+      transform: translateY(-0.3125rem);
+  }
+
+  .mv-icon-circle {
+      width: 4.375rem;
+      height: 4.375rem;
+      background: linear-gradient(135deg, #bb0e45, #ad0039);
+      /* background: linear-gradient(90deg, #0644a6, #2764c5); */
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 24px auto;
+      font-size: 1.75rem;
+      color: white;
+      box-shadow: 0 .3125rem .9375rem #f13775;
+      line-height: 0;
+      /* ADD THIS LINE */
+  }
+
+  .mv-icon-circle i {
+      margin: 0px 0px;
+  }
+
+
+  .contact-card h4 {
+      font-size: 1.125rem;
+      margin-bottom: .625rem;
+      /* color: #b92151; */
+      color: black;
+  }
+
+  .contact-card a {
+      color: #0644a6;
+      text-decoration: none;
+      font-weight: 500;
+  }
+
+  .contact-card hr {
+      margin: .9375rem 0;
+      border: none;
+      border-top: .0625rem solid #eee;
+  }
+
+  .highlight {
+      font-weight: bold;
+  }
+
+  .txt {
+      font-size: .9375rem;
+      color: #666;
+      line-height: 1.6;
+      text-align: justify;
+      margin-bottom: 2.5rem;
+  }
+
+  .social-icons {
+      text-align: center;
+      margin-bottom: 1.875rem;
+  }
+
+  .social-icons a {
+      font-size: 1.25rem;
+      margin: 0 .625rem;
+      color: #555;
+      transition: color 0.3s ease;
+  }
+
+  .social-icons a:hover {
+      color: #ad0039;
+  }
+
+  iframe {
+      width: 100%;
+      height: 28.125rem;
+      border: none;
+      border-radius: .625rem;
+      box-shadow: 0 .25rem .75rem rgba(0, 0, 0, 0.05);
+  }
+
+  @media (max-width: 37.5rem) {
+      .container1 {
+          margin-top: 20%;
+      }
+
+      .container1 h1 {
+          font-size: 1.75rem;
+      }
+
+      .contact-data {
+          font-size: .875rem;
+      }
+
+      .txt {
+          font-size: .875rem;
+      }
+  }
+
+  @media (max-width: 64rem) {
+      .container1 {
+          margin-top: 15%;
+      }
+  }

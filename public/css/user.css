@@ -1,0 +1,745 @@
+html, body {
+    /* font-family: Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; */
+    font-family: "Open Sans", Sans-serif;
+    /* Use a clean, modern font for all elements */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+
+.sidebar {
+    background-color: white;
+    color: rgb(96, 106, 132);
+    width: 80px;
+    min-height: 100vh;
+    transition: width 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    border-right: 2px solid #e0e0e0; /* Adds a subtle right border */
+    /* Alternatively, use box-shadow for a softer line */
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+
+.sidebar:hover {
+    width: 250px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    padding-top: 30px;
+    transition: padding 0.3s ease;
+
+    /* Smooth padding adjustment */
+}
+
+.logo i {
+    font-size: 24px;
+    transition: font-size 0.3s ease;
+    cursor: pointer;
+    /* Smooth icon size adjustment if needed */
+}
+
+.logo-text {
+    /* font-family: Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; */
+    margin-left: 10px;
+    margin-top: 2px;
+    font-size: 24px;
+    font-weight: bold;
+    opacity: 0;
+    /* Hide initially */
+    white-space: nowrap;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    /* Smooth text appearance */
+    transform: translateX(-10px);
+    /* Start slightly to the left */
+}
+
+.sidebar:hover .logo-text {
+    opacity: 1;
+    /* Make visible on hover */
+    transform: translateX(0);
+    /* Slide into place */
+    cursor: pointer;
+}
+
+.menu {
+    list-style: none;
+    padding: 10px;
+    padding-top: 0;
+    transition: padding 0.3s ease;
+}
+
+.menu li {
+    margin: 20px 0;
+}
+
+.menu a {
+    text-decoration: none;
+    color: rgb(96, 106, 132);
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Active Menu Item */
+.menu a.active {
+    background-color: rgb(208, 228, 255);
+    color: rgb(0, 51, 132);
+    border-radius: 5px;
+}
+
+.menu a.active i,
+.menu a.active .menu-text {
+    font-weight: bold;
+}
+
+
+.menu a:hover {
+    background-color: rgba(96, 106, 132, 0.1);
+    /* Subtle hover background */
+    border-radius: 5px;
+}
+
+.menu i {
+    font-size: 20px;
+    margin-right: 10px;
+    transition: font-size 0.3s ease, margin-right 0.3s ease;
+    /* Smooth icon transition */
+}
+
+.menu-text {
+    /* font-family: Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; */
+    opacity: 0;
+    margin: 0;
+    /* Hide initially */
+    white-space: nowrap;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    /* Smooth text transition */
+    transform: translateX(-10px);
+    /* Slide in effect */
+}
+
+.sidebar:hover .menu-text {
+    opacity: 1;
+    /* Show text */
+    transform: translateX(0);
+    /* Reset transform */
+}
+
+/* main content */
+/* General Content Area */
+.main-content {
+    padding: 15px 0;
+    margin-left: 80px;
+    /* Matches sidebar default width */
+    transition: margin-left 0.3s ease;
+}
+
+.sidebar:hover+.main-content {
+    margin-left: 80px;
+    /* Aligns with expanded sidebar */
+}
+
+/* Topbar Styling */
+/* Topbar */
+.topbar {
+    background-color: #ffffff;
+    padding: 15px 20px;
+    margin-top: -10px;
+    border-bottom: 1px solid #e0e0e0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.profile-menu {
+    position: relative;
+}
+.notification-icon {
+    display: inline-flex;
+    font-size: 10px;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px; /* Space between notification and profile icons */
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+}
+
+.notification-icon svg {
+    fill: #333; /* Icon color */
+    width: 24px;
+    height: 24px;
+    transition: transform 0.3s ease;
+}
+
+.notification-icon:hover svg {
+    transform: scale(1.1); /* Hover effect */
+}
+
+
+.before a{
+    text-decoration: none;
+    color: white;
+}
+
+
+.profile-icon {
+    font-size: 28px;
+    color: #333;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.profile-icon:hover {
+    transform: scale(1.1);
+}
+
+/* Dropdown Styling */
+.dropdown {
+    position: absolute;
+    top: 50px; 
+    right: 0;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    border-radius: 8px;
+    padding: 15px;
+    width: 250px;
+    display: none; 
+    z-index: 1000;
+    text-align: left;
+}
+
+.dropdown h3 {
+    margin: 0;
+    font-size: 16px;
+    color: #333;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.dropdown p {
+    margin: 10px 0;
+    font-size: 14px;
+    color: #555;
+}
+
+.dropdown a {
+    display: block;
+    margin: 15px 0;
+    font-size: 14px;
+    color: #555;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.dropdown a:hover {
+    text-decoration: none;
+}
+
+.dropdown hr {
+    border: none;
+    border-top: 1px solid #ddd;
+    margin: 10px 0;
+}
+
+
+.topbar h1 {
+    font-size: 24px;
+    color: #333;
+    margin: 0;
+}
+
+/* My Progress Section */
+.content {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    /* box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1); */
+    text-align: center;
+}
+
+.content .css-t71jlo {
+    display: flex;
+    align-items: center;
+    /* justify-content:flex-start; */
+    gap: 10px;
+    margin-bottom: 35px;
+    margin-left: 255px;
+
+}
+
+.content .css-t71jlo img {
+    width: 100px;
+    height: 90px;
+    vertical-align: middle;
+    border-style: none;
+}
+
+.content h1.css-1m9zmke {
+    font-size: 30px;
+    color: #333;
+    margin: 0;
+    font-weight: 600;
+}
+
+.content .css-nh1rq9 img {
+    width: 100%;
+    max-width: 750px;
+    margin: 20px auto;
+    display: block;
+
+}
+
+.content p {
+    font-size: 16px;
+    color: #777;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    margin-right: 360px;
+}
+
+/* Button Styling */
+.button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    /* Space between text and icon */
+    padding: 20px 24px;
+    background-color: #0d6efd;
+    /* Primary blue color */
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    text-transform: uppercase;
+    position: relative;
+    right: 252px;
+    /* Aligns to the left */
+}
+
+.button:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+    /* Adds a subtle lift on hover */
+    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+.button:active {
+    transform: translateY(0);
+    /* Pressed state */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.button svg {
+    width: 20px;
+    /* Adjust size of the icon */
+    height: 26px;
+    fill: #ffffff;
+    /* Icon color matches button text */
+    transition: transform 0.3s ease;
+}
+
+.button:hover svg {
+    transform: translateX(5px);
+    /* Moves the arrow slightly to the right on hover */
+}
+
+
+.dropdown-container {
+    margin-top: 50px;
+    
+
+  }
+
+  .toggle-button {
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+    padding: 5px 10px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    width: 750px;
+  }
+
+  .button-tog{
+ display: flex;
+ align-items: center;
+ justify-content: space-between;
+
+  }
+
+  .toggle-button:hover {
+    background-color: #f0f0f0;
+  }
+
+  .dropdown-icon {
+    font-size: 14px;
+    /*margin-left: 75%;*/
+
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  #toggle-content {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #333;
+    /* border: 1px solid #ddd; */
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    transition: max-height 0.5s ease;
+}
+
+
+
+  .program{
+    height: 50px;
+    width: 150px;
+    border-radius: 5px;
+    border: 0.3px solid rgb(66, 66, 211);
+    color: #0056b3;
+    font-weight: bold;
+    font-size: 15px;
+    padding-left:0 ;
+   justify-content: left;
+   margin-left: -613px;
+  }
+
+  .program:hover{
+    background-color: #c8d1dc;
+  }
+
+  .content2{
+  justify-content: left;
+  align-items: left;
+  text-align: start;
+  padding-left: 283px;
+  opacity: .6;
+  }
+
+  .content2 h2{
+    border: 1px solid rgba(75, 72, 72, 0.5);
+    padding: 20px 20px;
+    width: 730px;
+    border-radius: 5px;
+
+
+  }
+
+
+  .before{
+    padding-left: 0px;
+    margin-left: -20px;
+  }
+
+
+  .button1 {
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+    padding: 5px 10px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    width: 750px;
+  }
+
+
+
+  #toggle-content1 {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #333;
+    border: 1px solid #ddd;
+    padding: 15px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    display: none; /* Hidden by default */
+    transition: max-height 0.5s ease;
+  }
+
+
+
+/* Footer Section */
+footer {
+    margin-top: 40px;
+    text-align: center;
+    font-size: 14px;
+    color: #777;
+    padding: 20px;
+    /* background-color: #f8f9fc; */
+    border-top: 1px solid #e0e0e0;
+}
+
+footer a {
+    color: #0d6efd;
+    margin: 0 10px;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+/* 🔹 Responsive Media Queries */
+@media (max-width: 1024px) {
+    .css-1m9zmke {
+        font-size: 24px;
+    }
+    .content .css-t71jlo{
+        margin-left:0px;
+    }
+    .button1 {
+        font-size: 16px;
+        padding: 10px 15px;
+        width: 100%;
+    }
+    .before p {
+        font-size: 15px;
+        width: 60%;
+    }
+    .button {
+        padding: 10px 16px;
+        font-size: 15px;
+        margin-left:100px;
+    }
+    .button svg {
+        width: 18px;
+        height: 18px;
+    }
+    .toggle-button {
+        padding: 10px 14px;
+        width: 100%;
+    }
+    .toggle-button h3 {
+        font-size: 17px;
+    }
+    .dropdown-icon i {
+        font-size: 18px;
+    }
+    .program {
+        font-size: 15px;
+        margin-left:0;
+    }
+    .content2 h2 {
+        font-size: 17px;
+        margin-left: -320px;
+    }
+}
+
+@media (max-width: 768px) {
+    .css-t71jlo {
+        /*flex-direction: column;*/
+        /*gap: 10px;*/
+        transform: translateX(-320px);
+    }
+    .css-1m9zmke {
+        font-size: 22px !important;
+        text-align: center;
+    }
+     .button1 {
+        font-size: 16px;
+        padding: 10px 15px;
+    }
+    .dropdown-icon {
+        width: 20px;
+        height: 20px;
+    }
+    .before p {
+        font-size: 14px;
+    }
+    .button {
+        width: 100%;
+        justify-content: center;
+    }
+    .button a {
+        font-size: 14px;
+    }
+    .button1 {
+        padding: 10px 14px;
+    }
+    .button1 h3 {
+        font-size: 16px;
+    }
+    .dropdown-icon i {
+        font-size: 18px;
+    }
+    .toggle-button {
+        padding: 10px;
+    }
+    .toggle-button h3 {
+        font-size: 16px;
+    }
+    .dropdown-icon i {
+        font-size: 16px;
+    }
+    .program {
+        padding: 10px;
+        font-size: 14px;
+    }
+    .content2 h2 {
+        font-size: 16px;
+    }
+    footer {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    footer a {
+        display: block;
+        margin: 5px 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .css-1m9zmke {
+        font-size: 20px !important;
+    }
+    .css-nh1rq9{
+       display:none;
+    }
+     .button1 {
+        font-size: 16px;
+        padding: 10px 15px;
+        width: 89%;
+        /* margin-left: -15px; */
+    }
+    .dropdown-icon {
+        width: 20px;
+        height: 20px;
+    }
+    .before p {
+        font-size: 15px;
+        width: 230px;
+    }
+    .button {
+        font-size: 14px;
+        padding: 15px 0px;
+        margin: 0 120%;
+
+    }
+    .button1 h3 {
+        font-size: 15px;
+    }
+    .dropdown-icon i {
+        font-size: 16px;
+    }
+    .toggle-button {
+        width: 93%;
+        /*gap: 85px;*/
+        /* margin-left: -11px; */
+    }
+    .toggle-button h3 {
+        font-size: 15px;
+    }
+    .dropdown-icon i {
+        font-size: 14px;
+    }
+    .program {
+        padding: 8px;
+        font-size: 13px;
+        margin-left: 0px;
+    }
+    .content2{
+      width:10px;
+    }
+
+    .content2 h2 {
+        font-size: 12px;
+        margin-left: -320px;
+        width: 240px;
+    }
+    footer {
+        font-size: 14px;
+        padding: 12px;
+    }
+}
+ .employer-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 0;
+      background-color: white;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+
+
+  }
+
+
+
+  .employer-table th,
+  .employer-table td {
+      padding: 9px;
+      /* text-align: left; */
+      vertical-align: middle;
+      text-align: center;
+      /* border: 1px solid #ddd; */
+  }
+
+  /* .employer-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+} */
+
+
+ .btn-paid {
+    background-color: #0f8900;      /* Green background */
+    color: #fff;                      /* White text */
+    font-weight: 600;                 /* Bold text */
+    font-size: 14px;
+    padding: 8px 20px;
+    border: none;
+    border-radius: 6px;               /* Smooth corners */
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-paid:hover {
+    transform: translateY(-2px);      /* Slight lift */
+}
+
+.btn-unpaid {
+    background-color: #cf0c0f;        /* Red background */
+    color: #fff;                      /* White text */
+    font-weight: 600;                 /* Bold text */
+    font-size: 14px;
+    padding: 8px 20px;
+    border: none;
+    border-radius: 6px;               /* Smooth corners */
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-unpaid:hover {
+    transform: translateY(-2px);      /* Slight lift */
+}
+.school-fields{
+    display: contents;
+}

@@ -1,0 +1,1714 @@
+.mainnn {
+  /* margin-top: 10%; */
+}
+
+.webinarss {
+  /* background: linear-gradient(135deg, #ef0505 0%, #0264f7 100%); */
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.webinarss .webinar {
+  max-width: 850px;
+  margin: 0 auto;
+}
+
+.webinarss h2 {
+  font-size: 2.2rem;
+  text-align: center;
+  margin-bottom: 20px;
+  font-weight: 700;
+  color: #111;
+}
+
+.webinarss h2 span {
+  background: linear-gradient(to right, #bb0e45, #ad0039);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  /* text-transform: uppercase; */
+}
+
+.webinarss p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #444;
+  margin-bottom: 30px;
+}
+
+.btn-webinar {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 28px;
+  background: linear-gradient(135deg, #bb0e45, #ad0039);
+  color: white;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.btn-webinar i {
+  font-size: 1.1rem;
+}
+
+.btn-webinar:hover {
+  transform: translateY(-4px);
+}
+
+
+
+/* === Consultation Banner === */
+.consultation-banner {
+  height: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.consultation-overlay {
+  background: url('https://i.ibb.co/5xSqFzdr/asian-businessman-sitting-car.jpg') center/cover no-repeat;
+  /* background: rgba(0, 0, 0, 0.6); */
+  padding: 5rem 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  max-width: 1100px;
+  border-radius: 6px;
+  backdrop-filter: blur(4px);
+}
+
+.consultation-text h2 {
+  color: #ffffff;
+  font-size: 1.75rem;
+  margin: 0;
+  font-weight: 600;
+}
+
+.consultation-text p {
+  color: #ddd;
+  font-size: 0.95rem;
+  margin-top: 0.4rem;
+}
+
+.consultation-button {
+  /* background: linear-gradient(to right, var(--primary), var(--secondary)); */
+  background: linear-gradient(135deg, #bb0e45, #ad0039);
+  padding: 0.8rem 1.6rem;
+  color: #ffffff;
+  font-weight: 600;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.consultation-button:hover {
+  /* opacity: 0.9; */
+  transform: translateY(-4px);
+}
+
+@media (max-width: 768px) {
+  .student-hero {
+    margin-top: 15% !important;
+    padding: 50px 40px !important;
+  }
+
+  .webinarss {
+    padding: 0px 20px;
+  }
+
+  .consultation-banner {
+    height: 350px;
+  }
+
+  .consultation-overlay {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+    padding: 1.5rem;
+  }
+
+  .consultation-text h2 {
+    font-size: 1.4rem;
+  }
+
+  .consultation-button {
+    width: 80% !important;
+    font-size: 13px !important;
+  }
+}
+
+@media (max-width: 1024px) {
+  .student-hero {
+    margin-top: 15% !important;
+    padding: 50px 40px !important;
+  }
+
+  .consultation-button {
+    width: 50%;
+    font-size: 15px;
+  }
+}
+
+.btn-second1 {
+  /* background-color: #b92151; */
+  background: linear-gradient(135deg, #bb0e45, #ad0039);
+  border-radius: 6px;
+  padding: 7px 15px;
+  border: 2px solid #b92151;
+  margin-top: 10px;
+  display: inline-block;
+  color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  /* includes color, background, and scale */
+}
+
+.btn-second1:hover {
+  color: white;
+  background-color: #b92151;
+  transform: scale(1.03);
+  /* scales the button up by 5% */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+
+}
+
+
+
+*,
+:after,
+:before {
+  border: 0 solid #e5e7eb;
+  box-sizing: border-box;
+}
+
+:after,
+:before {
+  --tw-content: "";
+}
+
+:host,
+html {
+  line-height: 1.5;
+  -webkit-text-size-adjust: 100%;
+  font-feature-settings: normal;
+  font-variation-settings: normal;
+  -moz-tab-size: 4;
+  tab-size: 4;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  line-height: inherit;
+  margin: 0;
+}
+
+hr {
+  border-top-width: 1px;
+  color: inherit;
+  height: 0;
+}
+
+abbr:where([title]) {
+  text-decoration: underline dotted;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+b,
+strong {
+  font-weight: bolder;
+}
+
+code,
+kbd,
+pre,
+samp {
+  font-family:
+    ui-monospace,
+    SFMono-Regular,
+    Menlo,
+    Monaco,
+    Consolas,
+    Liberation Mono,
+    Courier New,
+    monospace;
+  font-feature-settings: normal;
+  font-size: 1em;
+  font-variation-settings: normal;
+}
+
+small {
+  font-size: 80%;
+}
+
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+sup {
+  top: -0.5em;
+}
+
+table {
+  border-collapse: collapse;
+  border-color: inherit;
+  text-indent: 0;
+}
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  color: inherit;
+  font-family: inherit;
+  font-feature-settings: inherit;
+  font-size: 100%;
+  font-variation-settings: inherit;
+  font-weight: inherit;
+  letter-spacing: inherit;
+  line-height: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+button,
+select {
+  text-transform: none;
+}
+
+button,
+input:where([type="button"]),
+input:where([type="reset"]),
+input:where([type="submit"]) {
+  -webkit-appearance: button;
+  background-color: transparent;
+  background-image: none;
+}
+
+:-moz-focusring {
+  outline: auto;
+}
+
+:-moz-ui-invalid {
+  box-shadow: none;
+}
+
+progress {
+  vertical-align: baseline;
+}
+
+::-webkit-inner-spin-button,
+::-webkit-outer-spin-button {
+  height: auto;
+}
+
+[type="search"] {
+  -webkit-appearance: textfield;
+  outline-offset: -2px;
+}
+
+::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+::-webkit-file-upload-button {
+  -webkit-appearance: button;
+  font: inherit;
+}
+
+summary {
+  display: list-item;
+}
+
+blockquote,
+dd,
+dl,
+figure,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr,
+p,
+pre {
+  margin: 0;
+}
+
+fieldset {
+  margin: 0;
+}
+
+fieldset,
+legend {
+  padding: 0;
+}
+
+menu,
+ol,
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+dialog {
+  padding: 0;
+}
+
+textarea {
+  resize: vertical;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #9ca3af;
+  opacity: 1;
+}
+
+[role="button"],
+button {
+  cursor: pointer;
+}
+
+:disabled {
+  cursor: default;
+}
+
+audio,
+canvas,
+embed,
+iframe,
+img,
+object,
+svg,
+video {
+  display: block;
+  vertical-align: middle;
+}
+
+img,
+video {
+  height: auto;
+  max-width: 100%;
+}
+
+[hidden] {
+  display: none;
+}
+
+
+
+#webcrumbs h4 {
+  font-size: 16px;
+  font-family: Segoe UI;
+}
+
+
+#webcrumbs .mt-4 {
+  margin-top: 16px;
+}
+
+#webcrumbs .flex {
+  display: flex;
+}
+
+#webcrumbs .grid {
+  display: grid;
+}
+
+#webcrumbs .w-\[1000px\] {
+  width: 1000px;
+}
+
+#webcrumbs .grid-cols-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+#webcrumbs .flex-row {
+  flex-direction: row;
+}
+
+#webcrumbs .flex-col {
+  flex-direction: column;
+}
+
+#webcrumbs .items-center {
+  align-items: center;
+}
+
+#webcrumbs .justify-between {
+  justify-content: space-between;
+}
+
+#webcrumbs .gap-10 {
+  gap: 40px;
+}
+
+#webcrumbs .gap-4 {
+  gap: 16px;
+}
+
+#webcrumbs .rounded-lg {
+  border-radius: 24px;
+}
+
+#webcrumbs .bg-white {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+}
+
+#webcrumbs .p-10 {
+  padding: 40px;
+  margin-top: 50px;
+}
+
+#webcrumbs .text-center {
+  text-align: center;
+}
+
+#webcrumbs .text-4xl {
+  font-size: 36px;
+  line-height: 41.4px;
+}
+
+#webcrumbs .font-medium {
+  font-weight: 500;
+}
+
+#webcrumbs .text-neutral-900 {
+  --tw-text-opacity: 1;
+  color: rgb(70 70 70 / var(--tw-text-opacity));
+}
+
+#webcrumbs .text-primary-500 {
+  --tw-text-opacity: 1;
+  color: rgb(115 65 255 / var(--tw-text-opacity));
+}
+
+#webcrumbs {
+  font-family: Open Sans !important;
+  font-size: 16px !important;
+}
+
+
+
+.footer {
+  background-color: #1652b4;
+  color: white;
+  padding: 100px 50px;
+  transform: translateY(125px);
+}
+
+
+.footer-column h2 {
+  font-weight: 550;
+  margin-left: 32px;
+  font-size: larger;
+  color: white;
+}
+
+.footer-column .head {
+  font-weight: bold;
+
+}
+
+
+
+.footer-column .line ul li a {
+  font-weight: 550;
+  font-size: larger;
+  color: white;
+}
+
+
+.line {
+  margin-top: -25px;
+}
+
+.footer-column .line h3:hover,
+.footer-column .line ul li a:hover::after {
+
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 10px;
+  background-color: #000;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.footer-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+}
+
+.footer-column {
+  width: 100%;
+  max-width: 270px;
+  margin-bottom: 30px;
+
+}
+
+.footer-column h3 {
+  font-size: 18px;
+  margin-bottom: 20px;
+  font-weight: bold;
+  margin-left: 30px;
+  color: white;
+}
+
+.line-h3 {
+  text-decoration: none;
+  color: #fff;
+}
+
+.footer-column p,
+.footer-column ul {
+  margin-bottom: 15px;
+  color: white;
+}
+
+.footer-column p {
+  margin-left: 10px;
+}
+
+.footer-column ul {
+  list-style: none;
+}
+
+.footer-column ul li {
+  margin-bottom: 10px;
+}
+
+.footer-column ul li a {
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer .footer-column h2,
+.footer .footer-column h3 {
+  transform: translateX(-40px);
+}
+
+.social-icons a {
+  color: white;
+  font-size: 24px;
+  text-decoration: none;
+  transition: color 0.3s color 0.3s;
+  padding: 0px 6px;
+  /* background-color: #1652b4; */
+}
+
+.li .social-icons {
+  display: flex;
+  gap: 10px;
+  color: white;
+}
+
+.social-icons a:hover {
+
+  background-color: #fff;
+}
+
+
+.copyright {
+  padding: 2px;
+  margin-top: 50px;
+  margin-left: 42%;
+
+}
+
+.copyright p {
+  color: white;
+}
+
+.footer .footer-column h2,
+.footer .footer-column h3 {
+  margin-left: 42px;
+}
+
+.row {
+  justify-content: center;
+  margin-left: -15px;
+  margin-right: 320px;
+  margin-top: -80px;
+}
+
+#c2 {
+  margin-left: 0px;
+}
+
+#c3 {
+  margin-left: 41px;
+}
+
+.container {
+
+  flex-direction: column;
+  text-align: center;
+  font-family: sans-serif;
+  height: 100%;
+}
+
+.student-hero {
+  margin-top: 5%;
+  padding: 80px 40px;
+  /* background: linear-gradient(135deg, #e0f7ff 0%, #ffffff 100%); */
+  background: linear-gradient(135deg, #d1e1ff 0%, #ffffff 100%);
+  font-family: 'Poppins', sans-serif;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-container {
+  max-width: 1300px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.hero-left {
+  flex: 1 1 500px;
+  z-index: 2;
+}
+
+.hero-left h1 {
+  font-size: 3.2rem;
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 20px;
+}
+
+.hero-left h1 span {
+  background: linear-gradient(to right, #bb0e45, #ad0039);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+
+.hero-left .tagline {
+  font-size: 1.3rem;
+  font-weight: 600;
+  /* color: #ad0039; */
+  margin-bottom: 15px;
+}
+
+.hero-left .description {
+  font-size: 1rem;
+  color: #444;
+  line-height: 1.7;
+  margin-bottom: 30px;
+}
+
+#application {
+  scroll-margin-top: 20px;
+  /* Adjust this to match your header height */
+}
+
+.hero-right {
+  flex: 1 1 400px;
+  text-align: center;
+  position: relative;
+}
+
+.hero-right::before {
+  content: '';
+  position: absolute;
+  top: -60px;
+  right: -60px;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, #00c6ff30 0%, transparent 70%);
+  border-radius: 50%;
+  z-index: 0;
+}
+
+.app-mockup {
+  width: 100%;
+  max-width: 400px;
+  z-index: 1;
+  position: relative;
+  animation: float 4s ease-in-out infinite;
+}
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .hero-container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .hero-left,
+  .hero-right {
+    flex: 1 1 100%;
+  }
+
+  .hero-left h1 {
+    font-size: 2.2rem;
+  }
+
+  .hero-left .tagline {
+    font-size: 1.1rem;
+  }
+}
+
+
+#txt {
+  font-size: 20px;
+}
+
+.calendar h1 {
+  font-size: 40px;
+}
+
+.calandar-events h2 {
+  font-size: 30px;
+  font-weight: bold;
+  justify-content: left;
+  text-align: left;
+}
+
+.div button {
+  color: blue;
+  border-radius: 5px;
+  width: 150px;
+  height: 40px;
+}
+
+.div button:hover {
+  background-color: #d3def0;
+}
+
+
+.dates {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 2;
+}
+
+#date {
+  transform: translateY(-30px);
+  font-weight: bold;
+  font-size: 20px;
+}
+
+
+
+.blue4 {
+  margin-top: 70px;
+  background-image: url(/images/blue4.jpg);
+  width: 90%;
+  height: 360px;
+  margin-left: 70px;
+  border-radius: 20px;
+  padding: 14px;
+}
+
+.content1 {
+  display: flex;
+  justify-content: space-around;
+  color: white;
+  padding: 90px 10px;
+  align-items: center;
+  text-align: justify;
+  line-height: 1.5;
+  font-family: sans-serif;
+}
+
+.content1 p {
+  margin-top: 10px;
+  font-size: 20px;
+  max-width: 500px;
+  color: white;
+
+}
+
+.btn175 {
+  border: 1px solid white;
+  text-align: center;
+  width: 300px;
+  height: 50px;
+  border-radius: 6px;
+  padding: 14px 0px;
+  cursor: pointer;
+}
+
+.carousel {
+  width: 100%;
+  overflow: hidden;
+  padding: 30px 0;
+  background: #f9f9f9;
+}
+
+.carousel-track {
+  display: flex;
+  gap: 20px;
+  animation: scroll-horizontal 50s linear infinite;
+  align-items: center;
+}
+
+.carousel img {
+  width: 360px;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.carousel img:hover {
+  transform: scale(1.04);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+}
+
+@keyframes scroll-horizontal {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+
+
+.why-edux {
+  margin-top: 20px;
+  background: linear-gradient(90deg, #0644a6, #2764c5);
+  width: 70%;
+  padding: 0px 30px;
+  margin-left: 15.7%;
+  height: 250px;
+  border-radius: 20px;
+  color: white;
+  line-height: 1.5;
+  font-family: sans-serif;
+  display: flex;
+  align-items: center;
+
+}
+
+
+.why-edux h1 {
+  margin-bottom: 10px;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+
+.why-edux p {
+  font-size: 20px;
+  max-width: 800px;
+  color: white;
+}
+
+.imge img {
+  display: inline-block;
+  border-radius: 44%;
+  width: 200px;
+  height: 280px;
+  border: 3px solid white;
+  /* margin-top: -300px; */
+  background-position: fill;
+  margin-left: 100px;
+}
+
+
+.card-img-top {
+  display: flex;
+
+
+  width: 250px;
+  height: 230px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin: 10px auto;
+  border: 5px solid #fff;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+
+.card-body {
+  text-align: center;
+}
+
+
+.row {
+  justify-content: center;
+  margin-left: -15px;
+  margin-right: 320px;
+  margin-top: -80px;
+}
+
+.card-event h5 {
+  margin-bottom: 90px;
+  font-weight: bold;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+
+.card1 {
+  border-color: #fff;
+  margin-left: 254px;
+  margin-right: -106px;
+}
+
+
+.event-cards {
+  margin-top: 300px;
+  display: flex;
+  gap: 30px;
+}
+
+
+/* Card styling */
+.card1 .card-event {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  margin-bottom: 20px;
+  /* Space below each card */
+  transition: all .3s ease-in-out;
+  /* Smooth transition on hover */
+  margin-top: -300px;
+  height: 550px;
+  width: 350px;
+  padding-right: 10px;
+}
+
+
+.card1 img {
+  overflow: hidden;
+  width: 85%;
+  -webkit-transition: .3s linear;
+  transition: all .3s linear;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  height: 100px;
+}
+
+.card1 img:hover {
+  -webkit-transform: scale(1.2);
+  transform: scale(1.2);
+  width: 88%;
+  object-fit: contain;
+}
+
+/* Text styling */
+.card1 p a {
+  font-size: 16px;
+  text-align: justify;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  text-decoration: none;
+  color: #323847;
+  margin-top: 30px;
+}
+
+.card1 h6 {
+  font-family: "Open Sans", Sans-serif;
+  font-size: 14px;
+  font-weight: 550;
+  text-transform: uppercase;
+  line-height: 26px;
+  margin-left: 30px;
+  text-align: left;
+  color: #57585b;
+}
+
+/* Button styling */
+.card1 button {
+  color: #0064e1;
+  border: none;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: lighter;
+  text-align: left;
+  margin-right: 150px;
+  margin-bottom: 55px;
+}
+
+.card1 button a {
+  text-decoration: none;
+}
+
+/* Card image dimensions */
+.card1 .card-event img {
+  width: 260px;
+  height: 130px;
+}
+
+
+#card2 {
+  margin-top: -400px;
+}
+
+.card-text {
+  margin-top: -70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 250px;
+  margin-left: 32px;
+  font-size: 20px;
+}
+
+.card-event button {
+  margin-top: 40px;
+  font-weight: 550;
+  font-family: Tahoma, sans-serif;
+  margin-left: 30px;
+}
+
+
+#btnn {
+  height: 80px;
+  width: 300px;
+  font-size: 35px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 2%;
+  border-width: 8px;
+  margin-top: 50px;
+}
+
+.blog {
+  font-size: 40px;
+  font-weight: bold;
+  font-family: sans-serif;
+  margin-left: 40%;
+  margin-top: 50px;
+}
+
+
+/* Mobile (portrait) */
+@media screen and (max-width: 576px) {
+  .navbar {
+    padding: 10px;
+  }
+
+  .navbar-brand img {
+    height: 50px !important;
+  }
+
+  .navbar-nav {
+    text-align: center;
+  }
+
+  .navbar-nav .nav-link {
+    font-size: 14px;
+  }
+
+
+
+  .content1,
+  .why-edux {
+    flex-direction: column;
+    padding: 40px;
+    text-align: center;
+  }
+
+  .background-content {
+    margin-left: 0;
+    text-align: center;
+  }
+
+  .social-icons a {
+    font-size: 20px;
+  }
+
+  .calendar h1 {
+    font-size: 30px;
+  }
+
+  .carousel img {
+    width: 150px;
+    height: 75px;
+  }
+
+  .btn1 {
+    width: 250px;
+  }
+
+
+
+  #txt {
+    font-size: 16px;
+  }
+
+  .background {
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    /* Ensure it takes full height */
+    max-width: 100%;
+  }
+
+  .background h1 {
+    font-size: 30px;
+  }
+
+  .why-edux p {
+    font-size: 18px;
+  }
+
+  .card1 .card-event {
+    margin-top: 30px;
+    width: 100%;
+    height: auto;
+  }
+
+  .card1 img {
+    width: 100%;
+  }
+
+  #card2 {
+    margin-top: 0;
+  }
+
+  .card-text {
+    font-size: 18px;
+  }
+
+  .btn-custom {
+    padding: 6px 15px;
+  }
+
+  #btnn {
+    width: 100%;
+    font-size: 25px;
+    margin-left: 0;
+  }
+
+  .blog {
+    font-size: 30px;
+  }
+
+  /* Hide large content or adjust layout */
+  .content1 p {
+    max-width: 100%;
+  }
+
+  .container {
+    flex-direction: column;
+  }
+
+  .background {
+    background-size: cover;
+    background-position: center;
+    height: 400px;
+  }
+
+
+}
+
+/* Tablet (portrait) */
+@media screen and (max-width: 768px) {
+  .navbar {
+    padding: 15px 20px;
+  }
+
+  .navbar-brand img {
+    height: 60px;
+  }
+
+  .navbar-nav .nav-link {
+    font-size: 15px;
+  }
+
+
+  .container1 {
+    margin-left: 143px;
+    text-align: center;
+  }
+
+
+
+  .blue4,
+  .why-edux {
+    margin: -42px 21px;
+    width: 100vw;
+  }
+
+  .content1,
+  .why-edux {
+    padding: 20px;
+    flex-direction: column;
+    width: 100vw;
+    text-align: center;
+    display: flex;
+    gap: 20px;
+  }
+
+
+  .background {
+    background-size: cover;
+    background-position: center bottom;
+    /* Ensure the person stays at the bottom */
+    height: 80vh;
+    /* Ensure it takes full height */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    /* Text stays at the top */
+    margin-top: 69px;
+    text-align: center;
+  }
+
+  /* Center content for "Why Choose Edu-X?" and "Webinars by Edu-X" */
+  .background-content {
+
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    /* Ensure the content stays above the background */
+    margin-left: 3%;
+    padding: 50px;
+  }
+
+  .background h1 {
+    font-size: 28px;
+  }
+
+  .background p {
+    font-size: 16px;
+  }
+
+  /* Hide circular images on mobile */
+  .imge img {
+    display: none;
+  }
+
+  .card1 {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 40px;
+    margin: 94px 0px;
+    margin-left: 332px;
+  }
+
+  /*#c1{*/
+  /*    margin-left:0px;*/
+  /*}*/
+
+  #c3 {
+    transform: translateX(-81px);
+
+  }
+
+  .card1 .col {
+    flex: 0 0 100%;
+    /* Make cards take full width on mobile */
+    display: flex;
+    justify-content: center;
+    /* Center the cards horizontally */
+    margin-bottom: 20px;
+  }
+
+  .card1 .card-event {
+    width: 100%;
+    /* Make card take full width inside its container */
+    max-width: 300px;
+    /* Limit card width */
+    margin: 0 auto;
+    /* Center the card itself */
+  }
+
+  .card1 .card-img-top {
+    height: 200px;
+    object-fit: cover;
+  }
+
+  .card1 .card-body {
+    padding: 15px;
+    text-align: center;
+    /* Center text inside card body */
+  }
+
+  .card1 .card-body p {
+    font-size: 1rem;
+    line-height: 1.4;
+    white-space: nowrap;
+    /* Prevent text from breaking into multiple lines */
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
+  .card1 .card-body h6 {
+    font-size: 1rem;
+    color: #333;
+    /* Ensure date text is readable */
+    white-space: nowrap;
+    /* Keep the date in a single line */
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .image-card {
+    width: 100%;
+    height: 180px;
+    /* Adjust card size for mobile screens */
+  }
+
+
+
+  .why-edux h1 {
+    font-size: 30px;
+  }
+
+
+  .why-edux p {
+    font-size: 18px;
+  }
+
+
+  #txt {
+    font-size: 18px;
+  }
+
+  .social-icons a {
+    font-size: 22px;
+  }
+
+  .btn1 {
+    width: 250px;
+    height: 45px;
+  }
+
+  #btnn {
+    width: 80%;
+  }
+
+  .blog {
+
+    font-size: 31px;
+    margin-left: 103px;
+  }
+
+
+  .copyright {
+    margin-left: -167px;
+  }
+
+}
+
+
+
+
+@media screen and (max-width: 1024px) {
+  .navbar {
+    padding: 15px 20px;
+  }
+
+  .navbar-brand img {
+    height: 60px;
+  }
+
+  .navbar-nav .nav-link {
+    font-size: 15px;
+  }
+
+
+  .container1 {
+    margin-left: 143px;
+    text-align: center;
+  }
+
+
+
+  .blue4,
+  .why-edux {
+    margin: 0px 0px;
+    width: 100vw;
+  }
+
+  .content1,
+  .why-edux {
+    padding: 40px;
+    flex-direction: column;
+    width: 100vw;
+    text-align: center;
+    display: flex;
+    gap: 20px;
+  }
+
+
+  .background {
+    background-size: cover;
+    background-position: center bottom;
+    /* Ensure the person stays at the bottom */
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Center content for "Why Choose Edu-X?" and "Webinars by Edu-X" */
+  .background-content {
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    /* Ensure the content stays above the background */
+    margin-left: -12%;
+    padding: 66px;
+    max-width: 700px;
+  }
+
+  .background h1 {
+    font-size: 28px;
+  }
+
+  .background p {
+    font-size: 16px;
+  }
+
+  /* Hide circular images on mobile */
+  .imge img {
+    display: none;
+  }
+
+  .card1 {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 40px;
+    margin: 94px 0px;
+    margin-left: 332px;
+  }
+
+  /*#c1{*/
+  /*    margin-left:0px;*/
+  /*}*/
+
+  #c3 {
+    transform: translateX(-81px);
+
+  }
+
+  .card1 .col {
+    flex: 0 0 100%;
+    /* Make cards take full width on mobile */
+    display: flex;
+    justify-content: center;
+    /* Center the cards horizontally */
+    margin-bottom: 20px;
+  }
+
+  .card1 .card-event {
+    width: 100%;
+    /* Make card take full width inside its container */
+    max-width: 300px;
+    /* Limit card width */
+    margin: 0 auto;
+    /* Center the card itself */
+  }
+
+  .card1 .card-img-top {
+    height: 200px;
+    object-fit: cover;
+  }
+
+  .card1 .card-body {
+    padding: 15px;
+    text-align: center;
+    /* Center text inside card body */
+  }
+
+  .card1 .card-body p {
+    font-size: 1rem;
+    line-height: 1.4;
+    white-space: nowrap;
+    /* Prevent text from breaking into multiple lines */
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
+  .card1 .card-body h6 {
+    font-size: 1rem;
+    color: #333;
+    /* Ensure date text is readable */
+    white-space: nowrap;
+    /* Keep the date in a single line */
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .image-card {
+    width: 100%;
+    height: 180px;
+    /* Adjust card size for mobile screens */
+  }
+
+
+
+  .why-edux h1 {
+    font-size: 30px;
+  }
+
+
+  .why-edux p {
+    font-size: 18px;
+  }
+
+
+
+
+
+  #txt {
+    font-size: 18px;
+  }
+
+  .social-icons a {
+    font-size: 22px;
+  }
+
+  .btn1 {
+    width: 250px;
+    height: 45px;
+  }
+
+  #btnn {
+    width: 80%;
+  }
+
+  .blog {
+
+    font-size: 34px;
+    margin-left: 89px;
+  }
+
+
+  .copyright {
+    margin-left: -167px;
+  }
+
+}
+
+
+
+
+
+
+
+
+
+
+/* Desktop (larger screen) */
+@media screen and (min-width: 1200px) {
+  .navbar {
+    padding: 15px 40px;
+  }
+
+  .navbar-nav .nav-link {
+    font-size: 18px;
+  }
+
+
+  .content1 {
+    display: flex;
+    justify-content: space-around;
+    padding: 90px 10px;
+  }
+
+  .background {
+    /* background-image: url(/images/blue3.jpg); */
+    height: 600px;
+
+  }
+
+  .background h1 {
+    font-size: 40px;
+    font-weight: bold;
+  }
+
+  /* .carousel img {
+        width: 300px;
+    } */
+
+  /*.card1 .card {*/
+  /*    width: 350px;*/
+  /*    margin: -104px;*/
+  /*}*/
+
+  #c2 {
+    margin-left: 0px;
+  }
+
+  .btn-custom {
+    padding: 10px 25px;
+  }
+
+
+
+  .card1 img {
+    width: 100%;
+  }
+
+  .btn1 {
+    width: 300px;
+    height: 50px;
+  }
+
+  #btnn {
+    width: 300px;
+    font-size: 35px;
+  }
+
+  .why-eduxp {
+    font-size: 20px;
+  }
+
+  .blog {
+    font-size: 40px;
+  }
+}

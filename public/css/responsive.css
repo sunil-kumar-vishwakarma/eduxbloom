@@ -1,0 +1,665 @@
+ /* Responsive adjustments */
+ @media (max-width: 480px) {
+
+    /* slidebar */
+    .sidebar {
+        transform: translateX(-100%);
+        visibility: hidden;
+    }
+
+    .sidebar.hidden {
+        transform: translateX(0);
+        visibility: visible;
+    }
+
+    /* sub menu */
+    .submenu {
+        width: 100%;
+        position: static;
+        transform: translateY(0);
+    }
+
+    /*.menu-item.dropdown:hover .submenu {*/
+    /*    display: block;*/
+    /*}*/
+
+    /* navbar */
+    .navbar {
+        padding: 8px 10px;
+    }
+
+    .menu-toggle-btn {
+        display: flex;
+    }
+
+    .navbar-right {
+        margin-left: auto;
+    }
+
+    .navbar-user {
+        font-size: 14px;
+    }
+
+    /* btncreate */
+    .btncreate {
+        padding: 10px 25px;
+        font-size: 16px;
+        margin: 15px 20px;
+    }
+
+    /* create- student/partner botton */
+    .create-partner-section h1 {
+        font-size: 20px;
+    }
+
+    .create-partner-form label {
+        font-size: 12px;
+    }
+
+    .create-partner-form input,
+    .create-partner-form select {
+        font-size: 12px;
+    }
+
+    .create-partner-form .btn-submit,
+    .create-partner-form .btn-reset {
+        font-size: 12px;
+        padding: 8px 10px;
+    }
+
+    .create-partner-form .form-group {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .create-partner-form label {
+        margin-bottom: 5px;
+    }
+
+    /* Main Content */
+    .main-content {
+        margin-left: 0;
+        padding: 10px;
+    }
+
+    .stat-card {
+        flex: 1 1 100%;
+        border-radius: 50px 0;
+        /* Single column on very small screens */
+    }
+
+    .stats-section {
+        padding: 1rem;
+    }
+
+    /* user-list-section */
+    .user-list-section {
+        padding: 8px;
+    }
+
+    .user-list-table {
+        font-size: 12px;
+        margin-right: 10px;
+    }
+
+    .user-list-table th,
+    .user-list-table td {
+        font-size: 11px;
+        padding: 6px;
+        width: auto;
+    }
+
+    .profile-img {
+        width: 25px;
+        height: 25px;
+    }
+
+    .btnuser {
+        font-size: 10px;
+        padding: 10px 6px;
+    }
+
+    .edit-user-btn,
+    .view-user-btn,
+    .delete-user-btn {
+        font-size: 10px;
+        padding: 6px 10px;
+        margin-top: 5px;
+    }
+
+
+
+    /*subscription page*/
+    .subscription-table {
+        display: block;
+    }
+
+    .subscription-table thead {
+        display: none;
+    }
+
+    .subscription-table tbody {
+        display: block;
+    }
+
+    .subscription-table tbody tr {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 15px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 10px;
+    }
+
+    .subscription-table tbody tr td {
+        display: block;
+        text-align: left;
+        font-size: 14px;
+        padding: 8px 0;
+    }
+
+    .subscription-table tbody tr td::before {
+        content: attr(data-label);
+        font-weight: bold;
+        margin-right: 10px;
+        display: inline-block;
+        color: #333;
+    }
+
+
+
+    /* notification page */
+    .notification-table {
+        border: 0;
+        font-size: 14px;
+        width: 100%;
+    }
+
+    .notification-table thead {
+        display: none;
+        /* Hide the table header for mobile */
+    }
+
+    .notification-table tr {
+        display: block;
+        margin-bottom: 15px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    .notification-table td {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px;
+        border-bottom: 1px solid #ddd;
+        word-break: break-word;
+        /* Break long text */
+    }
+
+    .notification-table td:last-child {
+        border-bottom: 0;
+    }
+
+    .notification-table td:before {
+        content: attr(data-label);
+        /* Use the data-label attribute */
+        font-weight: bold;
+        flex-shrink: 0;
+        margin-right: 65px;
+        color: #2c3e50;
+    }
+
+    /* setting */
+    .settings-container {
+        padding: 10px;
+    }
+
+    h2 {
+        font-size: 1.1rem;
+    }
+
+    label {
+        font-size: 0.85rem;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    input[type="file"],
+    input[type="number"],
+    select,
+    textarea {
+        font-size: 0.85rem;
+    }
+
+    button[type="submit"] {
+        padding: 8px 15px;
+        font-size: 0.85rem;
+    }
+
+    .settings-section {
+        padding: 10px;
+    }
+
+}
+
+@media (max-width: 768px) {
+
+    /* Sidebar */
+    /* .sidebar {
+        width: 50px;
+    }
+
+    .sidebar-logo h2 {
+        font-size: 1.4rem;
+        text-align: center;
+    }
+
+    .menu-item {
+        padding: 10px;
+        font-size: 13px;
+    }
+
+    .menu-item .icon {
+        margin-right: 8px;
+    }
+
+    .submenu {
+        width: 160px;
+    }
+
+    .submenu li {
+        font-size: 12px;
+        padding: 6px 10px;
+    }  */
+
+
+
+    /* state card */
+    .stat-card {
+        flex: 1 1 100%;
+        border-radius: 50px 0;
+        /* Single column on very small screens */
+    }
+
+    .stats-section {
+        padding: 1rem;
+    }
+
+
+
+    /* .stats-section {
+        flex-direction: column;
+    }
+
+    .stat-card {
+        flex: 1 1 100%;
+        margin-bottom: 20px;
+        border-radius: 50px 0;
+    } */
+
+
+    /* create- student/partner botton */
+    .create-partner-form .form-buttons {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .create-partner-form .btn-submit,
+    .create-partner-form .btn-reset {
+        width: 100%;
+    }
+
+    .create-partner-form label {
+        font-size: 14px;
+    }
+
+    .create-partner-form input[type="text"],
+    .create-partner-form input[type="email"],
+    .create-partner-form input[type="number"],
+    .create-partner-form input[type="date"],
+    .create-partner-form select {
+        font-size: 14px;
+    }
+
+    .create-partner-form .btn-submit {
+        font-size: 14px;
+        padding: 10px 15px;
+    }
+
+    /* Navbar */
+    .navbar {
+        padding: 8px 15px;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .menu-toggle-btn {
+        display: flex;
+    }
+
+    .navbar-right {
+        margin-left: auto;
+    }
+
+    .navbar-user {
+        font-size: 14px;
+        margin-right: 10px;
+    }
+
+    /* Button Styling */
+    .btncreate {
+        padding: 10px 25px;
+        font-size: 16px;
+        margin: 15px 20px;
+    }
+
+    /* Main Content */
+    .main-content {
+        margin-left: 0;
+        padding: 15px;
+    }
+
+    /* user-list-section */
+    .user-list-section {
+        padding: 10px;
+    }
+
+    .user-list-table th,
+    .user-list-table td {
+        font-size: 12px;
+        padding: 8px;
+    }
+
+    .profile-img {
+        width: 30px;
+        height: 30px;
+    }
+
+    .btnuser {
+        font-size: 12px;
+        padding: 5px 8px;
+    }
+
+    .edit-user-btn,
+    .view-user-btn,
+    .delete-user-btn {
+        padding: 8px 12px;
+    }
+
+
+    /*subscription page*/
+    .subscription-table th,
+    .subscription-table td {
+        font-size: 13px;
+        padding: 12px;
+    }
+
+
+    /* Notification page */
+    .notification-table {
+        font-size: 13px;
+        width: 100%;
+    }
+
+    .notification-table th,
+    .notification-table td {
+        padding: 6px 8px;
+        text-align: left;
+    }
+
+    .notification-table td {
+        word-break: break-word;
+        white-space: normal;
+    }
+
+    .notification-table th {
+        font-size: 14px;
+        font-weight: bold;
+    }
+
+    /* Notification Table on Small Screens */
+    .notification-table tbody tr {
+        border-bottom: 1px solid #ddd;
+    }
+
+
+    /* settings */
+    .settings-container {
+        padding: 10px;
+    }
+
+    .settings-section {
+        margin-bottom: 20px;
+    }
+
+    h2 {
+        font-size: 1.3rem;
+    }
+
+    label {
+        font-size: 0.9rem;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    input[type="file"],
+    input[type="number"],
+    select,
+    textarea {
+        font-size: 0.9rem;
+    }
+
+    button[type="submit"] {
+        padding: 10px 15px;
+        font-size: 0.9rem;
+    }
+}
+
+
+@media (max-width: 1024px) {
+
+    /* Sidebar */
+    .sidebar {
+        transform: translateX(-100%);
+        visibility: hidden;
+    }
+
+    .sidebar.hidden {
+        transform: translateX(0);
+        visibility: visible;
+    }
+
+    .sidebar-logo h2 {
+        font-size: 1.5rem;
+        text-align: center;
+    }
+
+    .menu-item {
+        padding: 12px 15px;
+        font-size: 14px;
+    }
+
+    .menu-item .icon {
+        margin-right: 10px;
+    }
+
+
+    /* Submenu */
+    .submenu {
+        width: 250px;
+    }
+
+    .submenu li {
+        font-size: 14px;
+        padding: 8px 12px;
+    }
+
+    /* Navbar */
+    .navbar {
+        padding: 12px 18px;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .menu-toggle-btn {
+        display: flex;
+    }
+
+    .navbar-right {
+        margin-left: auto;
+        display: flex;
+        align-items: center;
+    }
+
+    .navbar-user {
+        font-size: 15px;
+    }
+
+    /* Button (btncreate) */
+    .btncreate {
+        padding: 14px 40px;
+        font-size: 16px;
+        margin: 16px 24px;
+    }
+
+    /* create- student/partner botton */
+    .create-partner-section {
+        padding: 20px;
+        margin-bottom: 300px;
+    }
+
+    .create-partner-section h1 {
+        font-size: 22px;
+    }
+
+    .create-partner-form .form-group {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .create-partner-form label {
+        font-size: 14px;
+    }
+
+    .create-partner-form input[type="text"],
+    .create-partner-form input[type="email"],
+    .create-partner-form input[type="number"],
+    .create-partner-form input[type="date"],
+    .create-partner-form select {
+        font-size: 14px;
+    }
+
+    /* Main Content */
+    .main-content {
+        margin-left: 0;
+        padding: 10px;
+    }
+
+    .stats-section {
+        flex-direction: row;
+        gap: 20px;
+    }
+
+    .stat-card {
+        flex: 1 1 calc(33.33% - 1rem);
+        border-radius: 50px 0;
+        /* Three cards per row on medium screens */
+    }
+
+    .stat-card:hover {
+        transform: scale(1.03);
+    }
+
+    /* user-list-section */
+    .user-list-section {
+        padding: 0px;
+        margin-left: -18px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .user-list-table th,
+    .user-list-table td {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .btnuser {
+        font-size: 12px;
+        padding: 6px 10px;
+        margin-top: 5px;
+    }
+
+    /*subcription page*/
+    .subscription-table th,
+    .subscription-table td {
+        font-size: 13px;
+        padding: 12px;
+    }
+
+
+    /* Notification page */
+    .notification-table {
+        font-size: 14px;
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .notification-table th,
+    .notification-table td {
+        padding: 12px 15px;
+        /* text-align: left; */
+    }
+
+    .notification-table th {
+        font-weight: bold;
+        background-color: #f8f8f8;
+    }
+
+    .notification-table td {
+        word-break: break-word;
+    }
+
+    .notification-table td[data-label] {
+        display: block;
+        /* text-align: left; */
+    }
+
+    .notification-table td[data-label]::before {
+        content: attr(data-label);
+        font-weight: bold;
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    /* setting */
+    .settings-container {
+        padding: 15px;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    label {
+        font-size: 0.95rem;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    input[type="file"],
+    input[type="number"],
+    select,
+    textarea {
+        font-size: 0.95rem;
+    }
+
+    button[type="submit"] {
+        padding: 10px 20px;
+        font-size: 0.95rem;
+    }
+}

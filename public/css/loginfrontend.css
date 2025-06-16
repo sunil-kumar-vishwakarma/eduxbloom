@@ -1,0 +1,236 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    /* background-color: #f9f9f9; */
+}
+
+.main-container {
+    margin-top: 4%;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    box-sizing: border-box;
+}
+
+/* Left fixed login-imge */
+.login-img {
+    width: 500px;
+    flex-shrink: 0;
+    display: block;
+}
+
+.login-img img {
+    position: sticky;
+    top: 0;
+    height: 550px;
+    width: 100%;
+    object-fit: cover;
+}
+
+#facebookk {
+    background-color: #3B5998;
+    color: #FFFFFF;
+    text-align: left;
+}
+
+#google-logo {
+    background-color: #DB4437;
+    color: #FFFFFF;
+    text-align: left;
+}
+
+#apple {
+    background-color: #111;
+    color: #FFFFFF;
+    text-align: left;
+}
+
+.card1-login {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.login-container {
+    width: 100%;
+    max-width: 450px;
+}
+
+.card-login {
+    background: #fff;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.card-login h2 {
+    margin-bottom: 25px;
+    font-weight: bold;
+    color: #333;
+}
+
+.card-login input {
+    width: 100%;
+    padding: 12px 14px;
+    margin-bottom: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.card-login .buttn {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(135deg, #bb0e45, #ad0039);
+    border: none;
+    color: #fff;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.card-login .buttn:hover {
+    background-color: #a01c46;
+}
+
+.social-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    max-width: 360px;
+    margin: auto;
+}
+
+.btnnn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 12px 18px;
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 6px;
+    text-decoration: none;
+    color: white;
+    height: 48px;
+    line-height: 1;
+    transition: background 0.3s ease;
+}
+
+.google {
+    background-color: #db4437;
+}
+
+.apple {
+    background-color: #000000;
+}
+
+.facebook {
+    background-color: #3b5998;
+}
+
+.btnnn i {
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.btnnn span {
+    display: inline-flex;
+    align-items: center;
+}
+
+.anchr,
+.registr,
+.tc {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 18px;
+}
+
+.anchr a,
+.registr a,
+.tc a {
+    color: #0644a6;
+    text-decoration: none;
+}
+
+.illustration {
+    flex: 1;
+    max-width: 650px;
+    padding-left: 40px;
+}
+
+.illustration img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.register a {
+    font-size: 14px;
+    color: #0644a6;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+.password-wrapper {
+    position: relative;
+    width: 100%;
+    margin: 10px 0;
+}
+
+.password-wrapper input {
+    width: 100%;
+    padding: 12px 40px 12px 15px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 12px;
+    top: 43%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #888;
+    font-size: 15px;
+    transition: color 0.2s ease;
+}
+
+.toggle-password:hover {
+    color: #333;
+}
+
+
+@media screen and (max-width: 991px) {
+    .main-container {
+        /* flex-direction: column-reverse; */
+        padding: 20px;
+        /* margin-top: 20%; */
+    }
+
+    .login-img {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-container {
+        /* flex-direction: column-reverse; */
+        padding: 20px;
+        margin-top: 20%;
+    }
+
+    .login-img {
+        display: none;
+    }
+}

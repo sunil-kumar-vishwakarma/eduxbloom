@@ -1,0 +1,1360 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Ensure body and html take up full viewport */
+html, body {
+    font-family: "Open Sans", Sans-serif;
+    width: 100%;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+    margin: 0;
+    padding: 0;
+}
+
+
+.styled-logo {
+    height: 70px;
+    width: 70px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-left:-170px;
+}
+
+
+
+.btn-group {
+margin-left: 10px;
+color: white;
+}
+.btn-group a button {
+margin-left: 10px;
+color: white;
+}
+
+
+.login-signup a{
+   border:1px solid white;
+}
+
+
+.dot ul li::marker {
+color: #524da8;
+}
+
+.dot ul li {
+  margin-left: 20px;
+  color:#524da8 ;
+  font-size: 13px;
+}
+
+.dot .btn{
+  color: rgb(125, 127, 216);
+  font-weight: bold;
+  height: 50px;
+
+}
+
+.added{
+  padding: 20px;
+  display: flex;
+  gap: 20px;
+  /* background-color:#007bff ; */
+}
+
+.cont{
+  margin-left: 120px;
+}
+
+.btn a:hover{
+  text-decoration: none;
+}
+
+
+
+  .work span {
+    display: inline-block;
+    border: 1px solid black;
+    border-radius: 20px;
+    width: 200px;
+    height: 80px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-left: 140px;
+
+}
+
+.work span img{
+  transform: translateX(-70px);
+  margin-top: 10px;
+  margin-left: 81px;
+}
+
+.work span h3{
+
+ font-size: 18px;
+ transform: translateX(40px);
+ margin-top: -60px;
+ margin-right: 27px;
+ color: #003399;
+ font-weight: bold;
+}
+
+.work span p{
+ margin-left: 60px;
+ font-family: Verdana, Geneva, Tahoma, sans-serif;
+ margin-top: -20px;
+ font-size: 12px;
+ color: black;
+}
+
+
+.dropdwn{
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    justify-content: space-evenly;
+    /* margin-top: 90px; */
+}
+.dropdown {
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.dropdown-line {
+  background-color: #f5f5f5;
+  padding: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dropdown-container h2 {
+    font-size: 30px;
+    font-weight: bold;
+    /*display: inline;*/
+    margin-left: 10px;
+    margin-bottom: 20px;
+    border: none;
+  }
+
+  .dropdown-icon {
+  transition: transform 0.3s ease;
+  float: inline-end;
+  font-size: smaller;
+  margin-top: 5px;
+}
+ .dropdown.open .dropdown-icon {
+  transform: rotate(180deg);
+}
+
+.dropdown-content {
+  max-height: 0;
+  overflow: hidden;
+  padding: 0 15px;
+  transition: max-height 0.5s ease;
+}
+
+.dropdown.open .dropdown-content {
+  max-height: 300px; /* Adjust based on content */
+  /* padding: 15px; */
+}
+
+.dropdwn img {
+    height: 500px;
+    width: 400px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-right: 20px;
+  }
+
+  .dropdwn summary {
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 10px;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    border: none;
+  }
+
+  .css-fysqf {
+    border-width: 0px 1px 0px 0px;
+    border-color: rgb(215, 218, 232);
+    border-style: solid;
+    margin-block: 0px;
+    align-self: stretch;
+    height: unset;
+    margin-left: -50px;
+}
+
+  details {
+    margin-bottom: 15px;
+  }
+
+
+.dropdown-container{
+    max-width: 500px;
+}
+
+
+.btn-light {
+    display: inline-block;
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #fff !important;
+    background: linear-gradient(135deg, #bb0e45, #ad0039);
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    margin-top: 20px;
+    margin-left: 10%;
+    transition: all 0.3s ease;
+  }
+
+   .btn-light:hover {
+    transform: translateY(-4px);
+  }
+
+  .btn-light a {
+    /* color: #007bff; */
+    font-weight: bold;
+    color: #fff;
+    text-decoration: none;
+
+  }
+
+
+ #botton4{
+    top:200px;
+ }
+
+
+ #personalized {
+    width: 100%;
+    background: linear-gradient(to right, #0056b3, #007bff);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 40px;
+    text-align: left;
+    box-sizing: border-box;
+    /*margin-left: 16%;*/
+    /*border-radius: 10px;*/
+  }
+
+
+  .hero-text {
+    font-size: 28px;
+    line-height: 1.2;
+    /*max-width: 300px;*/
+    color: white;
+  }
+
+  .hero-button {
+    background-color: white;
+    color: #007bff;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+
+  .hero-button a:hover{
+    text-decoration: none;
+  }
+
+
+  .destinations-section {
+    width: 100%;
+    max-width: 1350px;
+    text-align: center;
+    justify-content: center;
+    padding: 40px 20px;
+    /*margin-left: 130px;*/
+  }
+
+  .destinations-section h2 {
+    font-size: 28px;
+    text-align: center;
+    color: #333;
+    /* margin-bottom: 30px; */
+    font-weight: bold;
+    /*margin: inherit;*/
+
+  }
+
+  .destinations {
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-left: 180px;
+  }
+
+  .destination-card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 220px;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+
+  .destination-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+
+  .destination-title {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+
+  .add-program{
+    color: white;
+    text-align: center;
+  }
+
+  .explore-link {
+    font-size: 14px;
+    color: #007bff;
+    font-weight: bold;
+    text-decoration: none;
+  }
+
+  .destinations-section button{
+    background-color: white;
+    color: #007bff;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-left: 20px;
+  }
+
+  .destinations-section button a{
+    text-decoration: none;
+  }
+
+  .cont h2,p{
+   color: black;
+
+  }
+
+
+
+  /* Individual Card */
+  .card-students {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for elegance */
+    width: 350px; /* Consistent card width */
+    text-align: left;
+    overflow: hidden; /* Ensure content doesn’t spill */
+  }
+
+
+  /* Card Image */
+  .card-students img {
+    width: 100%; /* Full width of the card */
+    height: 150px; /* Fixed height for consistency */
+    object-fit: cover; /* Ensures the image maintains proportions */
+    border-bottom: 2px solid #f0f0f0; /* Optional: subtle divider */
+  }
+
+  /* Card Title */
+  .card-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 15px 0 5px; /* Top/bottom spacing */
+    color: #333; /* Neutral color */
+    line-height: 1.2; /* Better readability */
+  }
+
+  /* Card Description */
+  .card-description {
+    font-size: 14px;
+    color: #666; /* Subdued text color */
+    padding: 0 15px 15px; /* Side and bottom padding */
+    line-height: 1.5; /* Improved line spacing */
+
+  }
+
+
+
+  @media only screen and (max-width: 600px) {
+
+     .styled-logo {
+        height: 50px; /* Smaller height for tablets */
+    }
+
+
+
+
+
+    /* Hero Section */
+    .hero {
+      width: 100%;
+      flex-direction: column;
+      text-align: center;
+      padding: 20px;
+    }
+    .hero-logo img {
+      width: 70px;
+      height: 90px;
+      margin: 0 auto;
+    }
+    .hero-text {
+      font-size: 18px;
+      line-height: 1.5;
+      max-width: 100%;
+      margin: 10px 0;
+    }
+    .hero-button {
+      padding: 8px 15px;
+      font-size: 14px;
+    }
+    .hero h1{
+        font-size:30px;
+    }
+
+
+
+
+
+    .dot ul {
+      width: 40%; /* Adjust width for mobile */
+      padding: 0;
+      margin: 10px auto; /* Center the list */
+      font-size: 14px;
+      display: inline; /* Align list items in a row */
+      flex-wrap: wrap;
+      justify-content: center; /* Center the list items */
+      list-style-type: none; /* Remove default list styling */
+
+    }
+     .dot ul li {
+      width: 200px;
+      display: flex; /* Align the text and dot in a row */
+      align-items: center; /* Center the text and dot vertically */
+      margin: 5px 10px; /* Space between list items */
+      font-size: 10px;
+      border: 1px solid white; /* White border around the list item */
+      padding: 10px; /* Padding for spacing inside the list item */
+      border-radius: 50px; /* Rounded corners for the list item */
+      background-color: white;
+    }
+
+    .dot ul li::marker {
+      content: "•"; /* Use a custom dot */
+      color: blue; /* Blue color for the dot */
+      font-size: 18px; /* Size of the dot */
+      margin-right: 30px; /* Space between the dot and text */
+    }
+
+.cont{
+  margin-left: -72px;
+  margin-top: -20px;
+  margin-bottom: 20px;
+}
+
+.cont h2{
+  font-size: 18px;
+  color: white;
+  margin-top: 12px;
+}
+
+.cont p{
+  font-size: 12px;
+  margin-top: -20px;
+  color: white;
+}
+
+
+  
+    .work {
+      display: flex;
+      flex-wrap: wrap; /* Allow wrapping to next line */
+      justify-content: space-between; /* Distribute the spans evenly */
+      gap: 10px; /* Space between the spans */
+      margin-top:20px;
+    }
+
+    .work span {
+      width: 48%; /* Ensure two spans fit in one line */
+      text-align: center; /* Center content in each span */
+      margin-bottom: 10px; /* Space below each span */
+      font-size: 14px; /* Reduce font size */
+      margin-top: 20px;
+      margin-left: 100px;
+    }
+
+    .work span img {
+      width: 50px; /* Adjust the image size */
+      height: auto; /* Maintain aspect ratio */
+      margin-bottom: 10px; /* Space between image and text */
+    }
+
+    .work span h3,.work span p{
+      transform: translateY(-80px);
+    }
+
+    .work span p{
+    transform: translateY(-100px);
+    }
+
+
+    .work span h3 {
+      font-size: 16px; /* Adjust the title size */
+      margin-top: 25px; /* Remove any top margin */
+      font-weight: bold;
+      color: #003399;
+      margin-left: 80px;
+    }
+
+    .work span p {
+      font-size: 12px; /* Adjust the paragraph size */
+      margin-top: 5px;
+    }
+
+    /* Ensure second row of spans appear below */
+    .work span:nth-child(3),
+    .work span:nth-child(4) {
+      width: 48%; /* Same width for the second row */
+    }
+
+    /* Dropdown Section */
+    .dropdwn {
+      flex-direction: column;
+      align-items: center;
+      padding: 10px;
+      margin-left: 0;
+      margin-top: 20px;
+    }
+    .dropdwn img {
+      width: 100%;
+      height: auto;
+      margin-bottom: 10px;
+    }
+    .dropdown-container {
+      max-width: 100%;
+      padding: 10px;
+    }
+    .dropdown-container h2 {
+      font-size: 20px;
+      margin-bottom: 15%;
+      margin-top: 10%;
+    }
+
+
+    #Personalized{
+      margin-left: -1.2px;
+      width: auto;
+      text-align: center;
+    }
+
+    #Personalized .hero-button{
+      margin-left: -10px;
+    }
+
+
+    /* Destination Section */
+    .destinations-section {
+      padding: 20px;
+      margin: 0;
+    }
+
+    .destinations-section h2{
+     margin-left: 0;
+        font-size: 18px;
+    }
+
+    .destinations {
+      flex-direction: column;
+      align-items: center;
+
+    }
+    .destination-card {
+      width: 100%;
+      margin-bottom: 15px;
+      margin-left: -200px;
+    }
+
+
+
+    /* Card Deck Section */
+
+    .card {
+      width: 100%;
+      margin-bottom: 15px;
+    }
+    .card img {
+      height: auto;
+    }
+    .card-title {
+      font-size: 16px;
+    }
+    .card-description {
+      font-size: 14px;
+    }
+  }
+
+
+
+
+  /* General Tablet Styles */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+
+
+    /* Background Image Content */
+   
+    .text-content{
+        padding-top: 200px;
+    }
+
+    .dot ul{
+               display: ruby-text;
+        padding: 5px;
+    }
+
+    .text-content{
+                margin-left: -551px;
+    }
+
+
+    .cont h2 {
+        font-size: 24px;
+    }
+
+    .cont p {
+        font-size: 16px;
+        margin-left: 38.5%;
+        text-align: justify;
+    }
+
+    .cont button {
+        font-size: 14px;
+        padding: 10px 15px;
+    }
+
+    /* Work Section */
+    .work {
+        /*display: flex;*/
+        flex-wrap: wrap;
+        justify-content: center;
+        text-align: center;
+                margin-left: -114px;
+        margin-top: 0;
+    }
+
+    .work span {
+        flex: 1 1 45%;
+        margin-bottom: 20px;
+    }
+
+    /* Dropdown Section */
+    .dropdwn {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .dropdwn img {
+        width: 100%;
+        max-width: 428px;
+        height: auto;
+    }
+
+    .dropdown-container {
+        width: 90%;
+        text-align: left;
+                margin-top: 30px;
+    }
+
+    .dropdown-container summary{
+        font-size:25px;
+    }
+
+    /* Hero Section */
+    .hero {
+        padding: 30px 15px;
+        text-align: center;
+        width: 678px;
+        margin-left: 0;
+    }
+
+    .hero-text {
+        font-size: 24px;
+    }
+
+    .hero-button {
+        font-size: 16px;
+        padding: 10px 20px;
+    }
+
+
+    .destinations-section {
+        /*margin-left: -242px;*/
+        /*padding: 162px;*/
+    }
+
+     .destinations-section h2{
+        font-size: 34px;
+        margin-left: 0;
+        /* margin-bottom: 15%; */
+     }
+
+    /* Destination Cards */
+    .destinations {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+        margin-left: 10%;
+    }
+
+    .destination-card{
+        height: 240px;
+        width: 243px;
+    }
+
+
+    .destination-card img {
+        width: 100%;
+        height: auto;
+    }
+
+    /* Card Section */
+
+
+    .card {
+        width: 100%;
+        padding: 20px;
+    }
+
+}
+
+
+
+/* student css file  */
+
+
+
+
+.btn-group {
+margin-left: 10px;
+color: white;
+}
+.btn-group a button {
+margin-left: 10px;
+color: white;
+}
+
+/* Flex container for image and card */
+.contents {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 50px;
+}
+
+/* Image styling */
+.imag {
+  background-image: url('images/register.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 500px;
+  height: 600px;
+  margin-bottom: 120px;
+}
+
+/* Card styling */
+.card1 {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.card1 .card {
+  width: 450px;
+  padding: 20px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  margin-right: 190px;
+  margin-top: -45%;
+
+}
+
+.card1 button {
+  color: white;
+  border: none;
+  font-weight: lighter;
+  margin-bottom: 40px;
+}
+
+.account a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.account button{
+    width:200px;
+    height:50px;
+  margin-left: 88px;
+  margin-top: 20px;
+}
+
+.register a {
+  text-decoration: none;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.card-body {
+  padding: 20px;
+}
+
+.card-body small {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.card-body input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+
+
+.buttons {
+  display: inline-flex;
+  margin-top: 20px;
+  gap: 30px;
+}
+
+.buttons button{
+  color: black;
+  display: inline-flex;
+  gap: 10px;
+  box-shadow: rgba(0, 0, 0, 0.5) 3px 3px 6px;
+  border-radius: 10px;
+  height: 40px;
+  padding: 10px;
+}
+
+.buttons button:hover{
+  transform: translatey(-0.10em);
+}
+
+.buttons{
+  display: flex;
+  justify-content:center;
+}
+
+ .txt{
+  display: inline;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  color: rgba(101, 99, 99, 0.765);
+  font-size: 13px;
+}
+
+.input-icon {
+  position: relative;
+  margin-bottom: 10px;
+}
+
+.input-icon i {
+  position: absolute;
+  top: 44%;
+  left: 10px;
+  transform: translateY(-50%);
+  color: #999;
+}
+
+.input-icon input {
+  width: 100%;
+  padding: 10px 10px 10px 35px; /* Padding adjusted to fit the icon */
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  box-shadow: rgba(0, 0, 0, 0.5) 1px 1px 3px;
+}
+
+.input-icon.password {
+  padding-right: 35px; /* Padding for the eye icon */
+  width: 110%;
+}
+
+.input-icon .eye-icon {
+  position: absolute;
+  top: 50%;
+  /* right: 100px; */
+  /* transform: translateY(-10%); */
+  /*transform: translateX(1850%);*/
+  margin-top: -10px;
+  cursor: pointer;
+  color: #999;
+  transform: translateX(324px)
+}
+
+.contents #bold{
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.contents small{
+  font-size: 13.6px;
+  color:#827f7f;
+}
+
+.checkbox #tc {
+  transform: translateY(26px);
+}
+
+.checkbox label{
+  transform: translateX(19px);
+}
+.checkbox label a{
+  text-decoration: none;
+  font-size: 14px;
+}
+
+#login p{
+  font-size: 17px;
+  color: #827f7f;
+
+}
+
+
+.container1 {
+            padding-left: 15px; /* Add some padding to left and right of container */
+            padding-right: 15px;
+        }
+                                   /* Mobile First Approach for screens up to 576px */
+@media (max-width: 576px) {
+
+
+    /* Remove background image on mobile */
+    .imag {
+        display: none;
+    }
+
+    /* Card Styling */
+    .card1 .card {
+        width: 100%;
+        margin-right: 0;
+        margin-top: 0;
+    }
+
+    .contents {
+        flex-direction: column;
+        align-items: center;
+        padding: 10px;
+    }
+
+    /* Buttons adjustments */
+    .buttons {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .account button {
+        width: 100%;
+        margin-left: 0;
+        margin-top: 15px;
+        font-size: 14px; /* Adjust font size for smaller screens */
+    }
+
+    /* Input Icon (Eye button inside password field) */
+    .input-icon .eye-icon {
+        right: 10px;
+        top: 50%;
+        margin-left: 70%;
+        transform: translateY(-50%);
+    }
+
+     .input-icon {
+        position: relative;
+        width: 100%; /* Ensure the input container takes full width */
+    }
+
+    .input-icon input {
+        width: 100%; /* Make input field take full width */
+        padding: 10px 40px; /* Add padding to avoid input text sticking to edges */
+    }
+    #password-input {
+        max-width: 100%;
+    }
+
+
+}
+
+
+@media (max-width: 767px) {
+
+
+
+    /* Card Styling */
+    .card1 .card {
+        width: 100%;
+        margin-right: 0;
+        margin-top: 0;
+    }
+
+    .contents {
+        flex-direction: column;
+        align-items: center;
+        padding: 15px;
+    }
+
+    /* Buttons adjustments */
+    .buttons {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .account button {
+        width: 100%;
+        margin-left: 0;
+        margin-top: 15px;
+        font-size: 15px; /* Adjust font size for slightly bigger mobile screens */
+    }
+
+    /* Input Icon (Eye button inside password field) */
+    .input-icon .eye-icon {
+        right: 10px;
+        top: 50%;
+        margin-left: 75%;
+        transform: translateY(-50%);
+    }
+
+     .input-icon {
+        position: relative;
+        width: 100%; /* Ensure the input container takes full width */
+    }
+
+    .input-icon input {
+        width: 100%; /* Ensure input field is 100% width */
+        padding: 10px 40px;
+    }
+    #password-input {
+        width: 100%;
+    }
+
+
+}
+
+
+/* Mobile First Approach */
+@media (max-width: 768px) {
+
+
+.text-content{
+    padding-top: 30px;
+}
+
+.text-content button{
+
+  margin-top: -11px;
+  height: auto;
+  width: auto;
+
+}
+
+.text-content button a{
+  font-weight: bold;
+  font-size: 13px;
+}
+
+    /* Card Styling */
+    .card1 .card {
+        width: 100%;
+        margin-right: 0;
+        margin-top: 0;
+    }
+
+    .contents {
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+    }
+
+    /* Facebook/Google button and logo centering */
+    .social-login {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .social-login img {
+        max-width: 30px;
+        margin-bottom: 5px;
+    }
+
+    /* Buttons adjustments */
+    .buttons {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .buttons button a{
+        text-align:center;
+        padding-left:80px;
+    }
+
+    .account button {
+        width: 100%;
+        margin-left: 0;
+        margin-top: 20px;
+    }
+
+    .added{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* Input Icon (Eye button inside password field) */
+    .input-icon {
+        position: relative;
+        width: 100%; /* Ensure the input container takes full width */
+    }
+
+    .input-icon input {
+        width: 100%; /* Ensure input field is 100% width */
+        padding: 10px 40px;
+    }
+
+
+    .input-icon .eye-icon {
+        position: absolute;
+        right: 10px; /* Align the eye icon inside the password container */
+        top: 57%;
+        transform: translateY(-50%);
+        cursor: pointer;
+        margin-left:77%;
+    }
+
+
+    #password-input{
+        max-width:100%;
+    }
+
+
+}
+
+/* Tablet (portrait) */
+@media (min-width: 769px) and (max-width: 1024px) {
+
+
+    /* Card Styling */
+    .card1 .card {
+        width: 80%;
+       transform: translateX(96px);
+       margin-top: 100px;
+    }
+
+    .contents {
+        padding: 40px;
+    }
+
+    .buttons{
+        display: flex;
+        align-items: center;
+        gap: 40px;
+
+    }
+
+
+
+     #password-input{
+        max-width:97%;
+    }
+
+    .input-icon .eye-icon{
+      padding-left: 187px;
+    }
+
+    .account{
+     margin-left: 92px;
+    }
+}
+
+/* Desktop */
+@media (min-width: 1025px) {
+
+    /* Card Styling */
+    .card1 .card {
+        width: 450px;
+        margin-right: 190px;
+        margin-top: -45%;
+    }
+
+    .contents {
+        padding: 50px;
+    }
+
+
+}
+
+.error-msg {
+  font-size: 12px;
+  color: red;
+  display: block;
+}
+
+
+
+  .stats-section {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      padding: 30px 20px;
+      background: linear-gradient(to right, #0056b3, #007bff);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      /*max-width: 1075px;*/
+      margin: 70px auto;
+      /*border-radius: 8px;*/
+    }
+
+    .stat-box {
+      text-align: center;
+      flex: 1;
+    }
+
+    .stat-box i {
+      font-size: 32px;
+      color: white;
+      margin-bottom: 16px;
+    }
+
+    .stat-number {
+      font-size: 32px;
+      font-weight: 700;
+      color: #e7e7e7;
+    }
+
+    .stat-label {
+      font-size: 15px;
+      color: #e1e1e1;
+      margin-top: 8px;
+    }
+
+    @media (max-width: 768px) {
+      .stats-section {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+    }
+
+    @media (min-width: 1200px) {
+
+        .dot ul li {
+    margin-left: 15px;
+    color: #524da8;
+    font-size: 11px;
+}
+
+          .destinations{
+              margin-left: 20px;
+          }
+          .work span{
+              margin-left: 80px;
+          }
+
+       }
+
+
+.card-bottom {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+.card-students {
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    max-width: 300px;
+    width: 100%;
+    transition: transform 0.3s ease;
+}
+
+.card-students:hover {
+    transform: scale(1.02);
+}
+
+.card-img-tops {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.card-body {
+    padding: 15px;
+}
+
+.card-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.card-text-student {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+/* Responsive Tweaks */
+@media (min-width: 768px) {
+    .card-students {
+        flex: 1 1 calc(50% - 40px); /* 2 per row on tablets */
+    }
+}
+
+@media (min-width: 1024px) {
+    .card-students {
+        flex: 1 1 calc(25% - 40px); /* 4 per row on larger screens */
+    }
+}
+
+@media screen and (max-width: 1025px) {
+   .destinations-section h2 {
+      margin-left: 0;
+    }
+}
