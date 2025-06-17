@@ -664,22 +664,7 @@ $('#addressForm').on('submit', function(e) {
 });
 </script>
 
-<script>
-    function toggleContent() {
-        const content = document.getElementById('toggle-content');
-        content.classList.toggle('hidden');
-    }
 
-
-
-    function toggleContent1() {
-        const content = document.getElementById('toggle-content1');
-        // Toggle the display property between 'none' and 'block'
-        content.style.display = content.style.display === 'none' || !content.style.display ?
-            'block' :
-            'none';
-    }
-</script>
 <script>
     document.addEventListener('DOMContentLoaded', () => {
         const profileIcon = document.getElementById('profileIcon');

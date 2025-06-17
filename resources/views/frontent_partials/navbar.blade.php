@@ -72,22 +72,25 @@
     }
 
     @media (max-width: 768px) {
-        #navbarNav{
+        #navbarNav {
             flex-direction: column;
         }
+
         .language-option {
             margin-left: 0;
             margin-top: 0;
         }
-        .dropdown-menu{
+
+        .dropdown-menu {
             right: -60px;
         }
     }
-      @media (max-width: 1024px) {
-        .language-option{
+
+    @media (max-width: 1024px) {
+        .language-option {
             margin-left: 0px;
         }
-      }
+    }
 </style>
 
 <style>
@@ -309,11 +312,11 @@
     }
 
     /* MOBILE STYLES */
-@media (max-width: 991.98px) {
-   #dropdownMenu{
-    right: -60px;
-   }
-}
+    @media (max-width: 991.98px) {
+        #dropdownMenu {
+            right: -60px;
+        }
+    }
 </style>
 
 
@@ -368,7 +371,7 @@
                     </ul>
                 </li>
 
-                
+
                 <div class="language-option">
                     <!-- <div class="language-switcher">
                         <a href="{{ route('change.lang', 'en') }}"

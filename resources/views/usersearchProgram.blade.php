@@ -5,13 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-    <link rel="stylesheet" href="{{ asset('css/user.css') }}" />
+    {{-- <link rel="stylesheet" href="{{ asset('css/user.css') }}" /> --}}
 
     <!-- Include FontAwesome for icons -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
 
-    <title>Document</title>
-    <style>
+   <style>
         .filter-search-wrapper {
             margin-top: 10%;
         }
@@ -28,8 +27,8 @@
             display: flex;
             flex-wrap: wrap;
             gap: 16px;
-            width: 100%;
-            max-width: 1150px;
+            width: 90%;
+            /* max-width: 1150px; */
             border-radius: 8px;
             padding: 16px 20px;
             align-items: center;
@@ -103,12 +102,13 @@
             }
 
             .custom-dropdown {
-                min-width: 390px;
+                min-width: 350px;
             }
 
             .dropdown,
             .search-box {
                 width: 100%;
+                max-width: 350px;
             }
         }
 
@@ -327,7 +327,8 @@
         }
 
         .apply-btn {
-            background: #2764c5;
+            /* background: #2764c5; */
+            background: linear-gradient(90deg, #0644a6, #2764c5);
             color: #fff;
             border: none;
             padding: 10px 16px;
@@ -339,8 +340,23 @@
             text-align: center;
         }
 
+
         .apply-btn:hover {
             background: #1f4fa1;
+        }
+.apply-btn a{
+    color: white;
+    text-decoration: none;
+}
+        @media (max-width: 1024px) {
+            .filter-search-wrapper {
+                margin-top: 20%;
+            }
+
+
+            .programs-container {
+                grid-template-columns: repeat(2, minmax(300px, 1fr));
+            }
         }
 
         @media (max-width: 768px) {
@@ -471,6 +487,10 @@
 
         /* Tablets and below */
         @media (max-width: 768px) {
+            .filter-search-wrapper {
+                margin-top: 20%;
+            }
+
             .modal-content {
                 padding: 24px 20px;
                 width: 95%;
@@ -494,6 +514,13 @@
 
         /* Small phones */
         @media (max-width: 480px) {
+            .notification-icon{
+                margin-left: 35px;
+            }
+            .filter-search-wrapper {
+                margin-top: 20%;
+            }
+
             .modal-content {
                 padding: 20px 16px;
                 width: 100%;
@@ -533,7 +560,8 @@
         }
 
         .sort-btn {
-            background-color: #007bff;
+            /* background-color: #007bff; */
+            background: linear-gradient(90deg, #0644a6, #2764c5);
             color: #fff;
             border: none;
             padding: 10px 16px;
@@ -587,349 +615,629 @@
             color: #0056b3;
         }
 
-        /* pagination */
-        .pagination {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-top: 20px;
-            margin-bottom: 20px;
-            gap: 10px;
-        }
-
-        .page-btn {
-            padding: 8px 12px;
-            border: 1px solid #ddd;
-            background-color: #f9f9f9;
-            cursor: pointer;
-            font-size: 17px;
-            border-radius: 5px;
-            transition: background-color 0.3s, color 0.3s;
-        }
-
-        .page-btn.active {
-            background-color: #007bff;
-            color: white;
-            border-color: #007bff;
-        }
-
-        .page-btn:hover:not(.active) {
-            background-color: #eaeaea;
-        }
-
-        .page-btn:disabled {
-            background-color: #ddd;
-            cursor: not-allowed;
-        }
-
-        /* Pagination Container */
         .pagination {
             display: flex;
             justify-content: center;
             margin: 30px 0;
-            /* font-family: Arial, sans-serif; */
         }
 
-        /* Laravel default ul element */
-        .pagination nav>div:first-child {
-            display: none;
-            /* hides text like "Showing 1 to 10 of 30 results" */
+        .pagination .page-item {
+            margin: 0 4px;
         }
 
-        .pagination nav ul {
-            display: flex;
-            gap: 8px;
-            padding: 0;
-            list-style: none;
-        }
-
-        /* Pagination Buttons */
-        .pagination nav ul li {
-            display: inline-block;
-        }
-
-        .pagination nav ul li a,
-        .pagination nav ul li span {
-            display: block;
-            padding: 8px 14px;
-            background-color: #f0f0f0;
-            border: 1px solid #ccc;
-            color: #333;
+        .pagination .page-link {
+            color: #007bff;
+            border: 1px solid #dee2e6;
+            padding: 6px 12px;
+            border-radius: 4px;
+            background-color: #fff;
+            transition: all 0.2s ease-in-out;
             text-decoration: none;
-            border-radius: 5px;
-            transition: all 0.3s ease;
         }
 
-        /* Hover Effect */
-        .pagination nav ul li a:hover {
+        .pagination .page-link:hover {
             background-color: #007bff;
             color: #fff;
             border-color: #007bff;
         }
 
-        /* Active Page */
-        .pagination nav ul li.active span {
-            background-color: #007bff;
+        .pagination .active .page-link {
+            background: linear-gradient(90deg, #0644a6, #2764c5);
             color: white;
             border-color: #007bff;
             font-weight: bold;
         }
 
-        /* Disabled links */
-        .pagination nav ul li.disabled span {
+        .pagination .disabled .page-link {
             color: #aaa;
-            background-color: #eaeaea;
-            cursor: not-allowed;
+            pointer-events: none;
+            background-color: #f5f5f5;
         }
-    </style>
-</head>
 
+        .sidebar {
+    background-color: white;
+    color: rgb(96, 106, 132);
+    width: 80px;
+    min-height: 100vh;
+    transition: width 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    border-right: 2px solid #e0e0e0; /* Adds a subtle right border */
+    /* Alternatively, use box-shadow for a softer line */
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+
+.sidebar:hover {
+    width: 250px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    padding-top: 30px;
+    transition: padding 0.3s ease;
+
+    /* Smooth padding adjustment */
+}
+
+.logo i {
+    font-size: 24px;
+    transition: font-size 0.3s ease;
+    cursor: pointer;
+    /* Smooth icon size adjustment if needed */
+}
+
+.logo-text {
+    /* font-family: Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; */
+    margin-left: 10px;
+    margin-top: 2px;
+    font-size: 24px;
+    font-weight: bold;
+    opacity: 0;
+    /* Hide initially */
+    white-space: nowrap;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    /* Smooth text appearance */
+    transform: translateX(-10px);
+    /* Start slightly to the left */
+}
+
+.sidebar:hover .logo-text {
+    opacity: 1;
+    /* Make visible on hover */
+    transform: translateX(0);
+    /* Slide into place */
+    cursor: pointer;
+}
+
+.menu {
+    list-style: none;
+    padding: 10px;
+    padding-top: 0;
+    transition: padding 0.3s ease;
+}
+
+.menu li {
+    margin: 20px 0;
+}
+
+.menu a {
+    text-decoration: none;
+    color: rgb(96, 106, 132);
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Active Menu Item */
+.menu a.active {
+    background-color: rgb(208, 228, 255);
+    color: rgb(0, 51, 132);
+    border-radius: 5px;
+}
+
+.menu a.active i,
+.menu a.active .menu-text {
+    font-weight: bold;
+}
+
+
+.menu a:hover {
+    background-color: rgba(96, 106, 132, 0.1);
+    /* Subtle hover background */
+    border-radius: 5px;
+}
+
+.menu i {
+    font-size: 20px;
+    margin-right: 10px;
+    transition: font-size 0.3s ease, margin-right 0.3s ease;
+    /* Smooth icon transition */
+}
+
+.menu-text {
+    /* font-family: Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; */
+    opacity: 0;
+    margin: 0;
+    /* Hide initially */
+    white-space: nowrap;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    /* Smooth text transition */
+    transform: translateX(-10px);
+    /* Slide in effect */
+}
+
+.sidebar:hover .menu-text {
+    opacity: 1;
+    /* Show text */
+    transform: translateX(0);
+    /* Reset transform */
+}
+
+/* main content */
+/* General Content Area */
+.main-content {
+    padding: 15px 0;
+    margin-left: 80px;
+    /* Matches sidebar default width */
+    transition: margin-left 0.3s ease;
+}
+
+.sidebar:hover+.main-content {
+    margin-left: 80px;
+    /* Aligns with expanded sidebar */
+}
+
+/* Topbar Styling */
+/* Topbar */
+.topbar {
+    background-color: #ffffff;
+    padding: 15px 20px;
+    margin-top: -10px;
+    border-bottom: 1px solid #e0e0e0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.profile-menu {
+    position: relative;
+}
+.notification-icon {
+    display: inline-flex;
+    font-size: 10px;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px; /* Space between notification and profile icons */
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+}
+
+.notification-icon svg {
+    fill: #333; /* Icon color */
+    width: 24px;
+    height: 24px;
+    transition: transform 0.3s ease;
+}
+
+.notification-icon:hover svg {
+    transform: scale(1.1); /* Hover effect */
+}
+
+
+.before a{
+    text-decoration: none;
+    color: white;
+}
+
+
+.profile-icon {
+    font-size: 28px;
+    color: #333;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.profile-icon:hover {
+    transform: scale(1.1);
+}
+
+/* Dropdown Styling */
+.dropdown {
+    position: absolute;
+    top: 50px; 
+    right: 0;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    border-radius: 8px;
+    padding: 15px;
+    width: 250px;
+    display: none; 
+    z-index: 1000;
+    text-align: left;
+}
+
+.dropdown h3 {
+    margin: 0;
+    font-size: 16px;
+    color: #333;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.dropdown p {
+    margin: 10px 0;
+    font-size: 14px;
+    color: #555;
+}
+
+.dropdown a {
+    display: block;
+    margin: 15px 0;
+    font-size: 14px;
+    color: #555;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.dropdown a:hover {
+    text-decoration: none;
+}
+
+.dropdown hr {
+    border: none;
+    border-top: 1px solid #ddd;
+    margin: 10px 0;
+}
+
+
+.topbar h1 {
+    font-size: 24px;
+    color: #333;
+    margin: 0;
+}
+
+/* My Progress Section */
+.content {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    /* box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1); */
+    text-align: center;
+}
+    </style>
 <body>
    
 @include('frontent_partials.userdash_sidebar')
     <div class="main-content">
         @include('frontent_partials.userdash_nav')
         
-        <div class="filter-search-wrapper">
-            <div class="search-container">
-                <div class="search-box">
-                    <svg aria-hidden="true" viewBox="0 0 24 24" class="search-icon" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" clip-rule="evenodd"
-                            d="M16.386 18.211C14.885 19.335 13.02 20 11 20 6.03 20 2 15.971 2 11 2 6.03 6.03 2 11 2c4.971 0 9 4.03 9 9 0 2.228-.81 4.267-2.151 5.839l4.827 4.424-1.351 1.474-4.938-4.526ZM18 11c0 3.866-3.134 7-7 7s-7-3.134-7-7 3.134-7 7-7 7 3.134 7 7Z">
-                        </path>
-                    </svg>
-                    <input type="text" class="search-bar" placeholder="What would you like to study?" />
-                </div>
-
-                <div class="custom-dropdown">
-                    <select class="dropdown">
-                        <option>Destination</option>
-                        <option>USA</option>
-                        <option>UK</option>
-                        <option>Canada</option>
-                    </select>
-                    <i class="fas fa-chevron-down dropdown-icon"></i>
-                </div>
-
-                <div class="custom-dropdown">
-                    <select class="dropdown">
-                        <option>Institute (School)</option>
-                        <option>Harvard</option>
-                        <option>MIT</option>
-                        <option>Stanford</option>
-                    </select>
-                    <i class="fas fa-chevron-down dropdown-icon"></i>
-                </div>
+      <div class="filter-search-wrapper">
+        {{-- Search and Top Filters --}}
+        <div class="search-container">
+            {{-- Keyword Search --}}
+            <div class="search-box">
+                <svg aria-hidden="true" viewBox="0 0 24 24" class="search-icon" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                        d="M16.386 18.211C14.885 19.335 13.02 20 11 20 6.03 20 2 15.971 2 11 2 6.03 6.03 2 11 2c4.971 0 9 4.03 9 9 0 2.228-.81 4.267-2.151 5.839l4.827 4.424-1.351 1.474-4.938-4.526ZM18 11c0 3.866-3.134 7-7 7s-7-3.134-7-7 3.134-7 7-7 7 3.134 7 7Z">
+                    </path>
+                </svg>
+                <input type="text" id="keyword" class="search-bar" placeholder="What would you like to study?" />
             </div>
 
-            <div class="filters">
-                <div class="filter-item custom-dropdown">
-                    <select>
-                        <option>Program Level</option>
-                        <option>Undergraduate</option>
-                        <option>Postgraduate</option>
-                    </select>
-                    <i class="fas fa-chevron-down dropdown-icon"></i>
-                </div>
-
-                <div class="filter-item custom-dropdown">
-                    <select>
-                        <option>Field of Study</option>
-                        <option>Engineering</option>
-                        <option>Business</option>
-                    </select>
-                    <i class="fas fa-chevron-down dropdown-icon"></i>
-                </div>
-
-                <div class="filter-item custom-dropdown">
-                    <select>
-                        <option>Intakes</option>
-                        <option>Spring</option>
-                        <option>Fall</option>
-                    </select>
-                    <i class="fas fa-chevron-down dropdown-icon"></i>
-                </div>
-
-                <div class="filter-item custom-dropdown">
-                    <select>
-                        <option>Program Tag</option>
-                    </select>
-                    <i class="fas fa-chevron-down dropdown-icon"></i>
-                </div>
-
-                <div class="filter-btn-wrapper">
-                    <button class="filter-btn">
-                        <svg aria-hidden="true" viewBox="0 0 24 24" class="filter-icon"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" clip-rule="evenodd"
-                                d="M6.12602 8C6.57006 9.72523 8.13616 11 10 11C11.8638 11 13.4299 9.72523 13.874 8L21 8V6L13.874 6C13.4299 4.27477 11.8638 3 10 3C8.13616 3 6.57006 4.27477 6.12602 6L3 6V8L6.12602 8ZM8 7C8 5.89543 8.89543 5 10 5C11.1046 5 12 5.89543 12 7C12 8.10457 11.1046 9 10 9C8.89543 9 8 8.10457 8 7Z">
-                            </path>
-                            <path fill-rule="evenodd" clip-rule="evenodd"
-                                d="M16.874 18H21V16H16.874C16.4299 14.2748 14.8638 13 13 13C11.1362 13 9.57006 14.2748 9.12602 16H3V18H9.12602C9.57006 19.7252 11.1362 21 13 21C14.8638 21 16.4299 19.7252 16.874 18ZM15 17C15 15.8954 14.1046 15 13 15C11.8954 15 11 15.8954 11 17C11 18.1046 11.8954 19 13 19C14.1046 19 15 18.1046 15 17Z">
-                            </path>
-                        </svg>
-                        All Filters
-                    </button>
-                </div>
-            </div>
-        </div>
-        <hr>
-
-        <div class="program-section">
-            <!-- Sort -->
-            <div class="sort-dropdown-wrapper">
-                <button class="sort-btn" onclick="toggleDropdown3()">
-                    Sort <i class="fa-solid fa-arrow-down-short-wide"></i>
-                </button>
-
-                <div class="dropdown-content1" id="sortDropdown">
-                    <p class="dropdown-header">Sort</p>
-                    <a href="#" class="active"><i class="fa-solid fa-circle-check"></i> Best Match (Default)</a>
-                    <a href="#"><i class="fa-solid fa-dollar-sign"></i> Tuition Cost (Low to High)</a>
-                    <a href="#"><i class="fa-solid fa-dollar-sign"></i> Tuition Cost (High to Low)</a>
-                    <a href="#"><i class="fa-solid fa-file-invoice"></i> Application Fee (Low to High)</a>
-                    <a href="#"><i class="fa-solid fa-file-invoice"></i> Application Fee (High to Low)</a>
-                </div>
+            {{-- Country Filter --}}
+            <div class="custom-dropdown">
+                <select class="dropdown1" id="countries">
+                    <option value="">Select Destination</option>
+                    <option value="USA">USA</option>
+                    <option value="Canada">Canada</option>
+                </select>
+                <i class="fas fa-chevron-down dropdown-icon"></i>
             </div>
 
-
-            @if ($programs->count())
-                <div class="programs-container">
-                    @foreach ($programs as $value)
-                        <div class="program-card">
-                            <div class="program-header">
-                                <img src="{{ asset('/public/storage/' . $value->image) }}?v={{ $value->updated_at->timestamp }}"
-                                    alt="University Logo" class="program-logo" />
-                                <!-- <img src="{{ asset('Dashboard/dp.webp') }}" alt="Program Image" class="program-logo" /> -->
-                                <a href="{{ route('details', $value->id) }}">
-                                    <h3>{{ $value->university_name }}</h3>
-                                </a>
-                            </div>
-
-                            <div class="program-badges">
-                                <span class="badge">High Job Demand</span>
-                                <span class="badge">Popular</span>
-                            </div>
-
-                            <div class="program-details">
-                                <small>{{ $value->certificate }}</small>
-                                <a href="#">
-                                    <p>{{ $value->college_name }}</p>
-                                </a>
-                                <hr />
-                                <table>
-                                    <tbody>
-                                        <tr>
-                                            <td>Location</td>
-                                            <td>{{ $value->college_name }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Campus city</td>
-                                            <td>{{ $value->location }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Tuition (1st year)</td>
-                                            <td> ${{ $value->tuition }}CAD</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Application fee</td>
-                                            <td>${{ $value->application_fee }}CAD</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Duration</td>
-                                            <td> {{ $value->duration }} months</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-
-                            <div class="program-footer">
-                                <p>Success prediction <button class="success-btn"
-                                        onclick="openModal()">Details</button>
-                                </p>
-                                <button class="apply-btn">Create Application</button>
-                            </div>
-                        </div>
-                        <!-- <div class="pagination">
-                        <button class="page-btn prev-btn" disabled>Previous</button>
-                        <div class="page-numbers">
-                            <button class="page-btn active">1</button>
-                            <button class="page-btn">2</button>
-                            <button class="page-btn">3</button>
-                            <button class="page-btn">4</button>
-                            <button class="page-btn">5</button>
-                        </div>
-                        <button class="page-btn next-btn">Next</button>
-                    </div> -->
-                    @endforeach
-                </div>
+            {{-- Institute Filter --}}
+            <div class="custom-dropdown">
+                <select class="dropdown1" id="institute">
+                    <option value="">Select Institute</option>
+                    {{-- Dynamic example --}}
+                    {{-- @foreach ($schools as $value) --}}
+                    {{-- <option value="{{ $value->name }}">{{ $value->name }}</option> --}}
+                    {{-- @endforeach --}}
+                    <option value="MIT">MIT</option>
+                    <option value="Stanford">Stanford</option>
+                </select>
+                <i class="fas fa-chevron-down dropdown-icon"></i>
+            </div>
         </div>
-        <div class="pagination">
-            {{ $programs->appends(request()->input())->links() }}
-        </div>
-    @else
-        <p>No programs found.</p>
-        @endif
 
+        {{-- Advanced Filters --}}
+        <div class="filters">
+            {{-- Program Level --}}
+            <div class="filter-item custom-dropdown">
+                <select id="program_level">
+                    <option value="">Program Level</option>
+                    <option value="Undergraduate">Undergraduate</option>
+                    <option value="Postgraduate">Postgraduate</option>
+                    <option value="9th-12th Grade">9th–12th Grade</option>
+                    <option value="Preparatory Courses">Preparatory Courses</option>
+                    <option value="ESL">ESL + Bridging</option>
+                    <option value="Gap Year">Gap Year</option>
+                </select>
+                <i class="fas fa-chevron-down dropdown-icon"></i>
+            </div>
 
+            {{-- Field of Study --}}
+            <div class="filter-item custom-dropdown">
+                <select id="field_of_study">
+                    <option value="">Field of Study</option>
+                    <option value="Engineering">Engineering</option>
+                    <option value="Business">Business</option>
+                    <option value="Health Sciences">Health Sciences</option>
+                    <option value="Arts & Humanities">Arts & Humanities</option>
+                    <option value="STEM">STEM</option>
+                </select>
+                <i class="fas fa-chevron-down dropdown-icon"></i>
+            </div>
 
+            {{-- Language --}}
+            <div class="filter-item custom-dropdown">
+                <select id="language">
+                    <option value="">Language</option>
+                    <option value="English">English</option>
+                    <option value="French">French</option>
+                </select>
+                <i class="fas fa-chevron-down dropdown-icon"></i>
+            </div>
 
-
-        <!-- Success Prediction Modal -->
-        <div id="successModal" class="modal">
-            <div class="modal-content">
-                <span class="close-btn" onclick="closeModal()">&times;</span>
-                <h3>Success Prediction by Intake</h3>
-                <p class="note">
-                    Estimated based on ApplyBoard's historical data. We make no representations, warranties, or
-                    guarantees
-                    as to the
-                    information's accuracy.
-                </p>
-
-                <div class="accordion">
-                    <div class="accordion-item">
-                        <button class="accordion-btn" onclick="toggleAccordion(this)">Sep 2025 </button>
-                        <div class="accordion-panel">
-                            <p><strong>Seat Availability:</strong> Very High</p>
-                            <p><strong>Turn Around Time:</strong> Very Fast</p>
-                            <p><strong>Conversion:</strong> Very High</p>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item">
-                        <button class="accordion-btn" onclick="toggleAccordion(this)">Sep 2026</button>
-                        <div class="accordion-panel">
-                            <p><strong>Seat Availability:</strong> Very High</p>
-                            <p><strong>Turn Around Time:</strong> Very Fast</p>
-                            <p><strong>Conversion:</strong> Very High</p>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item">
-                        <button class="accordion-btn" onclick="toggleAccordion(this)">Sep 2027</button>
-                        <div class="accordion-panel">
-                            <p><strong>Seat Availability:</strong> Very High</p>
-                            <p><strong>Turn Around Time:</strong> Slow</p>
-                            <p><strong>Conversion:</strong> Very High</p>
-                        </div>
-                    </div>
-                </div>
-
-                <hr />
-                <div class="info-note">
-                    <p><strong>Conversion:</strong> Historical ratio of accepted to submitted applications.</p>
-                    <p><strong>Turn Around Time:</strong> Expected time to receive a letter of acceptance.</p>
-                    <p><strong>Seat Availability:</strong> Predicted likelihood of a seat being available.</p>
-                </div>
+            {{-- Program Tag / Delivery Mode --}}
+            <div class="filter-item custom-dropdown">
+                <select id="program_tag">
+                    <option value="">Delivery Mode</option>
+                    <option value="Online">Online</option>
+                    <option value="In-Person">In-Person</option>
+                    <option value="Hybrid">Hybrid</option>
+                </select>
+                <i class="fas fa-chevron-down dropdown-icon"></i>
             </div>
         </div>
     </div>
-    
 
+    <hr>
+
+    {{-- Program Sort Dropdown --}}
+    <div class="program-section">
+        <div class="sort-dropdown-wrapper">
+            <button class="sort-btn" onclick="toggleDropdown3()">
+                Sort <i class="fa-solid fa-arrow-down-short-wide"></i>
+            </button>
+
+            <div class="dropdown-content1" id="sortDropdown">
+                <p class="dropdown-header">Sort By</p>
+                <a href="#" class="active"><i class="fa-solid fa-circle-check"></i> Best Match (Default)</a>
+                <a href="#"><i class="fa-solid fa-dollar-sign"></i> Tuition Cost (Low to High)</a>
+                <a href="#"><i class="fa-solid fa-dollar-sign"></i> Tuition Cost (High to Low)</a>
+                <a href="#"><i class="fa-solid fa-file-invoice"></i> Application Fee (Low to High)</a>
+                <a href="#"><i class="fa-solid fa-file-invoice"></i> Application Fee (High to Low)</a>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- @if ($programs->count())
+                                <div class="programs-container" id="program-results">
+                                    @foreach ($programs as $value)
+    <div class="program-card">
+                                            <div class="program-header">
+                                                <img src="{{ asset('/public/storage/' . $value->image) }}?v={{ $value->updated_at->timestamp }}"
+                                                    alt="University Logo" class="program-logo" />
+                                                  <a href="#">
+                                                    <h3>{{ $value->university_name }}</h3>
+                                                </a>
+                                            </div>
+
+                                            <div class="program-badges">
+                                                <span class="badge">{{ $value->success_prediction }} Demand</span>
+                                                <span class="badge">Popular</span>
+                                            </div>
+
+                                            <div class="program-details">
+                                                <small>{{ $value->certificate }}</small>
+                                                <a href="#">
+                                                    <p>{{ $value->college_name }}</p>
+                                                </a>
+                                                <hr />
+                                                <table>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>Course</td>
+                                                            <td>{{ $value->college_course }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Location</td>
+                                                            <td>{{ $value->location }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Campus Country</td>
+                                                            <td>{{ $value->campus_country }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Campus city</td>
+                                                            <td>{{ $value->location }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Tuition (1st year)</td>
+                                                            <td> ${{ $value->tuition }}CAD</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Application fee</td>
+                                                            <td>${{ $value->application_fee }}CAD</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Duration</td>
+                                                            <td> {{ $value->duration }} months</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
+                                            <div class="program-footer">
+                                                <p>Success prediction <button class="success-btn" onclick="openModal()">Details</button></p>
+                                                <button class="apply-btn">Create Application</button>
+                                            </div>
+                                        </div>
+    @endforeach
+                                </div>
+@else
+    <p>No programs found.</p>
+                            @endif
+                        </div>
+                        <div class="pagination">
+                            {{ $programs->appends(request()->input())->links() }}
+                        </div>
+                        -->
+
+    <div id="program-results">
+        @include('partials.programs', ['programs' => $programs])
+    </div>
     <script src="{{ asset('js/programs.js') }}" defer></script>
 
-</body>
+    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                    <script>
+                        function fetchPrograms() {
+                            let countries = $('#countries').val();
+                            $.ajax({
+                                url: "{{ route('search') }}",
+                                type: "GET",
+                                data: {
+                                    countries: countries
+                                },
+                                success: function(response) {
+                                    $('#program-results').html(response);
+                                }
+                            });
+                        }
 
+                        $('#keyword').on('keyup', function() {
+                            fetchPrograms();
+                        });
 
-</html>
+                        $('#countries').on('change', function() {
+                            fetchPrograms();
+                        });
+                    </script> -->
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        function fetchPrograms(url = "{{ route('search') }}") {
+            let keyword = $('#keyword').val();
+
+            $.ajax({
+                url: url,
+                type: 'GET',
+                data: {
+                    keyword: keyword,
+                    // countries: countries
+                },
+                success: function(response) {
+                    $('#program-results').html(response);
+                }
+            });
+        }
+
+        $('#keyword').on('keyup', function() {
+            fetchPrograms();
+        });
+
+        // $('#countries').on('change', function () {
+        //     fetchPrograms();
+        // });
+
+        $(document).on('click', '.pagination a', function(e) {
+            e.preventDefault();
+            fetchPrograms($(this).attr('href'));
+        });
+    </script>
+    <script>
+        function fetchProgramsCountry(url = "{{ route('search') }}") {
+            let countries = $('#countries').val();
+
+            $.ajax({
+                url: url,
+                type: "GET",
+                data: {
+                    countries: countries
+                },
+                success: function(response) {
+                    $('#program-results').html(response);
+                },
+                error: function(xhr) {
+                    console.log('AJAX error:', xhr);
+                }
+            });
+        }
+
+        // When dropdown changes
+        $('#countries').on('change', function() {
+            fetchProgramsCountry();
+        });
+
+        // Handle AJAX pagination
+        $(document).on('click', '.pagination a', function(e) {
+            e.preventDefault();
+            let pageUrl = $(this).attr('href');
+            fetchProgramsCountry(pageUrl);
+        });
+    </script>
+
+    <script>
+        function fetchPrograms() {
+            $.ajax({
+                url: "{{ route('search') }}",
+                type: "GET",
+                data: {
+                    keyword: $('#keyword').val(),
+                    countries: $('#countries').val(),
+                    institute: $('#institute').val(),
+                    program_level: $('#program_level').val(),
+                    field_of_study: $('#field_of_study').val(),
+                    language: $('#language').val(),
+                    program_tag: $('#program_tag').val()
+                },
+                success: function(response) {
+                    $('#program-results').html(response); // Just update program list
+                }
+            });
+        }
+
+        $('#keyword, #countries, #institute, #program_level, #field_of_study, #language, #program_tag').on('change keyup',
+            function() {
+                fetchPrograms();
+            });
+
+        $(document).on('click', '.pagination a', function(e) {
+            e.preventDefault();
+            let url = $(this).attr('href');
+            $.get(url, {
+                keyword: $('#keyword').val(),
+                countries: $('#countries').val(),
+                institute: $('#institute').val(),
+                program_level: $('#program_level').val(),
+                field_of_study: $('#field_of_study').val(),
+                language: $('#language').val(),
+                program_tag: $('#program_tag').val()
+            }, function(response) {
+                $('#program-results').html(response);
+            });
+        });
+    </script>

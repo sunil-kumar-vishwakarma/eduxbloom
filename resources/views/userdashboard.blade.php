@@ -57,7 +57,7 @@
                     <i class="fa-solid fa-chevron-down"></i>
                 </div>
                 <div id="toggle-content" class="hidden">
-                    <a href="{{ route('search') }}"><button class="program">Find A Program</button></a>
+                    <a><button class="program">Find A Program</button></a>
                     <div class="content2">
                         <h2>Finalize Your Application</h2>
                         <h2>Review and Submission</h2>

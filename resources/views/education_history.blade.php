@@ -894,17 +894,46 @@
 
             // Add content inside the new div
             schoolFields.innerHTML = `
-            <h3>School Details</h3>
+    <style>
+        .row {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 15px;
+        }
+        .field {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+    </style>
+
+    <h3>School Details</h3>
+
+    <div class="row">
+        <div class="field">
             <label for="schoolName">School Name:</label>
-            <input type="text"  />
+            <input type="text" name="schoolName[]" />
+        </div>
+        <div class="field">
             <label for="schoolLocation">School Location:</label>
-            <input type="text"  />
+            <input type="text" name="schoolLocation[]" />
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="field">
             <label for="startDate">Start Date:</label>
-            <input type="date" />
+            <input type="date" name="startDate[]" />
+        </div>
+        <div class="field">
             <label for="endDate">End Date:</label>
-            <input type="date" />
-            <button onclick="removeSchoolField(this)">Remove</button>
-        `;
+            <input type="date" name="endDate[]" />
+        </div>
+    </div>
+
+    <button onclick="removeSchoolField(this)">Remove</button>
+`;
+
 
             // Append the new div to the container
             schoolFieldsContainer.appendChild(schoolFields);
