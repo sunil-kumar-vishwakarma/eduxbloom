@@ -8,6 +8,8 @@ use App\Models\Users;
 
 use App\Models\Program;
 use App\Models\Country;
+use App\Models\Stat;
+use App\Models\City;
 use App\Models\School;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\App;
@@ -85,8 +87,18 @@ class UserDashController extends Controller
     }
     public function userprofile()
     {
-        return view('userprofile');
+        $user = Auth::user();
+        $countries = Country::all();
+        $stat = Stat::all();
+        $city = City::all();
+
+        return view('userprofile', compact('user','countries','stat','city'));
     }
+
+    
+
+
+
     public function user_myapplication()
     {
         return view('user_myapplication');

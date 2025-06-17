@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="{{ asset('css/user.css') }}" />
     <title>My Profile</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     <style>
         body {
             /* font-family: Arial, sans-serif; */
@@ -418,6 +420,18 @@
             margin-left: 80px;
             margin-top: 4px;
         }
+        .form-control {
+    display: block;
+    width: 100%;
+    height: calc(2.25rem + 2px);
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+}
     </style>
 </head>
 
@@ -456,43 +470,46 @@
                                         class="fa-solid fa-chevron-down"></i></span></h2>
 
                         </div>
+                        <form id="updateProfileFormData" method="PUT">
+                            @csrf
+
                         <div id="toggle-content" class="hidden">
                             <div class="section-row">
                                 <div>
 
-                                    <input type="text" id="firstName" placeholder="First name *">
+                                    <input type="text" id="name" name="name" placeholder="First name *" value="{{$user->name}}">
                                 </div>
                                 <div>
 
-                                    <input type="text" id="middleName" placeholder="Middle name">
+                                    <input type="text" id="middle_name" name="middle_name" placeholder="Middle name">
                                 </div>
                                 <div>
 
-                                    <input type="text" id="lastName" placeholder="Last name *">
-                                </div>
-                            </div>
-                            <div class="section-row">
-                                <div>
-
-                                    <input type="date" id="dob" placeholder="Date of birth *">
-                                </div>
-                                <div>
-
-                                    <input type="text" id="language" placeholder="First language *">
-                                </div>
-                                <div>
-
-                                    <input type="text" id="citizenship" placeholder="Country of citizenship *">
+                                    <input type="text" id="email" name="email" placeholder="Email *" value="{{$user->email}}">
                                 </div>
                             </div>
                             <div class="section-row">
                                 <div>
 
-                                    <input type="text" id="passportNumber" placeholder="Passport number *">
+                                    <input type="date" id="dob" name="dob" placeholder="Date of birth *">
                                 </div>
                                 <div>
 
-                                    <input type="date" id="passportExpiry" placeholder="Passport expiry date">
+                                    <input type="text" id="language" name="language" placeholder="First language *">
+                                </div>
+                                <div>
+
+                                    <input type="text" id="citizenship" name="citizenship"  placeholder="Country of citizenship *">
+                                </div>
+                            </div>
+                            <div class="section-row">
+                                <div>
+
+                                    <input type="text" id="passportNumber" name="passportNumber" placeholder="Passport number *">
+                                </div>
+                                <div>
+
+                                    <input type="date" id="passportExpiry" name="passportExpiry" placeholder="Passport expiry date">
                                 </div>
                             </div>
                             <div class="section-row">
@@ -514,8 +531,9 @@
                                 </div>
                             </div>
 
-                            <button class="save-btn">Save & Continue</button>
+                            <button type="submit" class="save-btn">Save & Continue</button>
                         </div>
+                        </form>
                 </section>
 
 
@@ -526,44 +544,58 @@
                         <h2>Address Detail <span class="icon"><i class="fa-solid fa-chevron-down"></i></span></h2>
 
                     </div>
+                    <form id="addressForm">
+                         @csrf
                     <div id="toggle-content1">
                         <div class="section-row">
                             <div>
 
-                                <input type="text" id="address" placeholder="Address *">
+                                <input type="text" id="address" name="address" placeholder="Address *">
+                            </div>
+                            <div>
+                                 <select id="city" name="city" class="form-control">
+                                    <option value="">Select City</option>
+                                    @foreach($countries as $row)
+                                    <option value="{{$row->id}}"> {{$row->name}}</option>
+                                    @endforeach
+                                </select>
+
+                            
+                            </div>
+                        </div>
+                        <div class="section-row">
+                            <div>
+                                <select id="country" name="country" class="form-control">
+                                    <option value="">Select Country</option>
+                                    @foreach($countries as $row)
+                                    <option value="{{$row->id}}"> {{$row->name}}</option>
+                                    @endforeach
+                                </select>
+                                <!-- <input type="text" id="country" name="country" placeholder="Country *"> -->
                             </div>
                             <div>
 
-                                <input type="text" id="city" placeholder="City/Town *">
+                                <input type="text" id="state" name="state" placeholder="Province/State *">
+                            </div>
+                            <div>
+
+                                <input type="text" id="zip" name="zip" placeholder="Postal/Zip code *">
                             </div>
                         </div>
                         <div class="section-row">
                             <div>
 
-                                <input type="text" id="country" placeholder="Country *">
-                            </div>
-                            <div>
-
-                                <input type="text" id="state" placeholder="Province/State *">
-                            </div>
-                            <div>
-
-                                <input type="text" id="zip" placeholder="Postal/Zip code *">
-                            </div>
-                        </div>
-                        <div class="section-row">
-                            <div>
-
-                                <input type="email" id="email" value="example@example.com"
+                                <input type="email" id="email" name="email" value="example@example.com"
                                     placeholder="Email *">
                             </div>
                             <div>
 
-                                <input type="tel" id="phone" placeholder="Phone number *">
+                                <input type="tel" id="phone" name="phone" placeholder="Phone number *">
                             </div>
                         </div>
                         <button class="save-btn">Save & Continue</button>
                     </div>
+                    </form>
                 </section>
             </main>
         </div>
@@ -579,6 +611,58 @@
     </div>
    
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<script>
+$('#updateProfileFormData').on('submit', function(e) {
+    e.preventDefault();
+
+    $.ajax({
+        url: "{{ route('userprofile.update', ['id' => $user->id]) }}",
+        type: "PUT",
+        data: $(this).serialize(),
+        success: function(response) {
+            if (response.success) {
+                alert(response.message);
+            }
+        },
+        error: function(xhr) {
+            let errors = xhr.responseJSON.errors;
+            let errorText = '';
+            $.each(errors, function(key, value) {
+                errorText += value[0] + "\n";
+            });
+            alert(errorText);
+        }
+    });
+});
+</script>
+
+
+<script>
+$('#addressForm').on('submit', function(e) {
+    e.preventDefault();
+
+    $.ajax({
+        url: "{{ route('profile.updateAddress') }}",
+        type: "POST",
+        data: $(this).serialize(),
+        success: function(response) {
+            if (response.success) {
+                alert(response.message);
+            }
+        },
+        error: function(xhr) {
+            let errors = xhr.responseJSON.errors;
+            let errorText = '';
+            $.each(errors, function(key, value) {
+                errorText += value[0] + "\n";
+            });
+            alert(errorText);
+        }
+    });
+});
+</script>
 
 <script>
     function toggleContent() {

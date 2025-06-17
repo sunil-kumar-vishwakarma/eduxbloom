@@ -140,6 +140,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('/usersearchProgram', [UserDashController::class, 'usersearchProgram'])->name('usersearchProgram');
     Route::get('/userprofile', [UserDashController::class, 'userprofile'])->name('userprofile');
+    Route::put('/profile/update', [ProfileController::class, 'userUpdate'])->name('userprofile.update');
+
+    Route::post('/update-address', [ProfileController::class, 'updateAddress'])->name('profile.updateAddress');
+
     Route::get('/user_myapplication', [UserDashController::class, 'user_myapplication'])->name('user_myapplication');
     Route::get('/userpayments', [UserDashController::class, 'userpayments'])->name('userpayments');
     Route::get('/education_history', [UserDashController::class, 'education_history'])->name('education_history');

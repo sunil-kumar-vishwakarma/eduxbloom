@@ -39,6 +39,69 @@ class ProfileController extends Controller
         return redirect()->route('profile', ['id' => $id])->with('success', 'Profile updated successfully.');
     }
 
+  public function userUpdate(Request $request)
+{
+    $user = Auth::user();
+
+    $request->validate([
+        'name' => 'required|string|max:255',
+        'middle_name' => 'nullable|string|max:255',
+        'email' => 'required|email|unique:users,email,' . $user->id,
+        'dob' => 'required|date',
+        'language' => 'required|string',
+        'citizenship' => 'required|string',
+        'passportNumber' => 'required|string',
+        'passportExpiry' => 'nullable|date',
+        'maritalStatus' => 'required|in:single,married',
+        'gender' => 'required|in:male,female',
+    ]);
+
+    // Update User basic info
+    $user->update([
+        'name' => $request->name,
+        'middle_name' => $request->middle_name,
+        'email' => $request->email,
+    ]);
+
+    // Create or update user detail
+    $user->details()->updateOrCreate(
+        ['user_id' => $user->id],
+        [   'middle_name' => $request->middle_name,
+            'dob' => $request->dob,
+            'language' => $request->language,
+            'citizenship' => $request->citizenship,
+            'passport_number' => $request->passportNumber,
+            'passport_expiry' => $request->passportExpiry,
+            'marital_status' => $request->maritalStatus,
+            'gender' => $request->gender,
+        ]
+    );
+
+    return response()->json(['success' => true, 'message' => 'Profile updated successfully!']);
+}
+
+
+public function updateAddress(Request $request)
+{
+    $user = Auth::user();
+
+    $request->validate([
+        'address' => 'required|string',
+        'city' => 'required|string',
+        'state' => 'required|string',
+        'country' => 'required|string',
+        'zip' => 'required|string',
+        'email' => 'required|email',
+        'phone' => 'required|string'
+    ]);
+
+    $user->address()->updateOrCreate(
+        ['user_id' => $user->id],
+        $request->only(['address', 'city', 'state', 'country', 'zip', 'email', 'phone'])
+    );
+
+    return response()->json(['success' => true, 'message' => 'Address updated successfully!']);
+}
 
 
 
