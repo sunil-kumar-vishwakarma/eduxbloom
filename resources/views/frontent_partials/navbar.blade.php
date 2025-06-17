@@ -307,6 +307,13 @@
     .lang-divider {
         margin: 0 5px;
     }
+
+    /* MOBILE STYLES */
+@media (max-width: 991.98px) {
+   #dropdownMenu{
+    right: -60px;
+   }
+}
 </style>
 
 
@@ -360,6 +367,8 @@
                                 href="/contactus">Contact us</a></li>
                     </ul>
                 </li>
+
+                
                 <div class="language-option">
                     <!-- <div class="language-switcher">
                         <a href="{{ route('change.lang', 'en') }}"
