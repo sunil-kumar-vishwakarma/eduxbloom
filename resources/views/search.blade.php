@@ -96,7 +96,7 @@
             .search-container {
                 flex-direction: column;
                 align-items: stretch;
-                padding: 20px;
+                padding: 16px 35px !important;
             }
 
             .custom-dropdown {
@@ -182,6 +182,7 @@
             .filters {
                 flex-direction: column;
                 align-items: stretch;
+                padding: 0px 35px !important;
             }
 
             .filter-item,
@@ -508,6 +509,16 @@
 
         /* Small phones */
         @media (max-width: 480px) {
+              .search-container {
+                flex-direction: column;
+                align-items: stretch;
+                padding: 16px 14px !important;
+            }
+             .filters {
+                flex-direction: column;
+                align-items: stretch;
+                padding: 0px 14px !important;
+            }
             .filter-search-wrapper {
                 margin-top: 20%;
             }
