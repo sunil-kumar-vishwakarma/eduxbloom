@@ -34,6 +34,7 @@ use App\Http\Controllers\WebinarController;
 use App\Http\Controllers\ContactInfoController;
 use App\Http\Controllers\RolePermissionController;
 use App\Http\Controllers\StatController;
+use App\Http\Controllers\StripeController;
 
 
 
@@ -141,10 +142,19 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/usersearchProgram', [UserDashController::class, 'usersearchProgram'])->name('usersearchProgram');
     Route::get('/userprofile', [UserDashController::class, 'userprofile'])->name('userprofile');
     Route::put('/profile/update', [ProfileController::class, 'userUpdate'])->name('userprofile.update');
+    Route::post('/education-summary', [ProfileController::class, 'educationSummary'])->name('educationSummary');
+    // Route::post('/user/school-attended', [ProfileController::class, 'schoolAttended'])->name('school.attended');
+    Route::post('/user/schools', [ProfileController::class, 'schoolAttended'])->name('user.schools.store');
+    Route::post('/user/schools/store-or-update', [ProfileController::class, 'createOrUpdateSchools'])
+    ->name('user.schools.storeOrUpdate');
+    Route::post('/user-test_score/save', [ProfileController::class, 'createOrUpdateTestScore'])->name('test-scores.store');
+    Route::post('/gre-gmat-score', [ProfileController::class, 'storeOrUpdateGreGmatScore'])->name('gre-gmat.createOrUpdate');
 
     Route::post('/update-address', [ProfileController::class, 'updateAddress'])->name('profile.updateAddress');
 
     Route::get('/user_myapplication', [UserDashController::class, 'user_myapplication'])->name('user_myapplication');
+    Route::post('/my-applications', [ProgramController::class, 'myApplicationStore'])->name('my_applications.store');
+
     Route::get('/userpayments', [UserDashController::class, 'userpayments'])->name('userpayments');
     Route::get('/education_history', [UserDashController::class, 'education_history'])->name('education_history');
     Route::get('/user_testScore', [UserDashController::class, 'user_testScore'])->name('user_testScore');
@@ -154,6 +164,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('/program_details/{id}', [UserDashController::class, 'details'])->name('details');
     Route::resource('/users', UserCRUDController::class); // for user CRUD
+
+    Route::get('/create-stripe-session/{id}', [StripeController::class, 'createSession']);
+Route::get('/payment-success/{id}', [StripeController::class, 'paymentSuccess'])->name('payment.success');
+
 });
 
 

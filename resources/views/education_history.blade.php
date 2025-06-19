@@ -677,50 +677,43 @@
                             <p class="info">Please enter the information for the highest academic level that you have
                                 completed.</p>
 
+                                
+                       
+                        <form id="educationForm">
+                            @csrf
+
                             <div class="section-row">
-
                                 <div class="dropdown-container">
-                                    <select id="country-select" style="width: 80%; height: 70px; ">
-                                        <option></option>
+                                    <select name="country" id="country-select" style="width: 80%; height: 70px;">
+                                        <option value="">Select Country</option>
+                                        <option value="India" {{$educationSummary->country =='India'? 'selected': ''}}>India</option>
+                                        <option value="USA" {{$educationSummary->country =='USA'? 'selected': ''}}>USA</option>
+                                        <!-- Add more -->
                                     </select>
                                 </div>
 
-
-                                <div class="dropdown-container"id="grade">
-                                    <select id="grade-select" style="width: 80%; height: 70px;"
-                                        placeholder="Select Grade">
-                                        <option></option>
+                                <div class="dropdown-container" id="grade">
+                                    <select name="grade" id="grade-select" style="width: 80%; height: 70px;">
+                                        <option value="">Select Grade</option>
+                                        <option value="A+" {{$educationSummary->grade =='A+'? 'selected': ''}}>A+</option>
+                                        <option value="B" {{$educationSummary->grade =='B'? 'selected': ''}}>B</option>
+                                        <!-- Add more -->
                                     </select>
                                 </div>
-
                             </div>
-
-
-                            {{-- <div class="section-row">
-
-                                <div class="dropdown-container">
-                                    <select id="grade-scheme-select" style="height: 70px;"
-                                        placeholder="Select Grade Scheme">
-                                        <option></option>
-                                    </select>
-                                </div>
-
-                            </div> --}}
-
 
                             <div class="section-row" id="radio-btn">
-
                                 <p class="info">I have graduated from this institution *</p>
-
                                 <div class="radio">
-                                    <label for="radio1"><input type="radio" id="radio1"
-                                            name="choice">Yes</label>
-                                    <label for="radio2"><input type="radio" id="radio2" name="choice">No</label>
+                                    <label><input type="radio" name="graduated" value="1" {{$educationSummary->graduated =='1'? 'checked': ''}}> Yes</label>
+                                    <label><input type="radio" name="graduated" value="0" {{$educationSummary->graduated =='0'? 'checked': ''}}> No</label>
                                 </div>
-
-
                             </div>
-                            <button class="save-btn">Save & Continue</button>
+
+                            <button class="save-btn" type="submit">Save & Continue</button>
+                        </form>
+
+                        <div id="message" style="margin-top: 15px; color: green;"></div>
 
                         </div>
                     </div>
@@ -735,15 +728,50 @@
                                     class="fa-solid fa-chevron-down"></i></span></h2>
 
                     </div>
+                    <!-- <form id="schoolForm">
+                        @csrf
                     <div id="toggle-content1">
                         <div id="school-fields-container">
-                            <!-- Dynamically added school fields will appear here -->
+                            
                         </div>
                         <div class="school">
                             <button id="attend">+ Add School</button>
                             <a href="#"><button id="continue">Continue</button></a>
                         </div>
                     </div>
+                    </form> -->
+
+                    <form id="schoolForm">
+                        @csrf
+                        <div id="school-fields-container">
+                            @foreach($user->attendedSchools as $index => $school)
+                                <div class="school-fields">
+                                    <h3>School Details</h3>
+                                    <input type="hidden" name="schools[{{ $index }}][id]" value="{{ $school->id }}">
+
+                                    <label>School Name:</label>
+                                    <input type="text" name="schools[{{ $index }}][name]" value="{{ $school->name }}" required>
+
+                                    <label>School Location:</label>
+                                    <input type="text" name="schools[{{ $index }}][location]" value="{{ $school->location }}" required>
+
+                                    <label>Start Date:</label>
+                                    <input type="date" name="schools[{{ $index }}][start_date]" value="{{ $school->start_date }}" required>
+
+                                    <label>End Date:</label>
+                                    <input type="date" name="schools[{{ $index }}][end_date]" value="{{ $school->end_date }}" required>
+
+                                    <button type="button" onclick="removeSchoolField(this)">Remove</button>
+                                </div>
+                            @endforeach
+                        </div>
+
+                        <button type="button" id="attend">Add School</button>
+                        <button type="submit">Save</button>
+                    </form>
+
+
+                    <div id="message" style="color: green;"></div>
                 </section>
             </main>
         </div>
@@ -762,6 +790,123 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <!-- Include Select2 JS -->
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $('#educationForm').on('submit', function(e) {
+        e.preventDefault();
+
+        $.ajax({
+            url: "{{ route('educationSummary') }}",
+            method: "POST",
+            data: $(this).serialize(),
+            headers: {
+                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+            },
+            success: function(response) {
+             if (response.success) {
+                alert(response.message);
+            }
+               $('#message').text('Education summary saved successfully.');
+            },
+            error: function(xhr) {
+                let errors = xhr.responseJSON.errors;
+                let errorMsg = "Something went wrong.";
+                if (errors) {
+                    errorMsg = Object.values(errors).join(' ');
+                }
+                $('#message').css('color', 'red').text(errorMsg);
+            }
+        });
+    });
+</script>
+
+<!-- <script>
+    $('#schoolForm').on('submit', function(e) {
+        e.preventDefault();
+
+        $.ajax({
+            url: "{{ route('user.schools.store') }}",
+            method: "POST",
+            data: $(this).serialize(),
+            headers: {
+                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+            },
+            success: function(response) {
+                $('#message').text('School data saved successfully.');
+            },
+            error: function(xhr) {
+                let errors = xhr.responseJSON.errors;
+                let errorMsg = "Error submitting form.";
+                if (errors) {
+                    errorMsg = Object.values(errors).flat().join(' ');
+                }
+                $('#message').css('color', 'red').text(errorMsg);
+            }
+        });
+    });
+</script>  -->
+
+<script>
+document.getElementById("schoolForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const formData = new FormData(this);
+
+    fetch("{{ route('user.schools.storeOrUpdate') }}", {
+        method: "POST",
+        headers: {
+            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+        },
+        body: new URLSearchParams([...formData])
+    })
+    .then(response => response.json())
+    .then(data => {
+        alert(data.message);
+    })
+    .catch(error => {
+        console.error("Error:", error);
+    });
+});
+</script>
+
+
+<script>
+let schoolIndex = document.querySelectorAll('.school-fields').length;
+
+document.getElementById("attend").addEventListener("click", () => {
+    const container = document.getElementById("school-fields-container");
+    const field = document.createElement("div");
+    field.classList.add("school-fields");
+
+    field.innerHTML = `
+        <h3>School Details</h3>
+        <input type="hidden" name="schools[${schoolIndex}][id]" value="">
+
+        <label>School Name:</label>
+        <input type="text" name="schools[${schoolIndex}][name]" required>
+
+        <label>School Location:</label>
+        <input type="text" name="schools[${schoolIndex}][location]" required>
+
+        <label>Start Date:</label>
+        <input type="date" name="schools[${schoolIndex}][start_date]" required>
+
+        <label>End Date:</label>
+        <input type="date" name="schools[${schoolIndex}][end_date]" required>
+
+        <button type="button" onclick="removeSchoolField(this)">Remove</button>
+    `;
+
+    container.appendChild(field);
+    schoolIndex++;
+});
+
+function removeSchoolField(button) {
+    button.parentElement.remove();
+}
+</script>
+
 
 <script>
     function toggleContent() {
@@ -823,7 +968,7 @@
         ];
 
         // Populate the dropdown
-        const $dropdown = $('#country-select');
+        const $dropdown = $('#country-selects');
         countries.forEach(country => {
             $dropdown.append(new Option(country, country));
         });
@@ -849,7 +994,7 @@
         ];
 
         // Populate the dropdown with grade options
-        const $gradeSelect = $('#grade-select');
+        const $gradeSelect = $('#grade-selects');
         grades.forEach(grade => {
             $gradeSelect.append(new Option(grade, grade));
         });
@@ -883,42 +1028,50 @@
         });
     });
 
-    const addSchoolButton = document.getElementById("attend");
-    const schoolFieldsContainer = document.getElementById("school-fields-container");
 
-    if (addSchoolButton && schoolFieldsContainer) {
-        addSchoolButton.addEventListener("click", () => {
-            // Create a new div for school fields
-            const schoolFields = document.createElement("div");
-            schoolFields.classList.add("school-fields"); // Add a class for styling
 
-            // Add content inside the new div
-            schoolFields.innerHTML = `
-            <h3>School Details</h3>
-            <label for="schoolName">School Name:</label>
-            <input type="text"  />
-            <label for="schoolLocation">School Location:</label>
-            <input type="text"  />
-            <label for="startDate">Start Date:</label>
-            <input type="date" />
-            <label for="endDate">End Date:</label>
-            <input type="date" />
-            <button onclick="removeSchoolField(this)">Remove</button>
-        `;
+    // const addSchoolButton = document.getElementById("attend");
+    // const schoolFieldsContainer = document.getElementById("school-fields-container");
 
-            // Append the new div to the container
-            schoolFieldsContainer.appendChild(schoolFields);
-        });
-    } else {
-        console.error("Add School Button or School Fields Container not found");
-    }
+    // if (addSchoolButton && schoolFieldsContainer) {
+    //    let schoolIndex = 0;
 
-    // Function to remove a specific school field
-    function removeSchoolField(button) {
-        if (button && button.parentElement) {
-            button.parentElement.remove();
-        }
-    }
+    //     addSchoolButton.addEventListener("click", () => {
+    //     const schoolFields = document.createElement("div");
+    //     schoolFields.classList.add("school-fields");
+
+    //         // Add content inside the new div
+    //         schoolFields.innerHTML = `
+    //     <h3>School Details</h3>
+    //     <label>School Name:</label>
+    //     <input type="text" name="schools[${schoolIndex}][name]" required />
+
+    //     <label>School Location:</label>
+    //     <input type="text" name="schools[${schoolIndex}][location]" required />
+
+    //     <label>Start Date:</label>
+    //     <input type="date" name="schools[${schoolIndex}][start_date]" required />
+
+    //     <label>End Date:</label>
+    //     <input type="date" name="schools[${schoolIndex}][end_date]" required />
+
+    //     <button type="button" onclick="removeSchoolField(this)">Remove</button>
+    // `;
+
+    //         // Append the new div to the container
+    //        schoolFieldsContainer.appendChild(schoolFields);
+    // schoolIndex++;
+    //     });
+    // } else {
+    //     console.error("Add School Button or School Fields Container not found");
+    // }
+
+    // // Function to remove a specific school field
+    // function removeSchoolField(button) {
+    //     if (button && button.parentElement) {
+    //         button.parentElement.remove();
+    //     }
+    // }
 
 
 

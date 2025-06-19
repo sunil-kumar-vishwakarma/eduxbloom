@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Program;
 use App\Models\Country;
 use App\Models\School;
+use App\Models\MyApplication;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\App;
@@ -267,5 +268,23 @@ class ProgramController extends Controller
         return Redirect::back(); // or redirect()->route('home')
     }
 
+    public function myApplicationStore(Request $request)
+{
+    $request->validate([
+        'program_id' => 'required|string',
+        'payment_status' => 'required|in:Complete,Pending,Cancel',
+    ]);
+
+    MyApplication::create([
+        'user_id' => auth()->id(),
+        'program_id' => $request->program_id,
+        'payment_status' => $request->payment_status,
+        'status' => 'active',
+    ]);
+
+    return redirect()->route('usersearchProgram')->with('success', 'Application submitted successfully!');
+
+    // return redirect()->back()->with('success', 'Application submitted successfully!');
+}
   
 }

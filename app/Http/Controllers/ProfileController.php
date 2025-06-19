@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Profile;
+use App\Models\EducationSummary;
+use App\Models\UserAttendSchool;
+use App\Models\UserTestScore;
+use App\Models\GreGmatScore;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -103,6 +107,157 @@ public function updateAddress(Request $request)
     return response()->json(['success' => true, 'message' => 'Address updated successfully!']);
 }
 
+
+public function educationSummary(Request $request)
+{
+    $validated = $request->validate([
+        'country' => 'required|string|max:100',
+        'grade' => 'required|string|max:50',
+        'graduated' => 'required|boolean',
+    ]);
+
+    EducationSummary::updateOrCreate(
+        ['user_id' => Auth::id()],
+        $validated + ['user_id' => Auth::id()]
+    );
+
+    return response()->json(['message' => 'Education summary saved successfully.']);
+}
+
+
+public function createOrUpdateSchools(Request $request)
+{
+    $request->validate([
+        'schools' => 'required|array',
+        'schools.*.name' => 'required|string|max:255',
+        'schools.*.location' => 'required|string|max:255',
+        'schools.*.start_date' => 'required|date',
+        'schools.*.end_date' => 'required|date|after_or_equal:schools.*.start_date',
+    ]);
+
+    $user = Auth::user();
+    $submittedIds = [];
+
+    foreach ($request->schools as $school) {
+        if (!empty($school['id'])) {
+            $existing = UserAttendSchool::where('user_id', $user->id)
+                        ->where('id', $school['id'])
+                        ->first();
+
+            if ($existing) {
+                $existing->update([
+                    'name' => $school['name'],
+                    'location' => $school['location'],
+                    'start_date' => $school['start_date'],
+                    'end_date' => $school['end_date'],
+                ]);
+                $submittedIds[] = $existing->id;
+            }
+        } else {
+            $new = UserAttendSchool::create([
+                'user_id' => $user->id,
+                'name' => $school['name'],
+                'location' => $school['location'],
+                'start_date' => $school['start_date'],
+                'end_date' => $school['end_date'],
+            ]);
+            $submittedIds[] = $new->id;
+        }
+    }
+
+    // Delete removed ones
+    UserAttendSchool::where('user_id', $user->id)
+        ->whereNotIn('id', $submittedIds)
+        ->delete();
+
+    return response()->json(['message' => 'School data updated successfully']);
+}
+
+
+public function createOrUpdateTestScore(Request $request)
+{
+    $validated = $request->validate([
+        'test_type' => 'required|string',
+        'reading' => 'nullable|integer',
+        'listening' => 'nullable|integer',
+        'writing' => 'nullable|integer',
+        'speaking' => 'nullable|integer',
+        'exam_date' => 'nullable|date',
+    ]);
+
+    
+    $userId = $validated['user_id'] ?? Auth::id();
+
+    $test = UserTestScore::where('user_id', $userId)
+        ->first();
+
+    if ($test) {
+        // Update existing record
+        $test->update($validated + ['user_id' => $userId]);
+    } else {
+        // Create new record
+        $test = UserTestScore::create($validated + ['user_id' => $userId]);
+    }
+
+
+    return response()->json(['message' => 'User test saved successfully', 'data' => $test]);
+}
+
+public function storeOrUpdateGreGmatScore(Request $request)
+{
+    $validated = $request->validate([
+        'exam_type' => 'required|in:GRE,GMAT',
+        'score' => 'nullable|string|max:255',
+        'exam_date' => 'nullable|date',
+    ]);
+
+    $userId = Auth::id(); // Or $request->user_id if coming from admin
+
+    // GreGmatScore::updateOrCreate(
+    //     ['user_id' => $userId, 'exam_type' => $validated['exam_type']],
+    //     $validated + ['user_id' => $userId]
+    // );
+
+     $userId = $validated['user_id'] ?? Auth::id();
+
+    $test = GreGmatScore::where('user_id', $userId)->where('exam_type' , $validated['exam_type'])
+        ->first();
+
+    if ($test) {
+        // Update existing record
+        $test->update($validated + ['user_id' => $userId]);
+    } else {
+        // Create new record
+        $test = GreGmatScore::create($validated + ['user_id' => $userId]);
+    }
+
+
+    return response()->json(['message' => 'Score saved successfully']);
+}
+
+
+    public function schoolAttended(Request $request)
+    {
+        $request->validate([
+            'schools' => 'required|array',
+            'schools.*.name' => 'required|string|max:255',
+            'schools.*.location' => 'required|string|max:255',
+            'schools.*.start_date' => 'required|date',
+            'schools.*.end_date' => 'required|date|after_or_equal:schools.*.start_date',
+        ]);
+
+        foreach ($request->schools as $schoolData) {
+            UserAttendSchool::create([
+                'user_id' => Auth::id(),
+                'name' => $schoolData['name'],
+                'location' => $schoolData['location'],
+                'start_date' => $schoolData['start_date'],
+                'end_date' => $schoolData['end_date'],
+            ]);
+        }
+
+        return response()->json(['message' => 'School data saved.']);
+    }
 
 
     public function show($id)

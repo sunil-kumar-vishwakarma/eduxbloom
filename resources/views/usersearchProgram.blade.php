@@ -688,9 +688,11 @@
    
 @include('frontent_partials.userdash_sidebar')
     <div class="main-content">
+
         @include('frontent_partials.userdash_nav')
         
         <div class="filter-search-wrapper">
+           
             <div class="search-container">
                 <div class="search-box">
                     <svg aria-hidden="true" viewBox="0 0 24 24" class="search-icon" xmlns="http://www.w3.org/2000/svg">
@@ -792,6 +794,24 @@
                 </div>
             </div>
 
+                    @if(session('success'))
+                        <div id="success-alert" class="alert alert-success alert-dismissible fade show mt-2" role="alert">
+                            {{ session('success') }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        </div>
+
+                        <script>
+                            setTimeout(function () {
+                                const alert = document.getElementById('success-alert');
+                                if (alert) {
+                                    // Bootstrap 5 dismiss animation
+                                    alert.classList.remove('show');
+                                    alert.classList.add('fade');
+                                    setTimeout(() => alert.remove(), 500); // Remove after fade out
+                                }
+                            }, 10000); // 10000 milliseconds = 10 seconds
+                        </script>
+                    @endif
 
             @if ($programs->count())
                 <div class="programs-container">
@@ -847,22 +867,62 @@
                                 <p>Success prediction <button class="success-btn"
                                         onclick="openModal()">Details</button>
                                 </p>
-                                <button class="apply-btn">Create Application</button>
+
+                    
+
+
+                        <button class="apply-btn" data-bs-toggle="modal" data-id="{{ $value->id }}"
+        data-name="{{ $value->university_name }}"
+        data-image="{{ asset('/public/storage/' . $value->image) }}?v={{ $value->updated_at->timestamp }}"
+        data-college="{{ $value->college_name }}" data-application_fee="{{ $value->application_fee }}" data-duration="{{ $value->duration }}" data-bs-target="#applicationModal">
+                            Create Application
+                        </button>
+                               
                             </div>
                         </div>
-                        <!-- <div class="pagination">
-                        <button class="page-btn prev-btn" disabled>Previous</button>
-                        <div class="page-numbers">
-                            <button class="page-btn active">1</button>
-                            <button class="page-btn">2</button>
-                            <button class="page-btn">3</button>
-                            <button class="page-btn">4</button>
-                            <button class="page-btn">5</button>
-                        </div>
-                        <button class="page-btn next-btn">Next</button>
-                    </div> -->
+                        
+ 
+
+
                     @endforeach
                 </div>
+
+                                   <!-- Success Message -->
+
+
+<!-- Application Modal -->
+<div class="modal fade" id="applicationModal" tabindex="-1" aria-labelledby="applicationModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form action="{{ route('my_applications.store') }}" method="POST">
+                @csrf
+                <div class="modal-header">
+                    <h5 class="modal-title" id="applicationModalLabel">Submit Application</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+
+                <div class="modal-body">
+                    <img id="modal-university-image" src="" alt="University Logo" class="program-logo mb-2" />
+                    <span id="modal-university-name" class="d-block fw-bold"></span>
+                    <span id="modal-college-name" class="d-block mb-3"></span> 
+                    <span id="modal-application_fee" class="d-block mb-3"></span>
+                    <span id="modal-duration" class="d-block mb-3"> </span>
+
+                    <input type="hidden" name="program_id" id="modal-program-id">
+    
+                    <!-- <input type="text" dissabled name="program_id" id="program_id" placeholder="Program ID" class="form-control mb-2" required value="{{ $value->id }}"> -->
+                    <input type="hidden" dissabled name="payment_status" id="payment_status" placeholder="Program ID" class="form-control mb-2" value="Pending">
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Submit Application</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
         </div>
         <div class="pagination">
             {{ $programs->appends(request()->input())->links() }}
@@ -928,6 +988,40 @@
     
 
     <script src="{{ asset('js/programs.js') }}" defer></script>
+
+    <!-- Bootstrap 5 CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Bootstrap 5 JS (for modal functionality) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const applicationModal = document.getElementById('applicationModal');
+
+        applicationModal.addEventListener('show.bs.modal', function (event) {
+            const button = event.relatedTarget;
+
+            const id = button.getAttribute('data-id');
+            const name = button.getAttribute('data-name');
+            const image = button.getAttribute('data-image');
+            const college = button.getAttribute('data-college');
+            const application_fee = button.getAttribute('data-application_fee');
+            const duration = button.getAttribute('data-duration');
+
+            // Update modal content
+            document.getElementById('modal-university-image').src = image;
+            document.getElementById('modal-university-name').textContent = name;
+            document.getElementById('modal-college-name').textContent = college;
+            document.getElementById('modal-application_fee').textContent = '$ ' + application_fee + ' CAD';
+            document.getElementById('modal-duration').textContent = duration + ' months';
+            document.getElementById('modal-program-id').value = id;
+        });
+    });
+</script>
+
+
 
 </body>
 

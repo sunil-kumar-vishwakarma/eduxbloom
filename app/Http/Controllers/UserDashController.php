@@ -11,6 +11,10 @@ use App\Models\Country;
 use App\Models\Stat;
 use App\Models\City;
 use App\Models\School;
+use App\Models\EducationSummary;
+use App\Models\UserTestScore;
+use App\Models\GreGmatScore;
+use App\Models\MyApplication;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Session;
@@ -87,7 +91,10 @@ class UserDashController extends Controller
     }
     public function userprofile()
     {
-        $user = Auth::user();
+        // $user = Auth::user()->with('details','address');
+        $user = \App\Models\User::with(['details', 'address'])->find(Auth::id());
+
+        // print_r($user->details);die;
         $countries = Country::all();
         $stat = Stat::all();
         $city = City::all();
@@ -101,7 +108,11 @@ class UserDashController extends Controller
 
     public function user_myapplication()
     {
-        return view('user_myapplication');
+        
+        $myApplication = MyApplication::with(['program', 'user'])
+    ->where('user_id', Auth::id())
+    ->get();
+        return view('user_myapplication', compact('myApplication'));
     }
     public function userpayments()
     {
@@ -109,11 +120,19 @@ class UserDashController extends Controller
     }
     public function education_history()
     {
-        return view('education_history');
+        $educationSummary = EducationSummary::where('user_id',Auth::id())->first();
+        $user = Auth::user()->load('attendedSchools');
+         $attendedSchools = $user->attendedSchools; // assuming a relationship
+
+        return view('education_history', compact('user','educationSummary','attendedSchools'));
     }
     public function user_testScore()
     {
-        return view('user_testScore');
+       $userTestScore = UserTestScore::where('user_id',Auth::id())->first();
+       $greGmatScore = GreGmatScore::where('user_id',Auth::id())->where('exam_type','GMAT')->first();
+       $greGmatScoreGRE = GreGmatScore::where('user_id',Auth::id())->where('exam_type','GRE')->first();
+
+        return view('user_testScore',compact('userTestScore','greGmatScore','greGmatScoreGRE'));
     }
 
       public function details($id)

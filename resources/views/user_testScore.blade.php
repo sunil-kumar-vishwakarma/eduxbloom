@@ -694,9 +694,25 @@
 
                                 <div class="radio-container">
                                     <div class="radio-btn">
-                                        <input type="radio" id="radio1" name="group1">
+                                        <input type="radio" id="radio1" name="group1" {{optional($userTestScore)->test_type =='TOEFL'? 'checked': ''}} >
                                         <label for="radio1"><span>TOEFL</span></label>
-                                        <div class="dropdown-content" id="dropdown1">
+                                        @if(optional($userTestScore)->test_type =='TOEFL')
+                                        <div class="" id="dropdown1">
+                                            <!-- Input fields for TOEFL -->
+                                            <div class="input-row">
+                                                <input type="text" placeholder="Reading" value="{{optional($userTestScore)->reading}}">
+                                                <input type="text" placeholder="Listening" value="{{optional($userTestScore)->listening}}" >
+                                            </div><br>
+                                            <div class="input-row">
+                                                <input type="text" placeholder="Writing" value="{{optional($userTestScore)->writing}}">
+                                                <input type="text" placeholder="Speaking" value="{{optional($userTestScore)->speaking}}">
+                                            </div><br>
+                                            <div class="input-row">
+                                                <input type="date" placeholder="Exam Date" class="exam-date" value="{{optional($userTestScore)->exam_date}}">
+                                            </div><br>
+                                        </div>
+                                        @else
+                                            <div class="dropdown-content" id="dropdown1">
                                             <!-- Input fields for TOEFL -->
                                             <div class="input-row">
                                                 <input type="text" placeholder="Reading">
@@ -710,13 +726,29 @@
                                                 <input type="date" placeholder="Exam Date" class="exam-date">
                                             </div><br>
                                         </div>
+                                        @endif
                                     </div><br>
 
 
                                     <div class="radio-btn">
-                                        <input type="radio" id="radio2" name="group1">
+                                        <input type="radio" id="radio2" name="group1" {{optional($userTestScore)->test_type =='OIELTS'? 'checked': ''}}>
                                         <label for="radio2"><span>OIELTS</span></label>
-
+                                        @if(optional($userTestScore)->test_type =='OIELTS')
+                                        <div class="" id="dropdown2"> <br>
+                                            <!-- Input fields for IELTS -->
+                                            <div class="input-row">
+                                                <input type="text" placeholder="Reading" value="{{optional($userTestScore)->reading}}">
+                                                <input type="text" placeholder="Listening" value="{{optional($userTestScore)->listening}}" >
+                                            </div><br>
+                                            <div class="input-row">
+                                                <input type="text" placeholder="Writing" value="{{optional($userTestScore)->writing}}">
+                                                <input type="text" placeholder="Speaking" value="{{optional($userTestScore)->speaking}}">
+                                            </div><br>
+                                            <div class="input-row">
+                                                <input type="date" placeholder="Exam Date" class="exam-date" value="{{optional($userTestScore)->exam_date}}">
+                                            </div><br>
+                                        </div>
+                                        @else
                                         <div class="dropdown-content" id="dropdown2">
                                             <!-- Input fields for IELTS -->
                                             <div class="input-row">
@@ -731,12 +763,28 @@
                                                 <input type="date" placeholder="Exam Date" class="exam-date">
                                             </div>
                                         </div>
+                                        @endif
                                     </div><br>
 
                                     <div class="radio-btn">
-                                        <input type="radio" id="radio3" name="group1">
+                                        <input type="radio" id="radio3" name="group1" {{optional($userTestScore)->test_type =='PTE'? 'checked': ''}}>
                                         <label for="radio3"><span>PTE</span></label>
-
+                                        @if(optional($userTestScore)->test_type =='PTE')
+                                        <div class="" id="dropdown3">
+                                            <!-- Input fields for PTE -->
+                                            <div class="input-row">
+                                                <input type="text" placeholder="Reading" value="{{optional($userTestScore)->reading}}">
+                                                <input type="text" placeholder="Listening" value="{{optional($userTestScore)->listening}}" >
+                                            </div><br>
+                                            <div class="input-row">
+                                                <input type="text" placeholder="Writing" value="{{optional($userTestScore)->writing}}">
+                                                <input type="text" placeholder="Speaking" value="{{optional($userTestScore)->speaking}}">
+                                            </div><br>
+                                            <div class="input-row">
+                                                <input type="date" placeholder="Exam Date" class="exam-date" value="{{optional($userTestScore)->exam_date}}">
+                                            </div><br>
+                                        </div>
+                                        @else
                                         <div class="dropdown-content" id="dropdown3">
                                             <!-- Input fields for PTE -->
                                             <div class="input-row">
@@ -751,14 +799,30 @@
                                                 <input type="date" placeholder="Exam Date" class="exam-date">
                                             </div><br>
                                         </div>
+                                        @endif
                                     </div><br>
 
 
 
                                     <div class="radio-btn">
-                                        <input type="radio" id="radio4" name="group1">
+                                        <input type="radio" id="radio4" name="group1" {{optional($userTestScore)->test_type =='Duolingo'? 'checked': ''}}>
                                         <label for="radio4"><span>Duolingo</span></label>
-
+                                            @if(optional($userTestScore)->test_type =='Duolingo')
+                                        <div class="" id="dropdown4">
+                                            <!-- Input fields for Duolingo -->
+                                            <div class="input-row">
+                                                <input type="text" placeholder="Reading" value="{{optional($userTestScore)->reading}}">
+                                                <input type="text" placeholder="Listening" value="{{optional($userTestScore)->listening}}" >
+                                            </div><br>
+                                            <div class="input-row">
+                                                <input type="text" placeholder="Writing" value="{{optional($userTestScore)->writing}}">
+                                                <input type="text" placeholder="Speaking" value="{{optional($userTestScore)->speaking}}">
+                                            </div><br>
+                                            <div class="input-row">
+                                                <input type="date" placeholder="Exam Date" class="exam-date" value="{{optional($userTestScore)->exam_date}}">
+                                            </div><br>
+                                        </div>
+                                        @else
                                         <div class="dropdown-content" id="dropdown4">
                                             <!-- Input fields for Duolingo -->
                                             <div class="input-row">
@@ -773,14 +837,15 @@
                                                 <input type="date" placeholder="Exam Date" class="exam-date">
                                             </div><br>
                                         </div>
+                                        @endif
                                     </div><br>
 
                                     <div class="radio-btn">
-                                        <input type="radio" id="radio5" name="group1">
-                                        <label for="radio5"><span>I don't have this</span></label>
+                                        <input type="radio" id="radio5" name="group1" {{optional($userTestScore)->test_type =='I don t have this'? 'checked': ''}}>
+                                        <label for="radio5"><span>I don t have this</span></label>
                                     </div><br>
                                     <div class="radio-btn">
-                                        <input type="radio" id="radio6" name="group1">
+                                        <input type="radio" id="radio6" name="group1" {{optional($userTestScore)->test_type =='Not yet'? 'checked': ''}}>
                                         <label for="radio6"><span>Not yet</span></label>
                                     </div><br>
 
@@ -813,16 +878,23 @@
                             <div class="custom-section-row">
                                 <div class="custom-switch">
                                     <label>
-                                        <input type="checkbox" role="switch" class="custom-switch-checkbox"> I have
+                                        <input type="checkbox" role="switch" class="custom-switch-checkbox" {{optional($greGmatScore)->exam_type =='GMAT'? 'checked': ''}}> I have
                                         GMAT exam scores
                                     </label>
-
+                                    @if(optional($greGmatScore)->exam_type =='GMAT')
                                     <!-- Dropdown content for GMAT exam -->
-                                    <div class="custom-dropdown-content" id="custom-dropdown-content-0">
+                                    <div class="" id="custom-dropdown-content-0">
                                         <div class="custom-label-top">GMAT Exam Scores</div> <br>
-                                        <input type="text" placeholder="Enter GMAT score" /><br>
-                                        <input type="text" placeholder="Enter GMAT date" />
+                                        <input type="text" placeholder="Enter GMAT score" value="{{$greGmatScore->score}}"/><br>
+                                        <input type="date" placeholder="Enter GMAT date" value="{{$greGmatScore->exam_date}}"/>
                                     </div>
+                                      @else
+                                        <div class="custom-dropdown-content" id="custom-dropdown-content-0">
+                                        <div class="custom-label-top">GMAT Exam Scores</div> <br>
+                                        <input type="text" placeholder="Enter GMAT score" value=""/><br>
+                                        <input type="date" placeholder="Enter GMAT date" value=""/>
+                                    </div>
+                                      @endif
                                 </div>
                             </div><br>
 
@@ -833,40 +905,135 @@
                             <div class="custom-section-row">
                                 <div class="custom-switch">
                                     <label id="gre">
-                                        <input type="checkbox" role="switch" class="custom-switch-checkbox"> I have
+                                        <input type="checkbox" role="switch" class="custom-switch-checkbox" {{optional($greGmatScoreGRE)->exam_type =='GRE'? 'checked': ''}}> I have
                                         GRE exam scores
                                     </label>
                                     <!-- Dropdown content for GRE exam -->
-                                    <div class="custom-dropdown-content" id="custom-dropdown-content-1">
+                                     @if(optional($greGmatScoreGRE)->exam_type =='GRE')
+                                    <div class="" id="custom-dropdown-content-1">
+                                        <div class="custom-label-top">GRE Exam Scores</div> <br>
+                                        <input type="text" placeholder="Enter GRE score" value="{{$greGmatScoreGRE->score}}" /> <br>
+                                        <input type="date" placeholder="Enter GRE date" value="{{$greGmatScoreGRE->exam_date}}"/>
+                                    </div>
+                                    @else
+                                        <div class="custom-dropdown-content" id="custom-dropdown-content-1">
                                         <div class="custom-label-top">GRE Exam Scores</div> <br>
                                         <input type="text" placeholder="Enter GRE score" /> <br>
-                                        <input type="text" placeholder="Enter GRE date" />
+                                        <input type="date" placeholder="Enter GRE date"/>
                                     </div>
+                                    @endif
                                 </div>
                             </div>
 
                         </div>
-                        <button class="save-btn">Save & Continue</button>
+                        <button class="save-btn save-btn-gre-gmat">Save & Continue</button>
                     </div>
 
                 </section>
             </main>
         </div>
 
-        <!-- <footer>
-            <p>&copy; 2024 ApplyBoard.com</p>
-            <a href="#">Privacy Policy</a>
-            <a href="#">Terms & Conditions</a>
-            <a href="#">Accessibility</a>
-            <a href="#">About</a>
-            <a href="#">Blog</a>
-        </footer> -->
+    
     </div>
 </body>
 <!-- Include jQuery -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <!-- Include Select2 JS -->
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+<script>
+    document.querySelector('.save-btn-gre-gmat').addEventListener('click', () => {
+        const [gmatSwitch, greSwitch] = document.querySelectorAll('input[type=checkbox][role=switch]');
+
+        const gmatChecked = gmatSwitch?.checked;
+        const greChecked = greSwitch?.checked;
+
+        if (gmatChecked) {
+            const gmatScore = document.querySelector('#custom-dropdown-content-0 input[type=text]:nth-child(3)').value;
+            const gmatDate = document.querySelector('#custom-dropdown-content-0 input[type=date]:nth-child(5)').value;
+
+            axios.post('{{ route('gre-gmat.createOrUpdate') }}', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                exam_type: 'GMAT',
+                score: gmatScore,
+                exam_date: gmatDate
+            }).then(res => {
+                console.log('GMAT Saved:', res.data);
+            }).catch(err => {
+                console.error('GMAT Error:', err.response?.data || err);
+            });
+        }
+
+        if (greChecked) {
+            const greScore = document.querySelector('#custom-dropdown-content-1 input[type=text]:nth-child(3)').value;
+            const greDate = document.querySelector('#custom-dropdown-content-1 input[type=date]:nth-child(5)').value;
+
+            axios.post('{{ route('gre-gmat.createOrUpdate') }}', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                exam_type: 'GRE',
+                score: greScore,
+                exam_date: greDate
+            }).then(res => {
+                console.log('GRE Saved:', res.data);
+            }).catch(err => {
+                console.error('GRE Error:', err.response?.data || err);
+            });
+        }
+    });
+</script>
+
+
+<script>
+document.querySelector('.save-btn').addEventListener('click', function (e) {
+    e.preventDefault();
+
+    let selected = document.querySelector('input[name="group1"]:checked');
+    if (!selected) {
+        alert("Please select a test type");
+        return;
+    }
+
+    let testType = selected.labels[0].innerText.trim();
+    let dropdown = selected.parentElement.querySelector('.dropdown-content');
+
+    let formData = {
+        test_type: testType,
+        reading: dropdown?.querySelector('input[placeholder="Reading"]')?.value || null,
+        listening: dropdown?.querySelector('input[placeholder="Listening"]')?.value || null,
+        writing: dropdown?.querySelector('input[placeholder="Writing"]')?.value || null,
+        speaking: dropdown?.querySelector('input[placeholder="Speaking"]')?.value || null,
+        exam_date: dropdown?.querySelector('input.exam-date')?.value || null,
+        _token: '{{ csrf_token() }}'
+    };
+
+    fetch('{{ route('test-scores.store') }}', {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData)
+    })
+    .then(res => res.json())
+    .then(data => {
+        alert(data.message);
+    })
+    .catch(err => {
+        console.error(err);
+        alert("Error saving data");
+    });
+});
+</script>
+
 
 <script>
     function toggleContent() {

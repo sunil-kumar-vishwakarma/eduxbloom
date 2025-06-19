@@ -474,31 +474,74 @@
                 <tr>
                     <th>S.No</th>
                     <th>Program Name</th>
+                    <th>Application Fee</th>
                     <th>Start Date</th>
                     <th>Status</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Science</td>
-                    <td>01 Jan, 2025</td>
-                    <td>
-                        <button class="btn-unpaid">Unpaid</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>MBA</td>
-                    <td>01 Jan, 2025</td>
-                    <td>
-                        <button class="btn-paid">Paid</button>
-                    </td>
-                </tr>
+                @foreach($myApplication as $value)
+                    <tr>
+                        <td>{{ $loop->iteration ?? 'N/A' }}</td>
+                        <td>{{ $value->program->college_course ?? 'N/A' }}</td>
+                        <td>{{ $value->program->application_fee ?? 'N/A' }}</td>
+                         <td>{{ \Carbon\Carbon::parse($value['created_at'])->format('d M Y') }}</td>
+                        <!-- <td> -->
+                            <!-- <button class="btn-unpaid">{{ $value->payment_status?? 'N/A' }}</button> -->
+                        <!-- </td> -->
+                        <td>
+                            @if($value->payment_status === 'Pending')
+                                
+                                <!-- <button class="btn btn-warning stripe-pay-btn" data-application-id="{{ $value->id }}">
+                                    Pay Now
+                                </button> -->
+                                <button 
+    class="btn btn-warning stripe-pay-btn" 
+    data-application-id="{{ $value->id }}"
+    data-course="{{ $value->program->college_course }}"
+    data-fee="{{ $value->program->application_fee }}"
+    data-bs-toggle="modal" 
+    data-bs-target="#paymentModal"
+>
+    Pay Now
+</button>
 
+                            @else
+                                <button class="btn btn-success" disabled>Paid</button>
+                            @endif
+                        </td>
+                    </tr>
+                @endforeach
+
+               
                 <!-- Add more static rows if needed -->
             </tbody>
         </table>
+
+        <!-- Bootstrap Modal -->
+                <!-- Payment Modal -->
+
+                <!-- Modal -->
+<div class="modal fade" id="paymentModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5>Confirm Payment</h5>
+            <button class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+            <p><strong>Course:</strong> <span id="modal-course-name"></span></p>
+            <p><strong>Application Fee:</strong> $<span id="modal-application-fee"></span></p>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+            <button id="modal-stripe-pay-btn" class="btn btn-primary">Proceed to Pay</button>
+        </div>
+    </div>
+  </div>
+</div>
+
+
 
 
         <footer>
@@ -510,6 +553,47 @@
         </footer>
     </div>
 </body>
+
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+    let currentApplicationId = null;
+
+    document.querySelectorAll('.stripe-pay-btn').forEach(button => {
+        button.addEventListener('click', function () {
+            currentApplicationId = this.dataset.applicationId;
+            document.getElementById('modal-course-name').textContent = this.dataset.course;
+            document.getElementById('modal-application-fee').textContent = this.dataset.fee;
+        });
+    });
+
+    document.getElementById('modal-stripe-pay-btn').addEventListener('click', function () {
+        if (!currentApplicationId) return;
+
+        fetch(`/create-stripe-session/${currentApplicationId}`, {
+            method: 'GET',
+            headers: {
+                'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                'Accept': 'application/json',
+            },
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (data.id) {
+                const stripe = Stripe("{{ config('services.stripe.key') }}");
+                stripe.redirectToCheckout({ sessionId: data.id });
+            } else {
+                alert('Something went wrong.');
+            }
+        })
+        .catch(err => {
+            console.error(err);
+            alert('Error connecting to Stripe.');
+        });
+    });
+</script>
+
+
+
 
 <script>
     document.addEventListener('DOMContentLoaded', () => {

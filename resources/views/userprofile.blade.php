@@ -481,7 +481,7 @@
                                 </div>
                                 <div>
 
-                                    <input type="text" id="middle_name" name="middle_name" placeholder="Middle name">
+                                    <input type="text" id="middle_name" name="middle_name" placeholder="Middle name" value="{{$user->details->middle_name}}">
                                 </div>
                                 <div>
 
@@ -491,42 +491,49 @@
                             <div class="section-row">
                                 <div>
 
-                                    <input type="date" id="dob" name="dob" placeholder="Date of birth *">
+                                    <input type="date" id="dob" name="dob" placeholder="Date of birth *" value="{{$user->details->dob}}">
                                 </div>
                                 <div>
 
-                                    <input type="text" id="language" name="language" placeholder="First language *">
+                                    <input type="text" id="language" name="language" placeholder="First language *" value="{{$user->details->language}}">
                                 </div>
                                 <div>
 
-                                    <input type="text" id="citizenship" name="citizenship"  placeholder="Country of citizenship *">
+                                    <input type="text" id="citizenship" name="citizenship"  placeholder="Country of citizenship *" value="{{$user->details->citizenship}}">
                                 </div>
                             </div>
                             <div class="section-row">
                                 <div>
 
-                                    <input type="text" id="passportNumber" name="passportNumber" placeholder="Passport number *">
+                                    <input type="text" id="passportNumber" name="passportNumber" placeholder="Passport number *" value="{{$user->details->passport_number}}">
                                 </div>
                                 <div>
 
-                                    <input type="date" id="passportExpiry" name="passportExpiry" placeholder="Passport expiry date">
+                                    <input type="date" id="passportExpiry" name="passportExpiry" placeholder="Passport expiry date" value="{{$user->details->passport_expiry}}">
                                 </div>
                             </div>
                             <div class="section-row">
                                 <div>
                                     <label>Marital Status *</label>
                                     <div class="radio">
-                                        <label><input type="radio" name="maritalStatus" value="single">
-                                            Single</label>
-                                        <label><input type="radio" name="maritalStatus" value="married">
-                                            Married</label>
+                                        <label>
+                                            <input type="radio" name="maritalStatus" value="single"
+                                                {{ $user->details->marital_status == 'single' ? 'checked' : '' }}>
+                                            Single
+                                        </label>
+
+                                        <label>
+                                            <input type="radio" name="maritalStatus" value="married"
+                                                {{ $user->details->marital_status == 'married' ? 'checked' : '' }}>
+                                            Married
+                                        </label>
                                     </div>
                                 </div>
                                 <div>
                                     <label>Gender *</label>
                                     <div class="radio">
-                                        <label><input type="radio" name="gender" value="male"> Male</label>
-                                        <label><input type="radio" name="gender" value="female"> Female</label>
+                                        <label><input type="radio" name="gender" value="male" {{ $user->details->gender == 'male' ? 'checked' : '' }}> Male</label>
+                                        <label><input type="radio" name="gender" value="female" {{ $user->details->gender == 'female' ? 'checked' : '' }}> Female</label>
                                     </div>
                                 </div>
                             </div>
@@ -550,13 +557,13 @@
                         <div class="section-row">
                             <div>
 
-                                <input type="text" id="address" name="address" placeholder="Address *">
+                                <input type="text" id="address" name="address" placeholder="Address *" value="{{$user->address->address}}">
                             </div>
                             <div>
                                  <select id="city" name="city" class="form-control">
                                     <option value="">Select City</option>
                                     @foreach($countries as $row)
-                                    <option value="{{$row->id}}"> {{$row->name}}</option>
+                                    <option value="{{$row->id}}" {{ $user->address->city == $row->id ? 'selected' : '' }}> {{$row->name}}</option>
                                     @endforeach
                                 </select>
 
@@ -568,29 +575,29 @@
                                 <select id="country" name="country" class="form-control">
                                     <option value="">Select Country</option>
                                     @foreach($countries as $row)
-                                    <option value="{{$row->id}}"> {{$row->name}}</option>
+                                    <option value="{{$row->id}}" {{ $user->address->country == $row->id ? 'selected' : '' }}> {{$row->name}}</option>
                                     @endforeach
                                 </select>
                                 <!-- <input type="text" id="country" name="country" placeholder="Country *"> -->
                             </div>
                             <div>
 
-                                <input type="text" id="state" name="state" placeholder="Province/State *">
+                                <input type="text" id="state" name="state" placeholder="Province/State *" value="{{ $user->address->state}}">
                             </div>
                             <div>
 
-                                <input type="text" id="zip" name="zip" placeholder="Postal/Zip code *">
+                                <input type="text" id="zip" name="zip" placeholder="Postal/Zip code *" value="{{ $user->address->zip}}">
                             </div>
                         </div>
                         <div class="section-row">
                             <div>
 
-                                <input type="email" id="email" name="email" value="example@example.com"
-                                    placeholder="Email *">
+                                <input type="email" id="email" name="email"
+                                    placeholder="Email *" value="{{ $user->address->email}}">
                             </div>
                             <div>
 
-                                <input type="tel" id="phone" name="phone" placeholder="Phone number *">
+                                <input type="tel" id="phone" name="phone" placeholder="Phone number *" value="{{ $user->address->phone}}">
                             </div>
                         </div>
                         <button class="save-btn">Save & Continue</button>
