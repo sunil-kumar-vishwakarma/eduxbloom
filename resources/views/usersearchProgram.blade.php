@@ -923,7 +923,7 @@
         @include('frontent_partials.userdash_nav')
         
       <div class="filter-search-wrapper">
-        {{-- Search and Top Filters --}}
+        <!-- {{-- Search and Top Filters --}}
         <div class="search-container">
             {{-- Keyword Search --}}
             <div class="search-box">
@@ -943,7 +943,79 @@
                     <option value="Canada">Canada</option>
                 </select>
                 <i class="fas fa-chevron-down dropdown-icon"></i>
+            </div> -->
+
+              {{-- Advanced Filters --}}
+        <div class="filters">
+            {{-- Program Level --}}
+            <div class="filter-item custom-dropdown">
+                <select id="program_level">
+                    <option value="">Program Level</option>
+                    <option value="Undergraduate">Undergraduate</option>
+                    <option value="Postgraduate">Postgraduate</option>
+                    <option value="9th-12th Grade">9th–12th Grade</option>
+                    <option value="Preparatory Courses">Preparatory Courses</option>
+                    <option value="ESL">ESL + Bridging</option>
+                    <option value="Gap Year">Gap Year</option>
+                </select>
+                <i class="fas fa-chevron-down dropdown-icon"></i>
             </div>
+
+            {{-- Field of Study --}}
+            <div class="filter-item custom-dropdown">
+                <select id="field_of_study">
+                    <option value="">Field of Study</option>
+                    <option value="Engineering">Engineering</option>
+                    <option value="Business">Business</option>
+                    <option value="Health Sciences">Health Sciences</option>
+                    <option value="Arts & Humanities">Arts & Humanities</option>
+                    <option value="STEM">STEM</option>
+                </select>
+                <i class="fas fa-chevron-down dropdown-icon"></i>
+            </div>
+
+            {{-- Language --}}
+            <div class="filter-item custom-dropdown">
+                <select id="language">
+                    <option value="">Language</option>
+                    <option value="English">English</option>
+                    <option value="French">French</option>
+                </select>
+                <i class="fas fa-chevron-down dropdown-icon"></i>
+            </div>
+
+            {{-- Program Tag / Delivery Mode --}}
+            <div class="filter-item custom-dropdown">
+                <select id="program_tag">
+                    <option value="">Delivery Mode</option>
+                    <option value="Online">Online</option>
+                    <option value="In-Person">In-Person</option>
+                    <option value="Hybrid">Hybrid</option>
+                </select>
+                <i class="fas fa-chevron-down dropdown-icon"></i>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    {{-- Program Sort Dropdown --}}
+    <div class="program-section">
+        <div class="sort-dropdown-wrapper">
+            <button class="sort-btn" onclick="toggleDropdown3()">
+                Sort <i class="fa-solid fa-arrow-down-short-wide"></i>
+            </button>
+
+            <div class="dropdown-content1" id="sortDropdown">
+                <p class="dropdown-header">Sort By</p>
+                <a href="#" class="active"><i class="fa-solid fa-circle-check"></i> Best Match (Default)</a>
+                <a href="#"><i class="fa-solid fa-dollar-sign"></i> Tuition Cost (Low to High)</a>
+                <a href="#"><i class="fa-solid fa-dollar-sign"></i> Tuition Cost (High to Low)</a>
+                <a href="#"><i class="fa-solid fa-file-invoice"></i> Application Fee (Low to High)</a>
+                <a href="#"><i class="fa-solid fa-file-invoice"></i> Application Fee (High to Low)</a>
+            </div>
+        </div>
+    </div>
 
                     @if(session('success'))
                         <div id="success-alert" class="alert alert-success alert-dismissible fade show mt-2" role="alert">
@@ -1023,10 +1095,10 @@
 
 
                         <button class="apply-btn" data-bs-toggle="modal" data-id="{{ $value->id }}"
-        data-name="{{ $value->university_name }}"
-        data-image="{{ asset('/public/storage/' . $value->image) }}?v={{ $value->updated_at->timestamp }}"
-        data-college="{{ $value->college_name }}" data-application_fee="{{ $value->application_fee }}" data-duration="{{ $value->duration }}" data-bs-target="#applicationModal">
-                            Create Application
+                        data-name="{{ $value->university_name }}"
+                        data-image="{{ asset('/public/storage/' . $value->image) }}?v={{ $value->updated_at->timestamp }}"
+                        data-college="{{ $value->college_name }}" data-application_fee="{{ $value->application_fee }}" data-duration="{{ $value->duration }}" data-bs-target="#applicationModal">
+                                            Create Application
                         </button>
                                
                             </div>
@@ -1037,195 +1109,54 @@
 
                     @endforeach
                 </div>
+@endif
 
-                                   <!-- Success Message -->
-
-
-<!-- Application Modal -->
-<div class="modal fade" id="applicationModal" tabindex="-1" aria-labelledby="applicationModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <form action="{{ route('my_applications.store') }}" method="POST">
-                @csrf
-                <div class="modal-header">
-                    <h5 class="modal-title" id="applicationModalLabel">Submit Application</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-
-                <div class="modal-body">
-                    <img id="modal-university-image" src="" alt="University Logo" class="program-logo mb-2" />
-                    <span id="modal-university-name" class="d-block fw-bold"></span>
-                    <span id="modal-college-name" class="d-block mb-3"></span> 
-                    <span id="modal-application_fee" class="d-block mb-3"></span>
-                    <span id="modal-duration" class="d-block mb-3"> </span>
-
-                    <input type="hidden" name="program_id" id="modal-program-id">
-    
-                    <!-- <input type="text" dissabled name="program_id" id="program_id" placeholder="Program ID" class="form-control mb-2" required value="{{ $value->id }}"> -->
-                    <input type="hidden" dissabled name="payment_status" id="payment_status" placeholder="Program ID" class="form-control mb-2" value="Pending">
-
-                </div>
-
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Submit Application</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-        </div>
-
-        {{-- Advanced Filters --}}
-        <div class="filters">
-            {{-- Program Level --}}
-            <div class="filter-item custom-dropdown">
-                <select id="program_level">
-                    <option value="">Program Level</option>
-                    <option value="Undergraduate">Undergraduate</option>
-                    <option value="Postgraduate">Postgraduate</option>
-                    <option value="9th-12th Grade">9th–12th Grade</option>
-                    <option value="Preparatory Courses">Preparatory Courses</option>
-                    <option value="ESL">ESL + Bridging</option>
-                    <option value="Gap Year">Gap Year</option>
-                </select>
-                <i class="fas fa-chevron-down dropdown-icon"></i>
-            </div>
-
-            {{-- Field of Study --}}
-            <div class="filter-item custom-dropdown">
-                <select id="field_of_study">
-                    <option value="">Field of Study</option>
-                    <option value="Engineering">Engineering</option>
-                    <option value="Business">Business</option>
-                    <option value="Health Sciences">Health Sciences</option>
-                    <option value="Arts & Humanities">Arts & Humanities</option>
-                    <option value="STEM">STEM</option>
-                </select>
-                <i class="fas fa-chevron-down dropdown-icon"></i>
-            </div>
-
-            {{-- Language --}}
-            <div class="filter-item custom-dropdown">
-                <select id="language">
-                    <option value="">Language</option>
-                    <option value="English">English</option>
-                    <option value="French">French</option>
-                </select>
-                <i class="fas fa-chevron-down dropdown-icon"></i>
-            </div>
-
-            {{-- Program Tag / Delivery Mode --}}
-            <div class="filter-item custom-dropdown">
-                <select id="program_tag">
-                    <option value="">Delivery Mode</option>
-                    <option value="Online">Online</option>
-                    <option value="In-Person">In-Person</option>
-                    <option value="Hybrid">Hybrid</option>
-                </select>
-                <i class="fas fa-chevron-down dropdown-icon"></i>
-            </div>
-        </div>
-    </div>
-
-    <hr>
-
-    {{-- Program Sort Dropdown --}}
-    <div class="program-section">
-        <div class="sort-dropdown-wrapper">
-            <button class="sort-btn" onclick="toggleDropdown3()">
-                Sort <i class="fa-solid fa-arrow-down-short-wide"></i>
-            </button>
-
-            <div class="dropdown-content1" id="sortDropdown">
-                <p class="dropdown-header">Sort By</p>
-                <a href="#" class="active"><i class="fa-solid fa-circle-check"></i> Best Match (Default)</a>
-                <a href="#"><i class="fa-solid fa-dollar-sign"></i> Tuition Cost (Low to High)</a>
-                <a href="#"><i class="fa-solid fa-dollar-sign"></i> Tuition Cost (High to Low)</a>
-                <a href="#"><i class="fa-solid fa-file-invoice"></i> Application Fee (Low to High)</a>
-                <a href="#"><i class="fa-solid fa-file-invoice"></i> Application Fee (High to Low)</a>
-            </div>
-        </div>
-    </div>
-
-
-
-    <!-- @if ($programs->count())
-                                <div class="programs-container" id="program-results">
-                                    @foreach ($programs as $value)
-    <div class="program-card">
-                                            <div class="program-header">
-                                                <img src="{{ asset('/public/storage/' . $value->image) }}?v={{ $value->updated_at->timestamp }}"
-                                                    alt="University Logo" class="program-logo" />
-                                                  <a href="#">
-                                                    <h3>{{ $value->university_name }}</h3>
-                                                </a>
-                                            </div>
-
-                                            <div class="program-badges">
-                                                <span class="badge">{{ $value->success_prediction }} Demand</span>
-                                                <span class="badge">Popular</span>
-                                            </div>
-
-                                            <div class="program-details">
-                                                <small>{{ $value->certificate }}</small>
-                                                <a href="#">
-                                                    <p>{{ $value->college_name }}</p>
-                                                </a>
-                                                <hr />
-                                                <table>
-                                                    <tbody>
-                                                        <tr>
-                                                            <td>Course</td>
-                                                            <td>{{ $value->college_course }}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Location</td>
-                                                            <td>{{ $value->location }}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Campus Country</td>
-                                                            <td>{{ $value->campus_country }}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Campus city</td>
-                                                            <td>{{ $value->location }}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Tuition (1st year)</td>
-                                                            <td> ${{ $value->tuition }}CAD</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Application fee</td>
-                                                            <td>${{ $value->application_fee }}CAD</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Duration</td>
-                                                            <td> {{ $value->duration }} months</td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-
-                                            <div class="program-footer">
-                                                <p>Success prediction <button class="success-btn" onclick="openModal()">Details</button></p>
-                                                <button class="apply-btn">Create Application</button>
-                                            </div>
-                                        </div>
-    @endforeach
-                                </div>
-@else
-    <p>No programs found.</p>
-                            @endif
-                        </div>
                         <div class="pagination">
                             {{ $programs->appends(request()->input())->links() }}
                         </div>
-                        -->
+<!-- Success Message -->
 
-    <div id="program-results">
-        @include('partials.programs', ['programs' => $programs])
-    </div>
+
+          <!-- Application Modal -->
+            <div class="modal fade" id="applicationModal" tabindex="-1" aria-labelledby="applicationModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <form action="{{ route('my_applications.store') }}" method="POST">
+                            @csrf
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="applicationModalLabel">Submit Application</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+
+                            <div class="modal-body">
+                                <img id="modal-university-image" src="" alt="University Logo" class="program-logo mb-2" />
+                                <span id="modal-university-name" class="d-block fw-bold"></span>
+                                <span id="modal-college-name" class="d-block mb-3"></span> 
+                                <span id="modal-application_fee" class="d-block mb-3"></span>
+                                <span id="modal-duration" class="d-block mb-3"> </span>
+
+                                <input type="hidden" name="program_id" id="modal-program-id">
+                
+                                <!-- <input type="text" dissabled name="program_id" id="program_id" placeholder="Program ID" class="form-control mb-2" required value="{{ $value->id }}"> -->
+                                <input type="hidden" dissabled name="payment_status" id="payment_status" placeholder="Program ID" class="form-control mb-2" value="Pending">
+
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Submit Application</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+      
+
+
+
+
     <script src="{{ asset('js/programs.js') }}" defer></script>
 
     <!-- Bootstrap 5 CSS -->
@@ -1263,21 +1194,7 @@
 
 
 </body>
-    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-                    <script>
-                        function fetchPrograms() {
-                            let countries = $('#countries').val();
-                            $.ajax({
-                                url: "{{ route('search') }}",
-                                type: "GET",
-                                data: {
-                                    countries: countries
-                                },
-                                success: function(response) {
-                                    $('#program-results').html(response);
-                                }
-                            });
-                        }
+<script>
 
                         $('#keyword').on('keyup', function() {
                             fetchPrograms();
@@ -1286,7 +1203,7 @@
                         $('#countries').on('change', function() {
                             fetchPrograms();
                         });
-                    </script> -->
+                    </script>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
