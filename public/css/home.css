@@ -2632,7 +2632,19 @@ video {
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
-
+@media (max-width: 768px) {
+    .study-search-form-row,
+    .study-input-wrapper,
+    .study-search-input {
+        width: 100% !important;
+    }
+    .country-checkboxes{
+        justify-content: center;
+    }
+    .buttons-home {
+        padding: 0 16px; /* 16px space on left and right */
+    }
+}
 
 @media (max-width: 600px) {
 

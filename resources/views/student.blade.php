@@ -313,10 +313,10 @@
     <section class="cta-section">
         <div class="cta-card">
             <h2>Ready to Take the First Step?</h2>
-            <p>
+            {{-- <p>
                 Let us help you achieve your dream. Whether you’re in high school or already planning
                 to apply, Edu-X is your partner for a smooth and successful transition.
-            </p>
+            </p> --}}
             <div class="cta-buttons">
                 <a href="/search" class="stepbtn primary-btn">Join Our Program</a>
                 <a href="/student-register" class="stepbtn secondary-btn">Register Yourself</a>
