@@ -207,9 +207,9 @@
             }
 
             /* .card-webinar {
-                width: 45%;
-                margin-bottom: 20px;
-            } */
+                            width: 45%;
+                            margin-bottom: 20px;
+                        } */
 
             .background-content h1 {
                 font-size: 36px;
@@ -362,10 +362,80 @@
             }
 
         }
+
+        .edu-webinar-section {
+            margin-top: 5%;
+            position: relative;
+            width: 100%;
+            height: 400px;
+            background-image: url('images/webinarr.avif');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+        }
+
+        .edu-webinar-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            /* Dark overlay for text readability */
+            z-index: 1;
+            border-radius: 0;
+        }
+
+        .edu-webinar-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 0 20px;
+            max-width: 900px;
+        }
+
+        .edu-webinar-heading {
+            font-size: 38px;
+            margin-bottom: 16px;
+        }
+
+        .edu-webinar-heading span {
+            color: #b92151 ;
+        }
+
+        .edu-webinar-description {
+            font-size: 18px;
+            line-height: 1.7;
+            color: #f0f0f0;
+        }
+
+        @media (max-width: 768px) {
+            .edu-webinar-section {
+                height: 350px;
+                margin-top: 20%;
+            }
+
+            .edu-webinar-heading {
+                font-size: 28px;
+            }
+
+            .edu-webinar-description {
+                font-size: 16px;
+            }
+        }
+            @media (max-width: 1024px) {
+            .edu-webinar-section {
+                height: 350px;
+                margin-top: 15%; 
+            }
+            }
     </style>
 
 
-    <div class="webinar">
+    {{-- <div class="webinar">
         <div class="background-content">
             <h1><span style="color: #b92151;">Webinars</span> by Edu-X</h1>
             <br />
@@ -374,8 +444,19 @@
                 These are exclusively offered for Edu-X recruitment partners to empower your success.
             </p>
         </div>
-    </div><br>
+    </div><br> --}}
 
+    <div class="edu-webinar-section">
+        <div class="edu-webinar-overlay"></div>
+        <div class="edu-webinar-content">
+            <h1 class="edu-webinar-heading"><span>Webinars</span> by Edu-X</h1>
+            <p class="edu-webinar-description">
+                Receive expert advice, data insights, application tips, and more in Edu-X’s live webinars.
+                These are exclusively offered for Edu-X recruitment partners to empower your success.
+            </p>
+        </div>
+    </div>
+<br>
 
 
 

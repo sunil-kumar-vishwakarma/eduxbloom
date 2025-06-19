@@ -150,15 +150,12 @@
                     in the U.S. and Canadian education systems.
                 </p>
                 <div class="store-buttons">
-                    <a href="#"><img src="{{ asset('images/appstore.png') }}"
-                            alt="Download on App Store"></a>
-                    <a href="#"><img src="{{ asset('images/googleplay.png') }}"
-                            alt="Get it on Google Play"></a>
+                    <a href="#"><img src="{{ asset('images/appstore.png') }}" alt="Download on App Store"></a>
+                    <a href="#"><img src="{{ asset('images/googleplay.png') }}" alt="Get it on Google Play"></a>
                 </div>
             </div>
             <div class="hero-right">
-              <img src="{{ asset('images/student-mockup.png') }}"
-                    alt="EduBloom App Mockup" class="app-mockup">
+                <img src="{{ asset('images/student-mockup.png') }}" alt="EduBloom App Mockup" class="app-mockup">
             </div>
         </div>
     </section>
@@ -328,148 +325,6 @@
     </section>
 
 
-
-    {{-- <div class="dropdwn">
-        <img src="{{ asset('images/happy-student-girl_.avif') }}" style="height: 500px; width: 400px;">
-
-
-        <div class="dropdown-container">
-            <h2>The Easiest Way to Study Abroad</h2>
-
-            <div class="dropdown">
-                <div class="dropdown-line" onclick="toggleDropdown(this)">
-                    <span>1. Answer a few questions</span>
-                    <span class="dropdown-icon"><i class="fas fa-chevron-down"></i></span>
-                </div>
-                <div class="dropdown-content">
-                    We'll find the best study programs tailored to you. Just take 3 minutes to answer a few questions about
-                    your education goals, interests, preferred countries, and academic background. The more we know, the
-                    better we can match you.
-                </div>
-            </div>
-
-            <div class="dropdown">
-                <div class="dropdown-line" onclick="toggleDropdown(this)">
-                    <span>2. Select a program</span>
-                    <span class="dropdown-icon"><i class="fas fa-chevron-down"></i></span>
-                </div>
-                <div class="dropdown-content">
-                    Explore hundreds of universities and colleges around the world. Filter by program type, tuition cost,
-                    location, and language of instruction. EduX makes comparison easy so you can confidently choose your
-                    ideal program.
-                </div>
-            </div>
-
-            <div class="dropdown">
-                <div class="dropdown-line" onclick="toggleDropdown(this)">
-                    <span>3. Submit your best application</span>
-                    <span class="dropdown-icon"><i class="fas fa-chevron-down"></i></span>
-                </div>
-                <div class="dropdown-content">
-                    We'll review your documents to ensure nothing is missing. Our system checks your application quality and
-                    completeness before submission. If we notice any gaps or errors, you’ll get notified right away.
-                </div>
-            </div>
-
-            <div class="dropdown">
-                <div class="dropdown-line" onclick="toggleDropdown(this)">
-                    <span>4. Financial assistance</span>
-                    <span class="dropdown-icon"><i class="fas fa-chevron-down"></i></span>
-                </div>
-                <div class="dropdown-content">
-                    Access financial tools like Guaranteed Investment Certificates (GICs) or apply for an EduX Student Loan.
-                    We help you understand costs and connect you with resources to reduce your financial burden while
-                    studying abroad.
-                </div>
-            </div>
-
-            <div class="dropdown">
-                <div class="dropdown-line" onclick="toggleDropdown(this)">
-                    <span>5. Payment processing support</span>
-                    <span class="dropdown-icon"><i class="fas fa-chevron-down"></i></span>
-                </div>
-                <div class="dropdown-content">
-                    With Flywire, you can pay tuition and other fees quickly, securely, and in your local currency. You'll
-                    get verification and peace of mind that your funds are delivered correctly and on time to the
-                    institution.
-                </div>
-            </div>
-
-            <div class="dropdown">
-                <div class="dropdown-line" onclick="toggleDropdown(this)">
-                    <span>6. Visa support</span>
-                    <span class="dropdown-icon"><i class="fas fa-chevron-down"></i></span>
-                </div>
-                <div class="dropdown-content">
-                    Going through visa applications can be overwhelming. EduX and our trusted partner One Vasco provide
-                    end-to-end support for submitting visa documents, scheduling interviews, and preparing for your journey
-                    abroad.
-                </div>
-            </div>
-        </div>
-
-
-
-    </div><br> --}}
-
-
-    <!-- Dream Destination Section -->
-    {{-- <section class="destinations-section">
-        <h2>Find Your Study Program Here!</h2>
-    </section> --}}
-
-
-
-    {{-- <div class="card-bottom">
-        <div class="card-students">
-            <img class="card-img-tops" src="{{ asset('images/institutions.jpg') }}" alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title">Bachelor’s Degree Programs</h5>
-                <p class="card-text-student">
-                    Explore undergraduate courses that provide strong academic skills and prepare you for future success in
-                    various fields.
-                </p>
-                <a href="/search" class="btn">Find a Bachelor degree</a>
-            </div>
-        </div>
-
-        <div class="card-students">
-            <img class="card-img-tops" src="{{ asset('images/partner.jpg') }}" alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title">Master’s Degree Programs</h5>
-                <p class="card-text-student">
-                    Enhance your career with graduate-level programs designed to develop expertise and leadership in your
-                    field of interest.
-                </p>
-                <a href="/search" class="btn">Find a Master's degree</a>
-            </div>
-        </div>
-
-        <div class="card-students">
-            <img class="card-img-tops" src="{{ asset('images/student.jpg') }}" alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title">Online Study Opportunities</h5>
-                <p class="card-text-student">
-                    Discover flexible and accredited programs that let you learn from home while gaining valuable knowledge
-                    and credentials.
-                </p>
-                <a href="/search" class="btn">Find an online degree</a>
-            </div>
-        </div>
-
-        <div class="card-students">
-            <img class="card-img-tops" src="{{ asset('images/partner1.jpg') }}" alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title">PhD Research Programs</h5>
-                <p class="card-text-student">
-                    Engage in rigorous doctoral research supported by faculty experts and resources to contribute to
-                    innovation and progress.
-                </p>
-                <a href="/search" class="btn">Find a PhD program</a>
-            </div>
-        </div>
-    </div> --}}
-
     {{-- new sections --}}
     <section class="offer-section">
         <h2 class="mv-main-heading" style="text-align: center">
@@ -538,13 +393,7 @@
 
 
 
-    <script>
-        document.querySelector('.navbar-toggler').addEventListener('click', function() {
-            const navbarCollapse = document.querySelector('.navbar-collapse');
-            const isExpanded = navbarCollapse.style.display === 'flex';
-            navbarCollapse.style.display = isExpanded ? 'none' : 'flex';
-        });
-    </script>
+  
 
     <script>
         const slides = document.querySelectorAll(".testimonial-slide");

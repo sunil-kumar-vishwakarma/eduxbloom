@@ -178,7 +178,7 @@
 
         <!-- Profile Dropdown -->
         <!-- Profile Dropdown -->
-        <div class="dropdown" id="profileDropdown">
+        <div class="dropdown" id="profileDropdownnn">
             <h3>Account</h3>
            
              <p id="displayName">{{ Auth::check() ? Auth::user()->name : 'Guest' }}</p>
@@ -237,18 +237,18 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const profileIcon = document.getElementById('profileIcon');
-            const profileDropdown = document.getElementById('profileDropdown');
+            const profileDropdownnn = document.getElementById('profileDropdownnn');
 
             profileIcon.addEventListener('click', () => {
                 // Toggle dropdown visibility
-                profileDropdown.style.display =
-                    profileDropdown.style.display === 'block' ? 'none' : 'block';
+                profileDropdownnn.style.display =
+                    profileDropdownnn.style.display === 'block' ? 'none' : 'block';
             });
 
             // Close dropdown when clicking outside
             document.addEventListener('click', (event) => {
-                if (!profileIcon.contains(event.target) && !profileDropdown.contains(event.target)) {
-                    profileDropdown.style.display = 'none';
+                if (!profileIcon.contains(event.target) && !profileDropdownnn.contains(event.target)) {
+                    profileDropdownnn.style.display = 'none';
                 }
             });
         });

@@ -262,7 +262,7 @@ html, body {
 
 /* My Progress Section */
 .content {
-    margin-top: 20px;
+    /* margin-top: 20px; */
     padding: 20px;
     background-color: #ffffff;
     border-radius: 8px;

@@ -403,6 +403,13 @@ iframe {
     .hero-container {
         flex-direction: column;
         text-align: center;
+        flex-wrap: nowrap;
+        gap: 30px;
+    }
+
+    .app-mockup{
+        width: 300px;
+        height: 300px;
     }
 
     .hero-left {
