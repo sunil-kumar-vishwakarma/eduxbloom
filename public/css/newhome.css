@@ -180,15 +180,24 @@ body {
 
 
 @media (max-width: 480px) {
-    .btn-primary {
+    /* .btn-primary {
         padding: 13px 42px !important;
-    }
-    .cards-home{
+    } */
+
+    .cards-home {
         margin-top: 5%;
     }
 }
 
 @media (max-width: 768px) {
+    .buttons-home {
+        flex-wrap: nowrap;
+    }
+    .btn-home{
+        font-size: smaller;
+        padding: 10px 15px;
+    }
+
     .hero-bannerr {
         margin-top: 15%;
     }
