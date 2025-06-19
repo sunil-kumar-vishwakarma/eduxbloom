@@ -10,6 +10,18 @@
     <!-- Include FontAwesome for icons -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
 
+    
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Select2 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+    <!-- Select2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+
+
    <style>
         .filter-search-wrapper {
             margin-top: 10%;
@@ -915,6 +927,162 @@
     text-align: center;
 }
     </style>
+
+
+<style>
+    
+
+    .form-container {
+        /* max-width: 600px; */
+        margin: 0 auto;
+        background-color: #ffffff;
+        border-radius: 16px;
+        padding: 30px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-group {
+        margin-bottom: 24px;
+    }
+
+    label {
+        display: block;
+        font-size: 14px;
+        font-weight: 600;
+        margin-bottom: 6px;
+        color: #333333;
+    }
+
+    input[type="search"],
+    select {
+        width: 100%;
+        padding: 10px 14px 10px 40px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        font-size: 15px;
+        color: #333;
+        outline: none;
+        box-sizing: border-box;
+        transition: border-color 0.2s;
+    }
+
+    input[type="search"]:focus,
+    select:focus {
+        border-color: #3b82f6;
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+    }
+
+    .icon-wrapper {
+        position: absolute;
+        left: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        pointer-events: none;
+        color: #9ca3af;
+    }
+
+    .relative {
+        position: relative;
+    }
+
+    svg {
+        width: 18px;
+        height: 18px;
+    }
+    .filterdata {
+    padding-left: 16px;
+    padding-right: 86px;
+}
+</style>
+
+
+
+<style>
+    .filter-container {
+        display: flex;
+        flex-wrap: nowrap; /* single row */
+        gap: 16px;
+        align-items: flex-end;
+        overflow-x: auto; /* prevent layout break on smaller screens */
+        padding: 20px;
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+        max-width: 100%;
+    }
+
+    .filter-dropdown {
+        display: flex;
+        flex-direction: column;
+        min-width: 160px;
+    }
+
+    .filter-dropdown label {
+        font-size: 14px;
+        font-weight: 600;
+        margin-bottom: 6px;
+        color: #333;
+    }
+
+    .filter-dropdown select {
+        padding: 10px 14px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        font-size: 14px;
+        transition: border-color 0.2s;
+    }
+
+    .filter-dropdown select:focus {
+        border-color: #3b82f6;
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+    }
+
+    .filter-button {
+        display: flex;
+        align-items: center;
+    }
+
+    .filter-button button {
+        background-color: #3b82f6;
+        color: white;
+        font-weight: 600;
+        border: none;
+        padding: 10px 16px;
+        border-radius: 8px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        transition: background-color 0.3s;
+    }
+
+    .filter-button button:hover {
+        background-color: #2563eb;
+    }
+
+    .filter-button svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    @media (max-width: 768px) {
+        .filter-container {
+            flex-wrap: wrap;
+        }
+
+        .filter-dropdown {
+            min-width: 100%;
+        }
+
+        .filter-button {
+            width: 100%;
+            justify-content: center;
+        }
+    }
+</style>
+
+
 <body>
    
 @include('frontent_partials.userdash_sidebar')
@@ -923,99 +1091,211 @@
         @include('frontent_partials.userdash_nav')
         
       <div class="filter-search-wrapper">
-        <!-- {{-- Search and Top Filters --}}
-        <div class="search-container">
-            {{-- Keyword Search --}}
-            <div class="search-box">
-                <svg aria-hidden="true" viewBox="0 0 24 24" class="search-icon" xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd" clip-rule="evenodd"
-                        d="M16.386 18.211C14.885 19.335 13.02 20 11 20 6.03 20 2 15.971 2 11 2 6.03 6.03 2 11 2c4.971 0 9 4.03 9 9 0 2.228-.81 4.267-2.151 5.839l4.827 4.424-1.351 1.474-4.938-4.526ZM18 11c0 3.866-3.134 7-7 7s-7-3.134-7-7 3.134-7 7-7 7 3.134 7 7Z">
-                    </path>
-                </svg>
-                <input type="text" id="keyword" class="search-bar" placeholder="What would you like to study?" />
-            </div>
+       
 
-            {{-- Country Filter --}}
-            <div class="custom-dropdown">
-                <select class="dropdown1" id="countries">
-                    <option value="">Select Destination</option>
-                    <option value="USA">USA</option>
-                    <option value="Canada">Canada</option>
+            
+                    <div class="form-container">
+                        <div class="row filterdata">
+                            <div class="col-md-6 custom-dropdown">
+
+                                <div class="form-group">
+                                
+                                    <label for="study-input">What would you like to study?</label>
+                                    <div class="relative">
+                                        <input type="search" id="study-input" placeholder="e.g., Computer Science">
+                                        <div class="icon-wrapper">
+                                            <svg fill="none" stroke="currentColor" stroke-width="2"
+                                                viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M21 21l-4.35-4.35M17 11a6 6 0 11-12 0 6 6 0 0112 0z" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 custom-dropdown">
+                                <div class="form-group">
+                                    <label for="destination">Destination</label>
+                                    <div class="relative">
+                                        <select id="destination">
+                                            <option value="">Select Destination</option>
+                                            <option value="usa">USA</option>
+                                            <option value="canada">Canada</option>
+                                            <option value="uk">UK</option>
+                                            <option value="australia">Australia</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3 custom-dropdown">
+                                <div class="form-group">
+                                    <label for="institution">Institution (School)</label>
+                                    <div class="relative">
+                                        <select id="institution">
+                                            <option value="">Select Institution</option>
+                                            <option value="harvard">Harvard University</option>
+                                            <option value="mit">MIT</option>
+                                            <option value="stanford">Stanford University</option>
+                                            <option value="oxford">Oxford University</option>
+                                        </select>
+                                    </div>
+
+                            </div>
+                        </div>
+                   </div>
+
+            
+            <!-- <div class="custom-dropdown">
+                <select class="dropdown1" id="institute">
+                    <option value="">Select Institute</option>
+                    {{-- Dynamic example --}}
+                    @foreach ($schools as $value)
+                    {{-- <option value="{{ $value->name }}">{{ $value->name }}</option> --}}
+                 @endforeach
+                    <option value="MIT">MIT</option>
+                    <option value="Stanford">Stanford</option>
                 </select>
                 <i class="fas fa-chevron-down dropdown-icon"></i>
-            </div> -->
+            </div> -->
 
-              {{-- Advanced Filters --}}
-        <div class="filters">
-            {{-- Program Level --}}
-            <div class="filter-item custom-dropdown">
-                <select id="program_level">
-                    <option value="">Program Level</option>
-                    <option value="Undergraduate">Undergraduate</option>
-                    <option value="Postgraduate">Postgraduate</option>
-                    <option value="9th-12th Grade">9th–12th Grade</option>
-                    <option value="Preparatory Courses">Preparatory Courses</option>
-                    <option value="ESL">ESL + Bridging</option>
-                    <option value="Gap Year">Gap Year</option>
-                </select>
-                <i class="fas fa-chevron-down dropdown-icon"></i>
-            </div>
+              <!-- {{-- Advanced Filters --}} -->
+                <!-- <div class="filters">
+                    {{-- Program Level --}}
+                    <div class="filter-item custom-dropdown">
+                        <select id="program_level">
+                            <option value="">Program Level</option>
+                            <option value="Undergraduate">Undergraduate</option>
+                            <option value="Postgraduate">Postgraduate</option>
+                            <option value="9th-12th Grade">9th–12th Grade</option>
+                            <option value="Preparatory Courses">Preparatory Courses</option>
+                            <option value="ESL">ESL + Bridging</option>
+                            <option value="Gap Year">Gap Year</option>
+                        </select>
+                        <i class="fas fa-chevron-down dropdown-icon"></i>
+                    </div>
 
-            {{-- Field of Study --}}
-            <div class="filter-item custom-dropdown">
-                <select id="field_of_study">
-                    <option value="">Field of Study</option>
-                    <option value="Engineering">Engineering</option>
-                    <option value="Business">Business</option>
-                    <option value="Health Sciences">Health Sciences</option>
-                    <option value="Arts & Humanities">Arts & Humanities</option>
-                    <option value="STEM">STEM</option>
-                </select>
-                <i class="fas fa-chevron-down dropdown-icon"></i>
-            </div>
+                    {{-- Field of Study --}}
+                    <div class="filter-item custom-dropdown">
+                        <select id="field_of_study">
+                            <option value="">Field of Study</option>
+                            <option value="Engineering">Engineering</option>
+                            <option value="Business">Business</option>
+                            <option value="Health Sciences">Health Sciences</option>
+                            <option value="Arts & Humanities">Arts & Humanities</option>
+                            <option value="STEM">STEM</option>
+                        </select>
+                        <i class="fas fa-chevron-down dropdown-icon"></i>
+                    </div>
 
-            {{-- Language --}}
-            <div class="filter-item custom-dropdown">
-                <select id="language">
-                    <option value="">Language</option>
-                    <option value="English">English</option>
-                    <option value="French">French</option>
-                </select>
-                <i class="fas fa-chevron-down dropdown-icon"></i>
-            </div>
+                    {{-- Language --}}
+                    <div class="filter-item custom-dropdown">
+                        <select id="language">
+                            <option value="">Language</option>
+                            <option value="English">English</option>
+                            <option value="French">French</option>
+                        </select>
+                        <i class="fas fa-chevron-down dropdown-icon"></i>
+                    </div>
 
-            {{-- Program Tag / Delivery Mode --}}
-            <div class="filter-item custom-dropdown">
-                <select id="program_tag">
-                    <option value="">Delivery Mode</option>
-                    <option value="Online">Online</option>
-                    <option value="In-Person">In-Person</option>
-                    <option value="Hybrid">Hybrid</option>
-                </select>
-                <i class="fas fa-chevron-down dropdown-icon"></i>
-            </div>
-        </div>
+                    {{-- Program Tag / Delivery Mode --}}
+                            <div class="filter-item custom-dropdown">
+                                <select id="program_tag">
+                                    <option value="">Delivery Mode</option>
+                                    <option value="Online">Online</option>
+                                    <option value="In-Person">In-Person</option>
+                                    <option value="Hybrid">Hybrid</option>
+                                </select>
+                                <i class="fas fa-chevron-down dropdown-icon"></i>
+                            </div>
+                        </div>
+                    </div> -->
+
+    <div class="filter-container">
+   
+
+
+    <form action="{{ route('usersearchProgram') }}" method="GET" class="filter-container">
+
+     <div class="filter-dropdown">
+        <label for="program-level">Program Level</label>
+        <select id="program-level" >
+            <option value="">Select Program Level</option>
+            <option value="bachelors">Bachelors</option>
+            <option value="masters">Masters</option>
+            <option value="phd">PhD</option>
+        </select>
     </div>
 
-    <hr>
-
-    {{-- Program Sort Dropdown --}}
-    <div class="program-section">
-        <div class="sort-dropdown-wrapper">
-            <button class="sort-btn" onclick="toggleDropdown3()">
-                Sort <i class="fa-solid fa-arrow-down-short-wide"></i>
-            </button>
-
-            <div class="dropdown-content1" id="sortDropdown">
-                <p class="dropdown-header">Sort By</p>
-                <a href="#" class="active"><i class="fa-solid fa-circle-check"></i> Best Match (Default)</a>
-                <a href="#"><i class="fa-solid fa-dollar-sign"></i> Tuition Cost (Low to High)</a>
-                <a href="#"><i class="fa-solid fa-dollar-sign"></i> Tuition Cost (High to Low)</a>
-                <a href="#"><i class="fa-solid fa-file-invoice"></i> Application Fee (Low to High)</a>
-                <a href="#"><i class="fa-solid fa-file-invoice"></i> Application Fee (High to Low)</a>
-            </div>
-        </div>
+    <!-- Field of Study (multi-select) -->
+    <div class="filter-dropdown">
+        <label for="field_of_study">Field of Study</label>
+        <select name="field_of_study[]" id="field_of_study">
+            <option value="cs">Computer Science</option>
+            <option value="business">Business</option>
+            <option value="engineering">Engineering</option>
+            <option value="medicine">Medicine</option>
+        </select>
     </div>
+
+    <!-- Intakes (multi-select) -->
+    <div class="filter-dropdown">
+        <label for="intakes">Intakes</label>
+        <select name="intakes[]" id="intakes">
+            <option value="jan">January</option>
+            <option value="may">May</option>
+            <option value="sep">September</option>
+        </select>
+    </div>
+
+    <!-- Program Tag (multi-select) -->
+    <div class="filter-dropdown">
+    <label for="program_tag">Program Tag</label>
+    <select cls name="program_tag[]" id="program_tag">
+        <option value="popular">Popular</option>
+        <option value="new">New</option>
+        <option value="scholarship">Scholarship</option>
+    </select>
+    
+</div>
+
+
+    <!-- Submit Button -->
+    <div class="filter-button">
+        <button type="submit">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M6.126 8C6.57 9.73 8.14 11 10 11s3.43-1.27 3.874-3H21V6h-7.126C13.43 4.27 11.86 3 10 3S6.57 4.27 6.126 6H3v2h3.126zM8 7c0-1.1.895-2 2-2s2 .9 2 2-0.895 2-2 2-2-.9-2-2z" />
+                <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M16.874 18H21v-2h-4.126C16.43 14.27 14.86 13 13 13s-3.43 1.27-3.874 3H3v2h6.126C9.57 19.73 11.14 21 13 21s3.43-1.27 3.874-3zM15 17c0-1.1-.895-2-2-2s-2 .9-2 2 .895 2 2 2 2-.9 2-2z" />
+            </svg>
+            <span>Apply Filters</span>
+        </button>
+    </div>
+</form>
+
+
+</div>
+
+            <hr>
+
+                    {{-- Program Sort Dropdown --}}
+                    <div class="program-section">
+                        <div class="sort-dropdown-wrapper">
+                            <button class="sort-btn" onclick="toggleDropdown3()">
+                                Sort <i class="fa-solid fa-arrow-down-short-wide"></i>
+                            </button>
+
+                            <div class="dropdown-content1" id="sortDropdown">
+                                <p class="dropdown-header">Sort By</p>
+                                <a href="#" class="active"><i class="fa-solid fa-circle-check"></i> Best Match (Default)</a>
+                                <a href="#"><i class="fa-solid fa-dollar-sign"></i> Tuition Cost (Low to High)</a>
+                                <a href="#"><i class="fa-solid fa-dollar-sign"></i> Tuition Cost (High to Low)</a>
+                                <a href="#"><i class="fa-solid fa-file-invoice"></i> Application Fee (Low to High)</a>
+                                <a href="#"><i class="fa-solid fa-file-invoice"></i> Application Fee (High to Low)</a>
+                            </div>
+                        </div>
+                    </div>
 
                     @if(session('success'))
                         <div id="success-alert" class="alert alert-success alert-dismissible fade show mt-2" role="alert">
@@ -1027,12 +1307,12 @@
                             setTimeout(function () {
                                 const alert = document.getElementById('success-alert');
                                 if (alert) {
-                                    // Bootstrap 5 dismiss animation
+                                    
                                     alert.classList.remove('show');
                                     alert.classList.add('fade');
-                                    setTimeout(() => alert.remove(), 500); // Remove after fade out
+                                    setTimeout(() => alert.remove(), 500);
                                 }
-                            }, 10000); // 10000 milliseconds = 10 seconds
+                            }, 10000);
                         </script>
                     @endif
 
@@ -1091,8 +1371,6 @@
                                         onclick="openModal()">Details</button>
                                 </p>
 
-                    
-
 
                         <button class="apply-btn" data-bs-toggle="modal" data-id="{{ $value->id }}"
                         data-name="{{ $value->university_name }}"
@@ -1104,17 +1382,14 @@
                             </div>
                         </div>
                         
- 
-
 
                     @endforeach
                 </div>
-@endif
+                @endif
 
-                        <div class="pagination">
-                            {{ $programs->appends(request()->input())->links() }}
-                        </div>
-<!-- Success Message -->
+                <div class="pagination">
+                    {{ $programs->appends(request()->input())->links() }}
+                </div>
 
 
           <!-- Application Modal -->
@@ -1152,58 +1427,103 @@
             </div>
         </div>
 
-      
 
+        <!-- jQuery -->
 
+<script>
+    $(document).ready(function() {
+        $('#field_of_study').select2({
+            placeholder: "Select Field(s)",
+            width: 'resolve'
+        });
+
+        $('#intakes').select2({
+            placeholder: "Select Intake(s)",
+            width: 'resolve'
+        });
+
+        $('#program_tag').select2({
+            placeholder: "Select Tag(s)",
+            width: 'resolve'
+        });
+    });
+</script>
+
+<script>
+$(document).ready(function() {
+    $('#program_tag').select2({
+        placeholder: 'Select Tag(s)',
+        closeOnSelect: false,
+        templateResult: function (data) {
+            if (!data.id) return data.text;
+            return $('<span><input type="checkbox" style="margin-right: 6px;" />' + data.text + '</span>');
+        },
+        templateSelection: function (data) {
+            return data.text;
+        }
+    });
+
+    // Add checkbox sync (visually checks already selected options)
+    $('#program_tag').on('select2:open', function () {
+        $('.select2-results__option[aria-selected=true]').each(function () {
+            $(this).find('input[type="checkbox"]').prop('checked', true);
+        });
+    });
+
+    $('#program_tag').on('select2:select select2:unselect', function () {
+        $('.select2-results__option').each(function () {
+            const selected = $(this).attr('aria-selected') === 'true';
+            $(this).find('input[type="checkbox"]').prop('checked', selected);
+        });
+    });
+});
+</script>
 
 
     <script src="{{ asset('js/programs.js') }}" defer></script>
 
     <!-- Bootstrap 5 CSS -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
-<!-- Bootstrap 5 JS (for modal functionality) -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Bootstrap 5 JS (for modal functionality) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const applicationModal = document.getElementById('applicationModal');
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const applicationModal = document.getElementById('applicationModal');
 
-        applicationModal.addEventListener('show.bs.modal', function (event) {
-            const button = event.relatedTarget;
+            applicationModal.addEventListener('show.bs.modal', function (event) {
+                const button = event.relatedTarget;
 
-            const id = button.getAttribute('data-id');
-            const name = button.getAttribute('data-name');
-            const image = button.getAttribute('data-image');
-            const college = button.getAttribute('data-college');
-            const application_fee = button.getAttribute('data-application_fee');
-            const duration = button.getAttribute('data-duration');
+                const id = button.getAttribute('data-id');
+                const name = button.getAttribute('data-name');
+                const image = button.getAttribute('data-image');
+                const college = button.getAttribute('data-college');
+                const application_fee = button.getAttribute('data-application_fee');
+                const duration = button.getAttribute('data-duration');
 
-            // Update modal content
-            document.getElementById('modal-university-image').src = image;
-            document.getElementById('modal-university-name').textContent = name;
-            document.getElementById('modal-college-name').textContent = college;
-            document.getElementById('modal-application_fee').textContent = '$ ' + application_fee + ' CAD';
-            document.getElementById('modal-duration').textContent = duration + ' months';
-            document.getElementById('modal-program-id').value = id;
+                // Update modal content
+                document.getElementById('modal-university-image').src = image;
+                document.getElementById('modal-university-name').textContent = name;
+                document.getElementById('modal-college-name').textContent = college;
+                document.getElementById('modal-application_fee').textContent = '$ ' + application_fee + ' CAD';
+                document.getElementById('modal-duration').textContent = duration + ' months';
+                document.getElementById('modal-program-id').value = id;
+            });
         });
-    });
-</script>
+    </script>
+    </body>
+    <script>
 
+        $('#keyword').on('keyup', function() {
+            fetchPrograms();
+        });
 
-
-</body>
-<script>
-
-                        $('#keyword').on('keyup', function() {
-                            fetchPrograms();
-                        });
-
-                        $('#countries').on('change', function() {
-                            fetchPrograms();
-                        });
-                    </script>
+        $('#countries').on('change', function() {
+            fetchPrograms();
+        });
+    </script>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 

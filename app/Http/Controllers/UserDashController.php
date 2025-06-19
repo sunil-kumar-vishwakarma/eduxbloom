@@ -83,6 +83,26 @@ class UserDashController extends Controller
                 return view('partials.programs', compact('programs','schools'))->render();
             }
 
+    //         $query = Program::query();
+
+    // if ($request->filled('keyword')) {
+    //     $query->where('title', 'like', '%' . $request->keyword . '%');
+    // }
+
+    // if ($request->filled('field_of_study')) {
+    //     $query->whereIn('field_of_study', $request->field_of_study);
+    // }
+
+    // if ($request->filled('intakes')) {
+    //     $query->whereIn('intake_month', $request->intakes);
+    // }
+
+    // if ($request->filled('program_tag')) {
+    //     $query->whereIn('tag', $request->program_tag);
+    // }
+
+    // $programs = $query->get();
+
             return view('usersearchProgram', compact('programs','schools'));
         
 

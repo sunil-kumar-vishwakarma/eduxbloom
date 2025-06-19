@@ -35,7 +35,7 @@ use App\Http\Controllers\ContactInfoController;
 use App\Http\Controllers\RolePermissionController;
 use App\Http\Controllers\StatController;
 use App\Http\Controllers\StripeController;
-
+use App\Http\Controllers\api\ApiController;
 
 
 
@@ -136,6 +136,13 @@ Route::post('/email/verification-notification', function (Request $request) {
 })->middleware(['auth', 'throttle:6,1'])->name('verification.send');
 
 
+// verify email in api user registration
+Route::get('/useremail/verify/{id}/{hash}', [ApiController::class, 'verifyEmail'])
+    ->middleware('signed')
+    ->name('verification.verify');
+
+
+
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/userdashboard', [UserDashController::class, 'userdashboard'])->name('userdashboard');
 
@@ -163,8 +170,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 
     Route::get('/program_details/{id}', [UserDashController::class, 'details'])->name('details');
-    Route::resource('/users', UserCRUDController::class); // for user CRUD
-
+    
     Route::get('/create-stripe-session/{id}', [StripeController::class, 'createSession']);
 Route::get('/payment-success/{id}', [StripeController::class, 'paymentSuccess'])->name('payment.success');
 

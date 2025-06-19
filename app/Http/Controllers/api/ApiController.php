@@ -22,7 +22,9 @@ use Illuminate\Support\Str;
 use PHPOpenSourceSaver\JWTAuth\Exceptions\JWTException;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
-
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Support\Facades\URL;
 
 class ApiController extends Controller
 {
@@ -46,18 +48,93 @@ class ApiController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'role_id' => 1,
         ]);
+
+       $verificationUrl = URL::temporarySignedRoute(
+        'verification.verify', // this must match your route name
+        Carbon::now()->addMinutes(60), // valid for 60 minutes
+        ['id' => $user->id, 'hash' => sha1($user->getEmailForVerification())]
+    );
+
+         event(new Registered($user));
+
 
         // Generate a JWT token for the user
         $token = JWTAuth::fromUser($user);
 
         // Return the token and user information
+        // return response()->json([
+        //     'message' => 'OTP sent to your email. Please verify to complete registration.',
+        //     'user' => $user,
+        //     'token' => $token,
+        //     'token_type' => 'bearer',
+            
+        // ], 200);
         return response()->json([
-            'user' => $user,
-            'token' => $token,
-            'token_type' => 'bearer',
+            'message' => 'A verification link has been sent to your email. Please check your inbox to verify and complete your registration.',
+            'email' => $user->email,
+            'verify_url' => $verificationUrl
         ], 200);
     }
+
+
+    public function verifyEmail($id, $hash)
+{
+    $user = User::findOrFail($id);
+
+    if (!hash_equals((string) $hash, sha1($user->getEmailForVerification()))) {
+        return response()->json(['message' => 'Invalid verification link'], 403);
+    }
+
+    if (!$user->hasVerifiedEmail()) {
+        $user->markEmailAsVerified();
+    }
+
+    return response()->json(['message' => 'Email verified successfully']);
+}
+
+// public function verifyEmail(Request $request, $id, $hash)
+// {
+//     $user = User::findOrFail($id);
+
+//     if (! hash_equals((string) $hash, sha1($user->getEmailForVerification()))) {
+//         return response()->json(['message' => 'Invalid verification link'], 403);
+//     }
+
+//     if (! $user->hasVerifiedEmail()) {
+//         $user->markEmailAsVerified();
+//         event(new Verified($user));
+//     }
+
+//     return response()->json(['message' => 'Email verified successfully']);
+// }
+
+
+public function resendVerification(Request $request)
+{
+    $user = $request->user();
+
+    if ($user->hasVerifiedEmail()) {
+        return response()->json(['message' => 'Already verified']);
+    }
+
+    // Generate temporary signed URL for email verification
+    $verificationUrl = URL::temporarySignedRoute(
+        'verification.verify', // Route name
+        Carbon::now()->addMinutes(60), // Expiry time
+        [
+            'id' => $user->id,
+            'hash' => sha1($user->getEmailForVerification()), // Match what Laravel expects
+        ]
+    );
+
+    return response()->json([
+        'message' => 'Verification link generated.',
+        'verify_url' => $verificationUrl,
+    ]);
+}
+
 
     /**
      * Authenticate a user and return a JWT token.
@@ -346,22 +423,34 @@ public function forgotPassword(Request $request)
     ], 200);
 
     }
-public function userProfile(Request $request)
+// public function userProfile(Request $request)
+//     {
+//         return response()->json([
+//         'message' => 'User profile fetched successfully',
+//         'user' => $request->user(),
+//     ]);
+//     }
+
+    public function userProfile()
 {
-    $user = Auth::guard('api')->user();
-// print_r($user);die;
-    if (!$user) {
+    try {
+        $user = JWTAuth::parseToken()->authenticate();
+
+        if (!$user) {
+            return response()->json(['error' => 'User not found'], 404);
+        }
+
         return response()->json([
-            'error' => 'Unauthorized',
-            'status' => 401,
-        ], 401);
+            'message' => 'Profile fetched successfully',
+            'data'    => $user,
+        ], 200);
+    } catch (\Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
+        return response()->json(['error' => 'Token expired'], 401);
+    } catch (\Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
+        return response()->json(['error' => 'Invalid token'], 401);
+    } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
+        return response()->json(['error' => 'Token not found'], 401);
     }
-
-    return response()->json([
-        'message' => 'Profile fetched successfully',
-        'data' => $user,
-    ], 200);
 }
-
     
 }
