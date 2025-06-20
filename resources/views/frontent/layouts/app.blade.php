@@ -9,7 +9,7 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="{{ asset('css/home.css') }}">
-   
+
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
@@ -27,44 +27,56 @@
 
 <body>
     @include('includes.alerts')
-        <!-- @include('partials.sidebar') -->
+    <!-- @include('partials.sidebar') -->
     <div class="main-content">
         @include('frontent_partials.navbar')
         @yield('content')
 
         @include('frontent_partials.footer')
     </div>
-    @yield('scripts')
-    {{-- <script src="{{ asset('js/toggleStatus.js') }}"></script> --}}
-    <!-- <script src="{{ asset('js/script.js') }}"></script> -->
 
-    <script>
-        const dropdownBtn = document.getElementById('dropdownBtn');
-        const dropdownMenu = document.getElementById('dropdownMenu');
+    {{-- bottom bar in mobile  --}}
+    <div class="mobile-bottom-bar">
+        <a href="/login" class="bottom-bar-btn" aria-label="Login">
+            <i class="fas fa-user user-icon"></i>
+            <span>Login</span>
+        </a>
+        <a href="https://wa.me/16784774350" class="bottom-bar-btn" target="_blank" aria-label="WhatsApp">
+            <i class="fab fa-whatsapp whatsapp-icon"></i>
+            <span>WhatsApp</span>
+        </a>
 
-        // Show dropdown when hovering on the button
-        dropdownBtn.addEventListener('mouseenter', () => {
-            dropdownMenu.style.display = 'block';
-        });
+        @yield('scripts')
+        {{-- <script src="{{ asset('js/toggleStatus.js') }}"></script> --}}
+        <!-- <script src="{{ asset('js/script.js') }}"></script> -->
 
-        // Show dropdown when hovering over the menu
-        dropdownMenu.addEventListener('mouseenter', () => {
-            dropdownMenu.style.display = 'block';
-        });
+        <script>
+            const dropdownBtn = document.getElementById('dropdownBtn');
+            const dropdownMenu = document.getElementById('dropdownMenu');
 
-        // Hide dropdown when the mouse leaves the button or the menu
-        // dropdownBtn.addEventListener('mouseleave', () => {
-        //     setTimeout(() => {
-        //         if (!dropdownMenu.matches(':hover')) {
-        //             dropdownMenu.style.display = 'none';
-        //         }
-        //     }, 200); // Optional delay for smoother UX
-        // });
+            // Show dropdown when hovering on the button
+            dropdownBtn.addEventListener('mouseenter', () => {
+                dropdownMenu.style.display = 'block';
+            });
 
-        dropdownMenu.addEventListener('mouseleave', () => {
-            dropdownMenu.style.display = 'none';
-        });
-    </script>
+            // Show dropdown when hovering over the menu
+            dropdownMenu.addEventListener('mouseenter', () => {
+                dropdownMenu.style.display = 'block';
+            });
+
+            // Hide dropdown when the mouse leaves the button or the menu
+            // dropdownBtn.addEventListener('mouseleave', () => {
+            //     setTimeout(() => {
+            //         if (!dropdownMenu.matches(':hover')) {
+            //             dropdownMenu.style.display = 'none';
+            //         }
+            //     }, 200); // Optional delay for smoother UX
+            // });
+
+            dropdownMenu.addEventListener('mouseleave', () => {
+                dropdownMenu.style.display = 'none';
+            });
+        </script>
 
 </body>
 

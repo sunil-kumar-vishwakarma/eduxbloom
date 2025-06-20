@@ -193,7 +193,8 @@ body {
     .buttons-home {
         flex-wrap: nowrap;
     }
-    .btn-home{
+
+    .btn-home {
         font-size: smaller;
         padding: 10px 15px;
     }
@@ -871,3 +872,4 @@ body {
         /* Full width on mobile */
     }
 }
+

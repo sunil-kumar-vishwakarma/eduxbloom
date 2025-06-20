@@ -3184,3 +3184,66 @@ video {
     font-weight: bold;
     color: #fff;
 }
+
+
+/* bottom bar  */
+.mobile-bottom-bar {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .mobile-bottom-bar {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background: rgba(255, 255, 255, 0.822);
+        backdrop-filter: blur(10px);
+        border-top: 1px solid rgba(0, 0, 0, 0.05);
+        display: flex;
+        justify-content: space-around;
+        padding: 8px 0;
+        box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.06);
+        z-index: 9999;
+    }
+
+    .bottom-bar-btn {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        color: #333;
+        font-size: 14px;
+        font-weight: 500;
+        text-align: center;
+        gap: 4px;
+    }
+
+    .bottom-bar-btn i {
+        font-size: 28px;
+        margin: auto;
+        /* color: #25D366; */
+        transition: transform 0.3s ease, color 0.3s ease;
+    }
+
+    .user-icon {
+        color: #003366;
+        /* Bootstrap blue */
+    }
+
+    .whatsapp-icon {
+        color: #25D366;
+    }
+
+
+    .bottom-bar-btn:hover .whatsapp-icon {
+        color: #1ebe5d;
+    }
+
+    .bottom-bar-btn span {
+        font-size: 15px;
+        color: #222;
+    }
+}
