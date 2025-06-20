@@ -91,7 +91,8 @@ class ApiController extends Controller
         $user->markEmailAsVerified();
     }
 
-    return response()->json(['message' => 'Email verified successfully']);
+    return redirect('/userdashboard')->with(['message' => 'Email verified successfully']);
+    // return response()->json(['message' => 'Email verified successfully']);
 }
 
 // public function verifyEmail(Request $request, $id, $hash)
@@ -128,7 +129,9 @@ class ApiController extends Controller
                 'hash' => sha1($user->getEmailForVerification()), // Match what Laravel expects
             ]
         );
-        $user->notify(new VerifyEmailNotification($verificationUrl));
+        
+        $user->sendEmailVerificationNotification();
+
         return response()->json([
             'message' => 'Verification link generated.',
             'verify_url' => $verificationUrl,
