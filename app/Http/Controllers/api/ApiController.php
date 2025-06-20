@@ -111,29 +111,29 @@ class ApiController extends Controller
 // }
 
 
-public function resendVerification(Request $request)
-{
-    $user = $request->user();
+    public function resendVerification(Request $request)
+    {
+        $user = $request->user();
 
-    if ($user->hasVerifiedEmail()) {
-        return response()->json(['message' => 'Already verified']);
+        if ($user->hasVerifiedEmail()) {
+            return response()->json(['message' => 'Already verified']);
+        }
+
+        // Generate temporary signed URL for email verification
+        $verificationUrl = URL::temporarySignedRoute(
+            'verification.verify', // Route name
+            Carbon::now()->addMinutes(60), // Expiry time
+            [
+                'id' => $user->id,
+                'hash' => sha1($user->getEmailForVerification()), // Match what Laravel expects
+            ]
+        );
+        $user->notify(new VerifyEmailNotification($verificationUrl));
+        return response()->json([
+            'message' => 'Verification link generated.',
+            'verify_url' => $verificationUrl,
+        ]);
     }
-
-    // Generate temporary signed URL for email verification
-    $verificationUrl = URL::temporarySignedRoute(
-        'verification.verify', // Route name
-        Carbon::now()->addMinutes(60), // Expiry time
-        [
-            'id' => $user->id,
-            'hash' => sha1($user->getEmailForVerification()), // Match what Laravel expects
-        ]
-    );
-
-    return response()->json([
-        'message' => 'Verification link generated.',
-        'verify_url' => $verificationUrl,
-    ]);
-}
 
 
     /**
