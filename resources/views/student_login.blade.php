@@ -16,7 +16,8 @@
 
                     {{-- JS Alerts --}}
                     <div id="js-alert-container"></div>
-                    <form action="{{ route('student.login') }}" method="POST">
+                    <!-- <form action="{{ route('student.login') }}" method="POST"> -->
+                        <form id="student-login-form">
                     @csrf
 
                     <!-- <form id="loginForm" aria-label="Student Login Form"> -->
@@ -37,6 +38,7 @@
                             </span>
                         </div>
                         <div id="passwordError" class="error-text"></div>
+                         <div id="error-message" style="color: red;"></div>
 
                         {{-- Submit Button --}}
                         <button type="submit" class="buttn" id="loginButton">Log In</button>
@@ -213,5 +215,36 @@
             padding: 0 10px;
         }
     </style>
+
+    <script>
+document.getElementById('student-login-form').addEventListener('submit', function (e) {
+    e.preventDefault(); // Prevent page refresh
+
+    const form = e.target;
+    const formData = new FormData(form);
+    const errorDiv = document.getElementById('error-message');
+
+    fetch('{{ route("student.login") }}', {
+        method: 'POST',
+        headers: {
+            'X-CSRF-TOKEN': form.querySelector('[name=_token]').value,
+            'Accept': 'application/json',
+        },
+        body: formData
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.success) {
+            window.location.href = data.redirect;
+        } else {
+            errorDiv.textContent = data.message;
+        }
+    })
+    .catch(err => {
+        errorDiv.textContent = 'Something went wrong.';
+        console.error(err);
+    });
+});
+</script>
 
 @endsection

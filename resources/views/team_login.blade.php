@@ -20,13 +20,14 @@
                     {{-- JS dynamic alert container --}}
                     <div id="js-alert-container"></div>
 
-                    <form action="{{ route('team.login') }}" method="POST">
+                    <!-- <form action="{{ route('team.login') }}" method="POST"> -->
+                        <form id="team-login-form">
                     @csrf
                          <img src="{{ asset('images\old_edu-x white.png') }}" alt="Edu-x Logo"
                             style="height: 70px; width: 75px;" />
                         <br>
                         <input type="email" id="email" name="email" placeholder="Email" required />
-                        <div id="emailError" style="color: #b92151; font-size: 12px; font-weight:bold;"></div>
+                        <!-- <div id="error-message" style="color: #b92151; font-size: 12px; font-weight:bold;"></div> -->
 
                         <div class="password-wrapper">
                             <input type="password" name="password" id="password" placeholder="Password" required />
@@ -34,9 +35,12 @@
                                 <i class="fa-solid fa-eye" id="eyeIcon"></i>
                             </span>
                         </div>
-                        <div id="passwordError" style="color: #b92151; font-size: 12px; font-weight:bold;"></div>
+                        
+                        <!-- <div id="error-message" class="error-text"></div> -->
+                         <div id="error-message" class="error-text" style="color: #b92151; font-size: 12px; font-weight:bold;"></div>
 
                         <button class="buttn" type="submit" id="loginButton">Log In</button>
+
                     </form>
 
                     {{-- <div class="anchr">
@@ -173,5 +177,36 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js"></script>
+
+     <script>
+document.getElementById('team-login-form').addEventListener('submit', function (e) {
+    e.preventDefault(); // Prevent page refresh
+
+    const form = e.target;
+    const formData = new FormData(form);
+    const errorDiv = document.getElementById('error-message');
+
+    fetch('{{ route("team.login") }}', {
+        method: 'POST',
+        headers: {
+            'X-CSRF-TOKEN': form.querySelector('[name=_token]').value,
+            'Accept': 'application/json',
+        },
+        body: formData
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.success) {
+            window.location.href = data.redirect;
+        } else {
+            errorDiv.textContent = data.message;
+        }
+    })
+    .catch(err => {
+        errorDiv.textContent = 'Something went wrong.';
+        console.error(err);
+    });
+});
+</script>
 
 @endsection
