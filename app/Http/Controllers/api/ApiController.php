@@ -80,20 +80,20 @@ class ApiController extends Controller
 
 
     public function verifyEmail($id, $hash)
-{
-    $user = User::findOrFail($id);
+    {
+        $user = User::findOrFail($id);
 
-    if (!hash_equals((string) $hash, sha1($user->getEmailForVerification()))) {
-        return response()->json(['message' => 'Invalid verification link'], 403);
+        if (!hash_equals((string) $hash, sha1($user->getEmailForVerification()))) {
+            return response()->json(['message' => 'Invalid verification link'], 403);
+        }
+
+        if (!$user->hasVerifiedEmail()) {
+            $user->markEmailAsVerified();
+        }
+
+        return redirect('/userdashboard')->with(['message' => 'Email verified successfully']);
+        // return response()->json(['message' => 'Email verified successfully']);
     }
-
-    if (!$user->hasVerifiedEmail()) {
-        $user->markEmailAsVerified();
-    }
-
-    return redirect('/userdashboard')->with(['message' => 'Email verified successfully']);
-    // return response()->json(['message' => 'Email verified successfully']);
-}
 
 // public function verifyEmail(Request $request, $id, $hash)
 // {

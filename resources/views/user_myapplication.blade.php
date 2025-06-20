@@ -496,15 +496,15 @@
                                     Pay Now
                                 </button> -->
                                 <button 
-    class="btn btn-warning stripe-pay-btn" 
-    data-application-id="{{ $value->id }}"
-    data-course="{{ $value->program->college_course }}"
-    data-fee="{{ $value->program->application_fee }}"
-    data-bs-toggle="modal" 
-    data-bs-target="#paymentModal"
->
-    Pay Now
-</button>
+                                    class="btn btn-warning stripe-pay-btn" 
+                                    data-application-id="{{ $value->id }}"
+                                    data-course="{{ $value->program->college_course }}"
+                                    data-fee="{{ $value->program->application_fee }}"
+                                    data-bs-toggle="modal" 
+                                    data-bs-target="#paymentModal"
+                                >
+                                    Pay Now
+                                </button>
 
                             @else
                                 <button class="btn btn-success" disabled>Paid</button>
