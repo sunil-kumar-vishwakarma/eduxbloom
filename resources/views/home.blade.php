@@ -244,18 +244,6 @@
         </div>
     </section>
 
-    <!-- === Consultation Banner === -->
-    {{-- <section class="consultation-banner">
-        <div class="consultation-overlay">
-            <div class="consultation-text">
-                <h2>Edu-X Services—to bridge the gap for students.</h2>
-                <p>Easy-to-Use · Find Programs
-                    Faster · Data Driven Insights</p>
-            </div>
-            <a href="/contactus" class="consultation-button">Schedule a consultation</a>
-        </div>
-    </section> --}}
-
     <!-- === FAQ Section === -->
     <section class="faq-section">
         <div class="faq-title">
@@ -283,6 +271,15 @@
             </div>
         </div>
     </section>
+
+</div>
+
+</div>
+
+
+
+
+
 
 
     <script>
