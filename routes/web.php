@@ -417,6 +417,7 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/settings', [SettingsController::class, 'update'])->name('settings.update');
 
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+    Route::get('/consultation_booking', [ConsultationBookController::class, 'index'])->name('consultation.booking');
 
 
     // Home Route

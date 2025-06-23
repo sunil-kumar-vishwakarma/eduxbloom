@@ -15,7 +15,7 @@ class ConsultationBookController extends Controller
 
     public function index(){
         $consultationBook = ConsultationBook::all();
-
+        return view('consultation_booking.index', compact('consultationBook'));
     }
 
     public function consultationStore(Request $request){

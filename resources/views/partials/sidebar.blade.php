@@ -85,6 +85,16 @@
         </li>
         @endif
 
+        @if($isAdmin || $user->can('View Contact Info'))
+        <li class="menu-item">
+            <a href="{{ route('consultation.booking') }}" class="{{ request()->routeIs('consultation.booking') ? 'active' : '' }}">
+                <i class="fas fa-envelope icon"></i> Consultation Booking
+            </a>
+        </li>
+        @endif
+
+        
+
         {{-- ✅ Stats --}}
         @if($isAdmin || $user->can('View State'))
         <li class="menu-item">
