@@ -311,6 +311,46 @@
         margin: 0 5px;
     }
 
+    .floating-logo {
+        position: relative;
+        height: 70px;
+        width: 70px;
+        z-index: 2;
+    }
+
+    @media (max-width: 768px) {
+        .floating-logo {
+            position: absolute;
+            top: 90%;
+            left: 0px;
+            transform: translateY(-50%);
+            background: white;
+            padding: 5px;
+            /* border-radius: 10px 50px 50px 50px !important; */
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            transition: opacity 0.3s ease;
+        }
+
+        .floating-logo {
+            /* border-radius: 0px 50px 50px 50px !important; */
+            border-radius: 50%;
+            /* top-left, top-right, bottom-right, bottom-left */
+            border: 8px solid #0d2e5a;
+            /* dark blue border */
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Hidden when navbar is collapsed open */
+        .navbar-collapse.show~.floating-logo {
+            display: none !important;
+        }
+        .navbar-brand div{
+            display: none;
+        }
+    }
+
+
+
     /* MOBILE STYLES */
     @media (max-width: 991.98px) {
         #dropdownMenu {
@@ -324,10 +364,11 @@
     <div class="container-fluid">
         <!-- Brand/Logo -->
         <a class="navbar-brand" href="{{ '/' }}">
-            <img src="{{ asset('images/edu-x white.png') }}" alt="Edu-X Logo" height="70" width="70"
-                class="logo-border">
+            <img src="{{ asset('images/edu-x white.png') }}" alt="Edu-X Logo" class="logo-border floating-logo">
             <div>Edu-X Services</div>
         </a>
+
+
 
 
         <!-- Toggle button for mobile screens -->
@@ -600,10 +641,22 @@
 <script>
     document.querySelector('.navbar-toggler').addEventListener('click', function() {
         const navbarCollapse = document.querySelector('.navbar-collapse');
+        const logo = document.querySelector('.floating-logo');
+
         const isExpanded = navbarCollapse.style.display === 'flex';
+
+        // Toggle navbar display
         navbarCollapse.style.display = isExpanded ? 'none' : 'flex';
+
+        // Toggle logo visibility
+        if (!isExpanded) {
+            logo.style.display = 'none'; // hide when opening
+        } else {
+            logo.style.display = 'block'; // show when closing
+        }
     });
 </script>
+
 
 <script>
     function toggleDropdown(event) {

@@ -63,6 +63,11 @@ class HomeController extends Controller
 
         return view('youngleaders');
     }
+    public function calender()
+    {
+
+        return view('calender');
+    }
     public function team_login()
     {
 

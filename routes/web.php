@@ -112,6 +112,7 @@ Route::get('/contactus', [HomeController::class, 'contactus'])->name('contactus'
 Route::get('/student-register', [HomeController::class, 'studentRegister'])->name('student-register');
 Route::get('/student-login', [HomeController::class, 'studentLogin'])->name('login');
 Route::get('/team-login', [HomeController::class, 'team_login'])->name('team_login');
+Route::get('/calender', [HomeController::class, 'calender'])->name('calender');
 // Route::post('/student/login', [LoginController::class, 'login']);
 // Route::post('/team/login', [LoginController::class, 'teamLlogin'])->name('team.login');
 // Route::get('/dashboard', [LoginController::class, 'userdashboard'])->name('user.dashboard');

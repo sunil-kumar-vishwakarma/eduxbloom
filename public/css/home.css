@@ -1676,7 +1676,7 @@ video {
 
 
     .navbar-brand img {
-        width: 57px;
+        width: 100px;
         /* Adjust logo size */
         height: auto;
     }
