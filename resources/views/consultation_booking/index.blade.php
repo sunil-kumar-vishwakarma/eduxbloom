@@ -53,7 +53,7 @@
         $('#booking_table').DataTable({
     pageLength: 10,
     lengthMenu: [5, 10, 25, 50, 100],
-    order: [[0, 'asc']], // Default sort on first column
+    order: [[0, 'desc']], // Default sort on first column
     responsive: true
 });
     </script>
