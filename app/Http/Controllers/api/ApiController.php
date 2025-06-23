@@ -12,8 +12,6 @@ use App\Models\User;
 use App\Models\Page;
 use App\Models\Blog;
 use Illuminate\Support\Facades\Hash;
-
-
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
@@ -26,6 +24,18 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\URL;
 
+use App\Models\Program;
+use App\Models\Country;
+use App\Models\Stat;
+use App\Models\City;
+use App\Models\School;
+use App\Models\EducationSummary;
+use App\Models\MyApplication;
+use App\Models\UserTestScore;
+use App\Models\GreGmatScore;
+use App\Models\UserAttendSchool;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Session;
 class ApiController extends Controller
 {
     //
@@ -95,21 +105,6 @@ class ApiController extends Controller
         // return response()->json(['message' => 'Email verified successfully']);
     }
 
-// public function verifyEmail(Request $request, $id, $hash)
-// {
-//     $user = User::findOrFail($id);
-
-//     if (! hash_equals((string) $hash, sha1($user->getEmailForVerification()))) {
-//         return response()->json(['message' => 'Invalid verification link'], 403);
-//     }
-
-//     if (! $user->hasVerifiedEmail()) {
-//         $user->markEmailAsVerified();
-//         event(new Verified($user));
-//     }
-
-//     return response()->json(['message' => 'Email verified successfully']);
-// }
 
 
     public function resendVerification(Request $request)
@@ -145,7 +140,19 @@ class ApiController extends Controller
     public function login(Request $request)
     {
         // Validate login credentials
+       
+
         $credentials = $request->only('email', 'password');
+
+         $user = User::where('email', $request->email)->first();
+
+        if (empty($user)) {
+            return response()->json(['success' => false, 'message' => 'No user exists with the provided email.'], 401);
+        }
+        // Check if user exists and has role_id = 1
+        if (!$user || $user->role_id != 1) {
+            return response()->json(['success' => false, 'message' => 'This email does not belong to a student account.'], 401);
+        }
 
         // Attempt to authenticate the user and generate a token
         if (!$token = JWTAuth::attempt($credentials)) {
@@ -437,7 +444,15 @@ public function forgotPassword(Request $request)
     public function userProfile()
 {
     try {
-        $user = JWTAuth::parseToken()->authenticate();
+        // $user = JWTAuth::parseToken()->authenticate();
+        $userid = Auth::guard('api')->user();
+         $user = \App\Models\User::with(['details', 'address'])->where('role_id',1)->find($userid);
+
+        // print_r($user->details);die;
+        $countries = Country::all();
+        $stat = Stat::all();
+        $city = City::all();
+
 
         if (!$user) {
             return response()->json(['error' => 'User not found'], 404);
@@ -446,6 +461,9 @@ public function forgotPassword(Request $request)
         return response()->json([
             'message' => 'Profile fetched successfully',
             'data'    => $user,
+            'countries'    => $countries,
+            'stat'    => $stat,
+            'city'    => $city,
         ], 200);
     } catch (\Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
         return response()->json(['error' => 'Token expired'], 401);
@@ -455,5 +473,301 @@ public function forgotPassword(Request $request)
         return response()->json(['error' => 'Token not found'], 401);
     }
 }
+
+public function userProgramList(){
+    $programs = Program::orderBy('id','desc')->get();
+    return response()->json([
+            'message' => 'Program fetched successfully',
+            'data'    => $programs,
+        ], 200);
+}
+
+public function myProgramList(){
+    $user = Auth::guard('api')->user();
+        if (!$user) {
+            return response()->json(['error' => 'Unauthorized', 'status' => 401], 401);
+        }
+       $userId = $user->id;
+    $programs = MyApplication::with(['program'])->where('user_id',$userId)->orderBy('id','desc')->get();
+    
+    return response()->json([
+            'message' => 'My Program List',
+            'data'    => $programs,
+        ], 200);
+}
+
+ public function myApplicationStore(Request $request)
+{
+    $request->validate([
+        'program_id' => 'required|string',
+        
+    ]);
+
+ $programs =  MyApplication::create([
+        'user_id' => auth()->id(),
+        'program_id' => $request->program_id,
+        'payment_status' => 'Pending',
+        'status' => 'active',
+    ]);
+
+    return response()->json([
+            'message' => 'Application submitted successfully!',
+            'data'    => $programs,
+        ], 200);
+    
+}
+
+public function education_history()
+    {
+        $educationSummary = EducationSummary::where('user_id',Auth::id())->first();
+        $user = Auth::user()->load('attendedSchools');
+         $attendedSchools = $user->attendedSchools; // assuming a relationship
+
+          return response()->json([
+            'message' => 'Education History Details!',
+            'educationSummary'    => $educationSummary,
+            'attendedSchools'    => $attendedSchools,
+            // 'user'    => $user,
+        ], 200);
+        
+    }
+
+
+     public function user_testScore()
+    {
+       $userTestScore = UserTestScore::where('user_id',Auth::id())->first();
+       $greGmatScore = GreGmatScore::where('user_id',Auth::id())->where('exam_type','GMAT')->first();
+       $greGmatScoreGRE = GreGmatScore::where('user_id',Auth::id())->where('exam_type','GRE')->first();
+
+       return response()->json([
+            'message' => 'Test Score Details!',
+            'userTestScore'    => $userTestScore,
+            'greGmatScore'    => $greGmatScore,
+            'greGmatScoreGRE'    => $greGmatScoreGRE,
+            
+        ], 200);
+        
+    }
+
+
+     
+     public function userUpdate(Request $request)
+{
+    // $user = JWTAuth::parseToken()->authenticate();
+
+    $user = Auth::guard('api')->user();
+// print_r($user);die;
+    $request->validate([
+        'name' => 'required|string|max:255',
+        'middle_name' => 'nullable|string|max:255',
+        // 'email' => 'required|email|unique:users,email,' . $user->id,
+        'dob' => 'required|date',
+        'language' => 'required|string',
+        'citizenship' => 'required|string',
+        'passportNumber' => 'required|string',
+        'passportExpiry' => 'nullable|date',
+        'maritalStatus' => 'required|in:single,married',
+        'gender' => 'required|in:male,female',
+    ]);
+
+    // Update User basic info
+    $user->update([
+        'name' => $request->name,
+        'middle_name' => $request->middle_name,
+        // 'email' => $request->email,
+    ]);
+
+    // Create or update user detail
+    $user->details()->updateOrCreate(
+        ['user_id' => $user->id],
+        [   'middle_name' => $request->middle_name,
+            'dob' => $request->dob,
+            'language' => $request->language,
+            'citizenship' => $request->citizenship,
+            'passport_number' => $request->passportNumber,
+            'passport_expiry' => $request->passportExpiry,
+            'marital_status' => $request->maritalStatus,
+            'gender' => $request->gender,
+        ]
+    );
+
+    return response()->json(['success' => true, 'message' => 'Profile updated successfully!'], 200);
+}
+
+
+public function updateAddress(Request $request)
+{
+    $user = Auth::user();
+
+    $request->validate([
+        'address' => 'required|string',
+        'city' => 'required|string',
+        'state' => 'required|string',
+        'country' => 'required|string',
+        'zip' => 'required|string',
+        'email' => 'required|email',
+        'phone' => 'required|string'
+    ]);
+
+    $user->address()->updateOrCreate(
+        ['user_id' => $user->id],
+        $request->only(['address', 'city', 'state', 'country', 'zip', 'email', 'phone'])
+    );
+
+    return response()->json(['success' => true, 'message' => 'Address updated successfully!']);
+}
+
+
+public function educationSummary(Request $request)
+{
+    $validated = $request->validate([
+        'country' => 'required|string|max:100',
+        'grade' => 'required|string|max:50',
+        'graduated' => 'required|boolean',
+    ]);
+
+    EducationSummary::updateOrCreate(
+        ['user_id' => Auth::id()],
+        $validated + ['user_id' => Auth::id()]
+    );
+
+    return response()->json(['message' => 'Education summary saved successfully.']);
+}
+
+
+public function createOrUpdateSchools(Request $request)
+{
+    $request->validate([
+        'schools' => 'required|array',
+        'schools.*.name' => 'required|string|max:255',
+        'schools.*.location' => 'required|string|max:255',
+        'schools.*.start_date' => 'required|date',
+        'schools.*.end_date' => 'required|date|after_or_equal:schools.*.start_date',
+    ]);
+
+    $user = Auth::user();
+    $submittedIds = [];
+
+    foreach ($request->schools as $school) {
+        if (!empty($school['id'])) {
+            $existing = UserAttendSchool::where('user_id', $user->id)
+                        ->where('id', $school['id'])
+                        ->first();
+
+            if ($existing) {
+                $existing->update([
+                    'name' => $school['name'],
+                    'location' => $school['location'],
+                    'start_date' => $school['start_date'],
+                    'end_date' => $school['end_date'],
+                ]);
+                $submittedIds[] = $existing->id;
+            }
+        } else {
+            $new = UserAttendSchool::create([
+                'user_id' => $user->id,
+                'name' => $school['name'],
+                'location' => $school['location'],
+                'start_date' => $school['start_date'],
+                'end_date' => $school['end_date'],
+            ]);
+            $submittedIds[] = $new->id;
+        }
+    }
+
+    // Delete removed ones
+    UserAttendSchool::where('user_id', $user->id)
+        ->whereNotIn('id', $submittedIds)
+        ->delete();
+
+    return response()->json(['message' => 'School data updated successfully']);
+}
+
+
+public function createOrUpdateTestScore(Request $request)
+{
+    $validated = $request->validate([
+        'test_type' => 'required|string',
+        'reading' => 'nullable|integer',
+        'listening' => 'nullable|integer',
+        'writing' => 'nullable|integer',
+        'speaking' => 'nullable|integer',
+        'exam_date' => 'nullable|date',
+    ]);
+
+    
+    $userId = $validated['user_id'] ?? Auth::id();
+
+    $test = UserTestScore::where('user_id', $userId)
+        ->first();
+
+    if ($test) {
+        // Update existing record
+        $test->update($validated + ['user_id' => $userId]);
+    } else {
+        // Create new record
+        $test = UserTestScore::create($validated + ['user_id' => $userId]);
+    }
+
+
+    return response()->json(['message' => 'User test saved successfully', 'data' => $test]);
+}
+
+public function storeOrUpdateGreGmatScore(Request $request)
+{
+    $validated = $request->validate([
+        'exam_type' => 'required|in:GRE,GMAT',
+        'score' => 'nullable|string|max:255',
+        'exam_date' => 'nullable|date',
+    ]);
+
+    $userId = Auth::id(); // Or $request->user_id if coming from admin
+
+    // GreGmatScore::updateOrCreate(
+    //     ['user_id' => $userId, 'exam_type' => $validated['exam_type']],
+    //     $validated + ['user_id' => $userId]
+    // );
+
+     $userId = $validated['user_id'] ?? Auth::id();
+
+    $test = GreGmatScore::where('user_id', $userId)->where('exam_type' , $validated['exam_type'])
+        ->first();
+
+    if ($test) {
+        // Update existing record
+        $test->update($validated + ['user_id' => $userId]);
+    } else {
+        // Create new record
+        $test = GreGmatScore::create($validated + ['user_id' => $userId]);
+    }
+
+
+    return response()->json(['message' => 'Score saved successfully']);
+}
+
+
+    public function schoolAttended(Request $request)
+    {
+        $request->validate([
+            'schools' => 'required|array',
+            'schools.*.name' => 'required|string|max:255',
+            'schools.*.location' => 'required|string|max:255',
+            'schools.*.start_date' => 'required|date',
+            'schools.*.end_date' => 'required|date|after_or_equal:schools.*.start_date',
+        ]);
+
+        foreach ($request->schools as $schoolData) {
+            UserAttendSchool::create([
+                'user_id' => Auth::id(),
+                'name' => $schoolData['name'],
+                'location' => $schoolData['location'],
+                'start_date' => $schoolData['start_date'],
+                'end_date' => $schoolData['end_date'],
+            ]);
+        }
+
+        return response()->json(['message' => 'School data saved.']);
+    }
+
     
 }

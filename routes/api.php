@@ -57,8 +57,25 @@ Route::middleware(['auth:api'])->group(function () {
 });
 
 Route::middleware(['auth:api', 'verified'])->group(function () {
-    Route::get('/userprofile', [ApiController::class, 'userProfile']);
     Route::get('/userdashboard', [UserDashController::class, 'userdashboard']);
+    Route::get('/userprofile', [ApiController::class, 'userProfile']);
+    Route::get('/user_program', [ApiController::class, 'userProgramList']);
+    Route::post('/my_application_create', [ApiController::class, 'myApplicationStore']);
+    Route::get('/my_application', [ApiController::class, 'myProgramList']);
+    Route::get('/education_history', [ApiController::class, 'education_history']);
+    Route::get('/user_testScore', [ApiController::class, 'user_testScore']);
+    Route::put('/update_user_details', [ApiController::class, 'userUpdate']);
     // Route::post('/email/resend', [ApiController::class, 'resendVerification'])->name('verification.resend');
+
+    Route::post('/education-summary', [ApiController::class, 'educationSummary'])->name('educationSummary');
+    // Route::post('/user/school-attended', [ProfileController::class, 'schoolAttended'])->name('school.attended');
+    Route::post('/user/schools/attended', [ApiController::class, 'schoolAttended'])->name('user.schools.store');
+    Route::post('/user/schools/store-or-update', [ApiController::class, 'createOrUpdateSchools'])
+    ->name('user.schools.storeOrUpdate');
+    Route::post('/user-test_score/save', [ApiController::class, 'createOrUpdateTestScore'])->name('test-scores.store');
+    Route::post('/gre-gmat-score', [ApiController::class, 'storeOrUpdateGreGmatScore'])->name('gre-gmat.createOrUpdate');
+
+    Route::post('/update-address', [ApiController::class, 'updateAddress'])->name('profile.updateAddress');
+
 });
 

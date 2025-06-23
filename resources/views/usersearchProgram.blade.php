@@ -1145,71 +1145,7 @@
                         </div>
                    </div>
 
-            
-            <!-- <div class="custom-dropdown">
-                <select class="dropdown1" id="institute">
-                    <option value="">Select Institute</option>
-                    {{-- Dynamic example --}}
-                    @foreach ($schools as $value)
-                    {{-- <option value="{{ $value->name }}">{{ $value->name }}</option> --}}
-                 @endforeach
-                    <option value="MIT">MIT</option>
-                    <option value="Stanford">Stanford</option>
-                </select>
-                <i class="fas fa-chevron-down dropdown-icon"></i>
-            </div> -->
-
-              <!-- {{-- Advanced Filters --}} -->
-                <!-- <div class="filters">
-                    {{-- Program Level --}}
-                    <div class="filter-item custom-dropdown">
-                        <select id="program_level">
-                            <option value="">Program Level</option>
-                            <option value="Undergraduate">Undergraduate</option>
-                            <option value="Postgraduate">Postgraduate</option>
-                            <option value="9th-12th Grade">9th–12th Grade</option>
-                            <option value="Preparatory Courses">Preparatory Courses</option>
-                            <option value="ESL">ESL + Bridging</option>
-                            <option value="Gap Year">Gap Year</option>
-                        </select>
-                        <i class="fas fa-chevron-down dropdown-icon"></i>
-                    </div>
-
-                    {{-- Field of Study --}}
-                    <div class="filter-item custom-dropdown">
-                        <select id="field_of_study">
-                            <option value="">Field of Study</option>
-                            <option value="Engineering">Engineering</option>
-                            <option value="Business">Business</option>
-                            <option value="Health Sciences">Health Sciences</option>
-                            <option value="Arts & Humanities">Arts & Humanities</option>
-                            <option value="STEM">STEM</option>
-                        </select>
-                        <i class="fas fa-chevron-down dropdown-icon"></i>
-                    </div>
-
-                    {{-- Language --}}
-                    <div class="filter-item custom-dropdown">
-                        <select id="language">
-                            <option value="">Language</option>
-                            <option value="English">English</option>
-                            <option value="French">French</option>
-                        </select>
-                        <i class="fas fa-chevron-down dropdown-icon"></i>
-                    </div>
-
-                    {{-- Program Tag / Delivery Mode --}}
-                            <div class="filter-item custom-dropdown">
-                                <select id="program_tag">
-                                    <option value="">Delivery Mode</option>
-                                    <option value="Online">Online</option>
-                                    <option value="In-Person">In-Person</option>
-                                    <option value="Hybrid">Hybrid</option>
-                                </select>
-                                <i class="fas fa-chevron-down dropdown-icon"></i>
-                            </div>
-                        </div>
-                    </div> -->
+           
 
     <div class="filter-container">
    
@@ -1280,6 +1216,8 @@
             <hr>
 
                     {{-- Program Sort Dropdown --}}
+
+
                     <div class="program-section">
                         <div class="sort-dropdown-wrapper">
                             <button class="sort-btn" onclick="toggleDropdown3()">
@@ -1316,6 +1254,7 @@
                         </script>
                     @endif
 
+                    <ul id="program-list"></ul>
             @if ($programs->count())
                 <div class="programs-container">
                     @foreach ($programs as $value)
@@ -1429,6 +1368,24 @@
 
 
         <!-- jQuery -->
+
+   
+<script>
+document.getElementById('study-input').addEventListener('keyup', function () {
+    const query = this.value.toLowerCase();
+    const programCards = document.querySelectorAll('.program-card');
+
+    programCards.forEach(card => {
+        const text = card.innerText.toLowerCase();
+        if (text.includes(query)) {
+            card.style.display = '';
+        } else {
+            card.style.display = 'none';
+        }
+    });
+});
+</script>
+
 
 <script>
     $(document).ready(function() {
