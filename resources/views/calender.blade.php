@@ -217,7 +217,7 @@ form input::placeholder {
 
     <!-- FullCalendar JS -->
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
-    <script>
+    <!-- <script>
         document.addEventListener('DOMContentLoaded', function() {
             const calendarEl = document.getElementById('calendar');
             const modal = document.getElementById('bookingModal');
@@ -259,11 +259,22 @@ form input::placeholder {
                 e.preventDefault();
                 const name = document.getElementById('fullName').value.trim();
                 const email = document.getElementById('email').value.trim();
+                const phone = document.getElementById('phone').value.trim();
+                const book_date = document.getElementById('selectedDate').value.trim();
 
                 if (!name || !email) {
                     alert('Please fill all required fields');
                     return;
                 }
+
+            fetch("{{ route('consultation.store') }}", {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                    },
+                    body: JSON.stringify({ fullName: name, email: email, phone: phone, book_date: book_date })
+                })
 
                 calendar.addEvent({
                     title: `Consultation: ${name}`,
@@ -277,5 +288,105 @@ form input::placeholder {
                 bookingForm.reset();
             });
         });
-    </script>
+    </script> -->
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const calendarEl = document.getElementById('calendar');
+        const modal = document.getElementById('bookingModal');
+        const selectedDateField = document.getElementById('selectedDate');
+        const cancelBtn = document.getElementById('cancelBtn');
+        const bookingForm = document.getElementById('bookingForm');
+        let selectedRange;
+
+         const today = new Date().toISOString().split('T')[0];
+
+        const calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'dayGridMonth',
+            selectable: true,
+            headerToolbar: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'dayGridMonth'
+            },
+            selectAllow: function (selectInfo) {
+                // Disable click on past dates
+                return selectInfo.startStr >= today;
+            },
+            select: function (info) {
+                if (info.startStr < today) {
+                    return; // just a safeguard
+                }
+                selectedRange = info;
+                selectedDateField.value = info.startStr;
+                modal.style.display = 'flex';
+            }
+        });
+
+        calendar.render();
+
+        cancelBtn.addEventListener('click', () => {
+            modal.style.display = 'none';
+            bookingForm.reset();
+        });
+
+        window.addEventListener('click', function (e) {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+                bookingForm.reset();
+            }
+        });
+
+        bookingForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+            const name = document.getElementById('fullName').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const book_date = document.getElementById('selectedDate').value.trim();
+
+            if (!name || !email) {
+                alert('Please fill all required fields');
+                return;
+            }
+
+            fetch("{{ route('consultation.store') }}", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                },
+                body: JSON.stringify({
+                    fullName: name,
+                    email: email,
+                    phone: phone,
+                    book_date: book_date
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    calendar.addEvent({
+                        title: `Consultation: ${name}`,
+                        start: selectedRange.start,
+                        end: selectedRange.end,
+                        allDay: true
+                    });
+
+                    // alert(`Thank you ${name}, your booking on ${selectedRange.startStr} is confirmed!`);
+                    modal.style.display = 'none';
+                    bookingForm.reset();
+                } else {
+                    alert('Booking failed. Please try again.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Something went wrong. Please try again later.');
+            });
+        });
+    });
+</script>
+
+
+
 @endsection

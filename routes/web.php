@@ -35,6 +35,7 @@ use App\Http\Controllers\ContactInfoController;
 use App\Http\Controllers\RolePermissionController;
 use App\Http\Controllers\StatController;
 use App\Http\Controllers\StripeController;
+use App\Http\Controllers\ConsultationBookController;
 use App\Http\Controllers\api\ApiController;
 
 
@@ -113,6 +114,7 @@ Route::get('/student-register', [HomeController::class, 'studentRegister'])->nam
 Route::get('/student-login', [HomeController::class, 'studentLogin'])->name('login');
 Route::get('/team-login', [HomeController::class, 'team_login'])->name('team_login');
 Route::get('/calender', [HomeController::class, 'calender'])->name('calender');
+Route::post('/consultationStore', [ConsultationBookController::class, 'consultationStore'])->name('consultation.store');
 // Route::post('/student/login', [LoginController::class, 'login']);
 // Route::post('/team/login', [LoginController::class, 'teamLlogin'])->name('team.login');
 // Route::get('/dashboard', [LoginController::class, 'userdashboard'])->name('user.dashboard');
