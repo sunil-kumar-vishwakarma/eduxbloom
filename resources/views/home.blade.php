@@ -15,7 +15,7 @@
 
             <div class="buttons-home">
                 <a href="/search" class="btn-home btn-primary"><i class="fas fa-user-plus"></i> Join Our Program</a>
-                <a href="/contactus" class="btn-home btn-secondary">Book a Free Consultation</a>
+                <a href="/calender" class="btn-home btn-secondary">Book a Free Consultation</a>
             </div>
 
             <div class="buttons-home">
@@ -275,11 +275,6 @@
 </div>
 
 </div>
-
-
-
-
-
 
 
     <script>
