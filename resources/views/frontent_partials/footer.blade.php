@@ -39,11 +39,11 @@
 
             <!-- Column 3 -->
             <div class="custom-footer-col">
-                <h3>About</h3>
+                <h3>Resources</h3>
                 <ul>
-                    <li><a href="{{ route('student') }}">Services</a></li>
+                    <li><a href="{{ route('student') }}">Students</a></li>
                     {{-- <li><a href="{{ route('partner') }}">Partners</a></li> --}}
-                    <li><a href="{{ route('search') }}">Resources</a></li>
+                    <li><a href="{{ route('youngleaders') }}">Leaders</a></li>
                     {{-- <li><a href="{{ route('home') }}">FAQ</a></li> --}}
                     <li><a href="/contactus">Contact</a></li>
                     <li><a href="{{ route('blogs-pages') }}">Blogs</a></li>
@@ -55,9 +55,9 @@
                 <h3>Discover</h3>
                 <ul>
                     <li><a href="{{ route('search') }}"> Programs</a></li>
-                    <li><a href="{{ route('institutions') }}"> Schools</a></li>
+                    <li><a href="{{ route('institutions') }}"> Parents</a></li>
                     <li><a href="{{ route('student-register') }}">Register</a></li>
-                    <li><a href="/webinar">Careers</a></li>
+                    <li><a href="/events">Events</a></li>
                 </ul>
             </div>
 
@@ -159,11 +159,12 @@
         color: white;
         text-align: center;
         font-weight: bold;
-        opacity: .7;
+        /* opacity: .7; */
         max-width: 500px;
     }
 
     .custom-footer-copy a {
+        color: orangered !important;
         text-decoration: underline;
     }
 
