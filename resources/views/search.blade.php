@@ -306,13 +306,7 @@
         }
 
 
-        .program-footer {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            margin-top: auto;
-            /* push footer to bottom */
-        }
+      
 
         .success-btn {
             background-color: rgb(230, 239, 254);
@@ -325,23 +319,7 @@
             margin-left: 8px;
         }
 
-        .apply-btn {
-            /* background: #2764c5; */
-            background: linear-gradient(90deg, #0644a6, #2764c5);
-            color: #fff;
-            border: none;
-            padding: 10px 16px;
-            border-radius: 8px;
-            font-size: 14px;
-            margin-top: 10px;
-            cursor: pointer;
-            width: 100%;
-            text-align: center;
-        }
-
-        .apply-btn:hover {
-            background: #1f4fa1;
-        }
+      
 
         @media (max-width: 1024px) {
             .filter-search-wrapper {
@@ -360,123 +338,7 @@
             }
         }
 
-        /* Modal base styling */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s ease;
-            overflow-y: auto;
-            padding: 20px;
-        }
-
-        .modal.show {
-            display: block;
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-        /* Modal content box */
-        .modal-content {
-            background-color: #fff;
-            margin: 60px auto;
-            padding: 30px 24px;
-            border-radius: 16px;
-            width: 100%;
-            max-width: 550px;
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-            position: relative;
-            animation: slideUp 0.4s ease;
-        }
-
-        /* Slide up effect */
-        @keyframes slideUp {
-            from {
-                transform: translateY(50px);
-                opacity: 0;
-            }
-
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-
-        .close-btn {
-            position: absolute;
-            top: 14px;
-            right: 18px;
-            font-size: 26px;
-            font-weight: bold;
-            color: #999;
-            cursor: pointer;
-        }
-
-        .close-btn:hover {
-            color: #000;
-        }
-
-        .note {
-            font-size: 13px;
-            color: #666;
-            margin-bottom: 20px;
-        }
-
-        /* Accordion */
-        .accordion-item {
-            margin-bottom: 10px;
-        }
-
-        .accordion-btn {
-            background-color: #2764c5;
-            color: #fff;
-            cursor: pointer;
-            padding: 12px 16px;
-            width: 100%;
-            border: none;
-            text-align: left;
-            font-size: 15px;
-            font-weight: 600;
-            border-radius: 8px;
-            transition: background-color 0.3s ease;
-        }
-
-        .accordion-btn:hover {
-            background-color: #1f4fa1;
-        }
-
-        .accordion-panel {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.4s ease, padding 0.3s ease;
-            background: #f7f9fc;
-            border-radius: 0 0 8px 8px;
-            margin-top: 4px;
-            padding: 0 16px;
-        }
-
-        .accordion-panel p {
-            margin: 10px 0;
-            font-size: 14px;
-        }
-
-        .accordion-item.open .accordion-panel {
-            max-height: 300px;
-            padding: 12px 16px;
-        }
-
-        /* Additional Info */
-        .info-note {
-            font-size: 13px;
-            color: #555;
-            margin-top: 20px;
-        }
+      
 
         /* Responsive breakpoints */
 
@@ -663,6 +525,8 @@
             pointer-events: none;
             background-color: #f5f5f5;
         }
+
+       
     </style>
 
 
@@ -779,77 +643,77 @@
 
 
     <!-- @if ($programs->count())
-                                            <div class="programs-container" id="program-results">
-                                                @foreach ($programs as $value)
+                                                <div class="programs-container" id="program-results">
+                                                    @foreach ($programs as $value)
     <div class="program-card">
-                                                        <div class="program-header">
-                                                            <img src="{{ asset('/public/storage/' . $value->image) }}?v={{ $value->updated_at->timestamp }}"
-                                                                alt="University Logo" class="program-logo" />
-                                                              <a href="#">
-                                                                <h3>{{ $value->university_name }}</h3>
-                                                            </a>
-                                                        </div>
+                                                            <div class="program-header">
+                                                                <img src="{{ asset('/public/storage/' . $value->image) }}?v={{ $value->updated_at->timestamp }}"
+                                                                    alt="University Logo" class="program-logo" />
+                                                                  <a href="#">
+                                                                    <h3>{{ $value->university_name }}</h3>
+                                                                </a>
+                                                            </div>
 
-                                                        <div class="program-badges">
-                                                            <span class="badge">{{ $value->success_prediction }} Demand</span>
-                                                            <span class="badge">Popular</span>
-                                                        </div>
+                                                            <div class="program-badges">
+                                                                <span class="badge">{{ $value->success_prediction }} Demand</span>
+                                                                <span class="badge">Popular</span>
+                                                            </div>
 
-                                                        <div class="program-details">
-                                                            <small>{{ $value->certificate }}</small>
-                                                            <a href="#">
-                                                                <p>{{ $value->college_name }}</p>
-                                                            </a>
-                                                            <hr />
-                                                            <table>
-                                                                <tbody>
-                                                                    <tr>
-                                                                        <td>Course</td>
-                                                                        <td>{{ $value->college_course }}</td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>Location</td>
-                                                                        <td>{{ $value->location }}</td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>Campus Country</td>
-                                                                        <td>{{ $value->campus_country }}</td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>Campus city</td>
-                                                                        <td>{{ $value->location }}</td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>Tuition (1st year)</td>
-                                                                        <td> ${{ $value->tuition }}CAD</td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>Application fee</td>
-                                                                        <td>${{ $value->application_fee }}CAD</td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>Duration</td>
-                                                                        <td> {{ $value->duration }} months</td>
-                                                                    </tr>
-                                                                </tbody>
-                                                            </table>
-                                                        </div>
+                                                            <div class="program-details">
+                                                                <small>{{ $value->certificate }}</small>
+                                                                <a href="#">
+                                                                    <p>{{ $value->college_name }}</p>
+                                                                </a>
+                                                                <hr />
+                                                                <table>
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td>Course</td>
+                                                                            <td>{{ $value->college_course }}</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>Location</td>
+                                                                            <td>{{ $value->location }}</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>Campus Country</td>
+                                                                            <td>{{ $value->campus_country }}</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>Campus city</td>
+                                                                            <td>{{ $value->location }}</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>Tuition (1st year)</td>
+                                                                            <td> ${{ $value->tuition }}CAD</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>Application fee</td>
+                                                                            <td>${{ $value->application_fee }}CAD</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>Duration</td>
+                                                                            <td> {{ $value->duration }} months</td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
 
-                                                        <div class="program-footer">
-                                                            <p>Success prediction <button class="success-btn" onclick="openModal()">Details</button></p>
-                                                            <button class="apply-btn">Create Application</button>
+                                                            <div class="program-footer">
+                                                                <p>Success prediction <button class="success-btn" onclick="openModal()">Details</button></p>
+                                                                <button class="apply-btn">Create Application</button>
+                                                            </div>
                                                         </div>
-                                                    </div>
     @endforeach
-                                            </div>
+                                                </div>
 @else
     <p>No programs found.</p>
-                                        @endif
-                                    </div>
-                                    <div class="pagination">
-                                        {{ $programs->appends(request()->input())->links() }}
-                                    </div>
-                                    -->
+                                            @endif
+                                        </div>
+                                        <div class="pagination">
+                                            {{ $programs->appends(request()->input())->links() }}
+                                        </div>
+                                        -->
 
     <div id="program-results">
         @include('partials.programs', ['programs' => $programs])
@@ -857,29 +721,29 @@
     <script src="{{ asset('js/programs.js') }}" defer></script>
 
     <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-                                <script>
-                                    function fetchPrograms() {
-                                        let countries = $('#countries').val();
-                                        $.ajax({
-                                            url: "{{ route('search') }}",
-                                            type: "GET",
-                                            data: {
-                                                countries: countries
-                                            },
-                                            success: function(response) {
-                                                $('#program-results').html(response);
-                                            }
+                                    <script>
+                                        function fetchPrograms() {
+                                            let countries = $('#countries').val();
+                                            $.ajax({
+                                                url: "{{ route('search') }}",
+                                                type: "GET",
+                                                data: {
+                                                    countries: countries
+                                                },
+                                                success: function(response) {
+                                                    $('#program-results').html(response);
+                                                }
+                                            });
+                                        }
+
+                                        $('#keyword').on('keyup', function() {
+                                            fetchPrograms();
                                         });
-                                    }
 
-                                    $('#keyword').on('keyup', function() {
-                                        fetchPrograms();
-                                    });
-
-                                    $('#countries').on('change', function() {
-                                        fetchPrograms();
-                                    });
-                                </script> -->
+                                        $('#countries').on('change', function() {
+                                            fetchPrograms();
+                                        });
+                                    </script> -->
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
