@@ -286,5 +286,23 @@ class ProgramController extends Controller
 
     // return redirect()->back()->with('success', 'Application submitted successfully!');
 }
+
+public function showDetails($id)
+{
+    $program = Program::findOrFail($id);
+
+    $relatedPrograms = Program::where('id', '!=', $id)
+        ->where(function ($query) use ($program) {
+            $query->where('program_level', $program->program_level)
+                  ->orWhere('college_course', $program->college_course)
+                  ->orWhere('campus_country', $program->campus_country);
+        })
+        ->take(6)
+        ->get();
+
+    return view('programdetails', compact('program', 'relatedPrograms'));
+}
+
+
   
 }

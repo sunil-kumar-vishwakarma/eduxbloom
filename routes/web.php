@@ -207,6 +207,9 @@ Route::get('/blogdetails/{id}', [BlogController::class, 'blogDetail'])->name('bl
 Route::get('/youngleaders', [HomeController::class, 'youngleaders'])->name('youngleaders');
 // Route::get('/search', [HomeController::class, 'search'])->name('search');
 Route::get('/search', [ProgramController::class, 'search'])->name('search');
+Route::get('/program/details/{id}', [ProgramController::class, 'showDetails'])->name('details');
+Route::get('/programdetails/{id}', [ProgramController::class, 'showrelatedprograms'])->name('discover_program.show');
+
 
 Route::get('/web', [HomeController::class, 'web'])->name('web');
 // Route::get('/webinar', [HomeController::class, 'webinar'])->name('webinar');

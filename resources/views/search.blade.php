@@ -338,7 +338,177 @@
             }
         }
 
-      
+        .program-header {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    margin-bottom: 16px;
+                }
+
+
+                .header-content {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    width: 100%;
+                    margin-left: 12px;
+                }
+
+
+                .favorite-btn {
+                    background: transparent;
+                    border: none;
+                    font-size: 18px;
+                    cursor: pointer;
+                    transition: color 0.3s;
+                }
+
+                .favorite-btn i {
+                    color: #b92151;
+                    transition: color 0.3s;
+                }
+
+                .favorite-btn:hover i {
+                    color: #db2962;
+                }
+
+
+
+                .program-footer {
+                    display: flex;
+                    justify-content: space-between;
+                    gap: 10px;
+                    margin-top: auto;
+                    padding-top: 20px;
+                }
+
+                .btn {
+                    padding: 10px 16px;
+                    border-radius: 6px;
+                    font-weight: 600;
+                    text-decoration: none;
+                    font-size: 14px;
+                    cursor: pointer;
+                    width: 100%;
+                    text-align: center;
+                }
+
+                .learn-btn {
+                    background-color: transparent;
+                    color: #2764c5;
+                    border: 2px solid #2764c5;
+                    transition: transform 0.3s ease;
+                }
+
+                .learn-btn:hover {
+                    transform: translateY(-2px);
+                    /* background-color: #60a5fa; */
+                    border: 2px solid #2764c5;
+                    color: #2764c5;
+                }
+
+                .apply-btn {
+                    background: linear-gradient(90deg, #0644a6, #2764c5);
+                    color: #fff;
+                    border: none;
+                    transition: transform 0.3s ease;
+                }
+
+                .apply-btn:hover {
+                    transform: translateY(-3px);
+                    color: white !important;
+                }
+
+                .modal-overlay {
+                    position: fixed;
+                    z-index: 9999;
+                    top: 0;
+                    left: 0;
+                    height: 100%;
+                    width: 100%;
+                    background: rgba(0, 0, 0, 0.5);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    backdrop-filter: blur(6px);
+                }
+
+                .modal-content {
+                    background: #fff;
+                    padding: 30px;
+                    border-radius: 12px;
+                    width: 100%;
+                    max-width: 500px;
+                    position: relative;
+                    animation: fadeInUp 0.4s ease-in-out;
+                    text-align: left;
+                }
+
+                .modal-content h2 {
+                    font-size: 20px;
+                    font-weight: bold;
+                    margin-bottom: 10px;
+                }
+
+                @keyframes fadeInUp {
+                    from {
+                        opacity: 0;
+                        transform: translateY(40px);
+                    }
+
+                    to {
+                        opacity: 1;
+                        transform: translateY(0);
+                    }
+                }
+
+                .close-modal {
+                    position: absolute;
+                    top: 12px;
+                    right: 16px;
+                    background: transparent;
+                    border: none;
+                    font-size: 24px;
+                    cursor: pointer;
+                }
+
+                .apply-note {
+                    font-size: 14px;
+                    margin-bottom: 20px;
+                    line-height: 1.5;
+                }
+
+                .apply-form input,
+                .apply-form select {
+                    width: 100%;
+                    margin-bottom: 16px;
+                    padding: 10px;
+                    border: 1px solid #ccc;
+                    border-radius: 6px;
+                    font-family: inherit;
+                }
+
+                .apply-form input:focus {
+                    border-color: #0b5ada;
+                    outline: none;
+                    box-shadow: 0 0 0 2px rgba(11, 90, 218, 0.2);
+                }
+
+
+                .submit-btn {
+                    width: 100%;
+                    background: linear-gradient(90deg, #0644a6, #2764c5);
+                    color: #fff;
+                    padding: 12px;
+                    border: none;
+                    border-radius: 6px;
+                    cursor: pointer;
+                    transition: transform 0.3s ease;
+                }
+
+                .submit-btn:hover {
+                    transform: translateY(-2px);
+                }
 
         /* Responsive breakpoints */
 
@@ -348,25 +518,7 @@
                 margin-top: 20%;
             }
 
-            .modal-content {
-                padding: 24px 20px;
-                width: 95%;
-                margin: 40px auto;
-            }
-
-            .accordion-btn {
-                font-size: 14px;
-                padding: 10px 14px;
-            }
-
-            .accordion-panel p {
-                font-size: 13px;
-            }
-
-            .note,
-            .info-note {
-                font-size: 12px;
-            }
+           
         }
 
         /* Small phones */
@@ -393,26 +545,7 @@
                 margin-top: 20%;
             }
 
-            .modal-content {
-                padding: 20px 16px;
-                width: 100%;
-                margin: 30px auto;
-                border-radius: 12px;
-            }
-
-            .close-btn {
-                top: 10px;
-                right: 12px;
-                font-size: 22px;
-            }
-
-            .accordion-btn {
-                font-size: 13px;
-            }
-
-            .accordion-panel {
-                padding: 10px 14px;
-            }
+          
         }
 
         /* Main wrapper */
