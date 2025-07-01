@@ -395,7 +395,7 @@
 
                 .learn-btn {
                     background-color: transparent;
-                    color: #2764c5;
+                    color: #2764c5 !important;
                     border: 2px solid #2764c5;
                     transition: transform 0.3s ease;
                 }

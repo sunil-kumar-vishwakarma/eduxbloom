@@ -16,7 +16,7 @@
         }
 
         .hero-left {
-            flex: 0 0 120px;
+            flex: 0 0 70px;
             text-align: center;
         }
 
@@ -444,7 +444,7 @@
 
         .learn-btn {
             background-color: transparent;
-            color: #2764c5;
+            color: #2764c5 !important;
             border: 2px solid #2764c5;
             transition: transform 0.3s ease;
         }
