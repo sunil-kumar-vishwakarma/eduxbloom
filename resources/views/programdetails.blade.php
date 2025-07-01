@@ -16,13 +16,13 @@
         }
 
         .hero-left {
-            flex: 0 0 70px;
+            flex: 0 0 100px;
             text-align: center;
         }
 
         .hero-left img {
             max-width: 100%;
-            border-radius: 50%;
+            border-radius: 12px;
         }
 
         .hero-right {
