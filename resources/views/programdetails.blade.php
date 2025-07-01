@@ -22,7 +22,7 @@
 
         .hero-left img {
             max-width: 100%;
-            border-radius: 12px;
+            border-radius: 50%;
         }
 
         .hero-right {
