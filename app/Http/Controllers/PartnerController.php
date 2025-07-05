@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Partner;
 use App\Models\Users;
+use Spatie\Permission\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
@@ -21,7 +22,8 @@ class PartnerController extends Controller
     // Show the form for creating a new partner
     public function create()
     {
-        return view('partners.create');
+        $roles = Role::all();
+        return view('partners.create', compact('roles'));
     }
 
     // Store a newly created partner in the database
@@ -33,6 +35,7 @@ class PartnerController extends Controller
             'contact' => 'required|string|max:15',
             'category' => 'required|string',
             'joined_date' => 'required|date',
+            'role_id' => 'required',
             'status' => 'required|string|in:Active,Inactive',
         ]);
 
@@ -57,7 +60,7 @@ class PartnerController extends Controller
                 'name'     => $request->designation,
                 'email'    => $request->email,
                 'password' => Hash::make($request->password),
-                'role_id' => 2,
+                'role_id' => $request->role_id,
             ]);
 
             $lastInsertedId = $user->id;
@@ -65,6 +68,7 @@ class PartnerController extends Controller
             Partner::create([
                 'user_id' => $lastInsertedId,
                 'email' => $request->email,
+                'password' => $request->password,
                 'contact' => $request->contact,
                 'designation' => $request->designation ?? '',
                 'category' => $request->category,
@@ -97,29 +101,98 @@ class PartnerController extends Controller
     // Show the form for editing a specific partner
     public function edit($id)
     {
-        $partner = Partner::findOrFail($id);
-        return view('partners.edit', compact('partner'));
+        $partner = Partner::with('user')->findOrFail($id);
+        $roles = Role::all();
+        // print_r($partner);die;
+        return view('partners.edit', compact('partner','roles'));
     }
 
     // Update a specific partner's information
+    // public function update(Request $request, $id)
+    // {
+        
+    //     $partner = Partner::findOrFail($id);
+
+    //     $validatedData = $request->validate([
+    //         'full_name' => 'required|string|max:255',
+    //         'company_name' => 'required|string|max:255',
+    //         'email' => 'required|email|unique:partners,email,' . $partner->id,
+    //         'password' => 'required',
+    //         'contact' => 'required|string|max:15',
+    //         'category' => 'required|string|max:100',
+    //         'joined_date' => 'required|date',
+    //         'status' => 'required|in:Active,Inactive',
+    //     ]);
+
+    //     $partner->update($validatedData);
+
+        
+    //    $user_id =  $partner->user_id;
+    //      $user = Users::where('id', $user_id)->first();
+
+    //         if ($user) {
+    //             $userData = [
+    //                 'name'     => $request->designation,
+    //                 'email'    => $request->email,
+    //                 'password' => Hash::make($request->password),
+    //                 'role_id'  => $request->role_id,
+    //             ];
+
+    //             $user->update($userData);
+    //         }else {
+    //             // Handle user not found (optional)
+    //             return response()->json(['error' => 'User not found.'], 404);
+    //         }
+
+    //     return redirect()->route('partners.index')->with('success', 'Partner updated successfully!');
+    // }
+
     public function update(Request $request, $id)
-    {
-        $partner = Partner::findOrFail($id);
+{
+    $partner = Partner::findOrFail($id);
 
-        $validatedData = $request->validate([
-            'full_name' => 'required|string|max:255',
-            'company_name' => 'required|string|max:255',
-            'email' => 'required|email|unique:partners,email,' . $partner->id,
-            'contact' => 'required|string|max:15',
-            'category' => 'required|string|max:100',
-            'joined_date' => 'required|date',
-            'status' => 'required|in:Active,Inactive',
+    // Validate input
+    $validatedData = $request->validate([
+        // 'full_name'     => 'required|string|max:255',
+        // 'company_name'  => 'required|string|max:255',
+        'email'         => 'required|email|unique:partners,email,' . $partner->id,
+        'password'      => 'required|string|min:6',
+        // 'contact'       => 'required|string|max:15',
+        // 'category'      => 'required|string|max:100',
+        // 'joined_date'   => 'required|date',
+        'status'        => 'required',
+        'designation'   => 'required|string|max:255',    // Add this if you're using it for user.name
+        'role_id'       => 'required|integer|exists:roles,id' // Add if role_id is part of request
+    ]);
+
+    // Update Partner table
+    $partner->update([
+        'designation'    => $request->designation,
+        // 'company_name' => $request->company_name,
+        'email'        => $request->email,
+        'password'      => $request->password,
+        // 'category'     => $request->category,
+        // 'joined_date'  => $request->joined_date,
+        'status'       => $request->status,
+    ]);
+
+    // Update associated User record
+    $user = Users::where('id', $partner->user_id)->first();
+
+    if ($user) {
+        $user->update([
+            'name'     => $request->designation, // or $request->full_name if you prefer
+            'email'    => $request->email,
+            'password' => Hash::make($request->password),
+            'role_id'  => $request->role_id,
         ]);
-
-        $partner->update($validatedData);
-
-        return redirect()->route('partners.index')->with('success', 'Partner updated successfully!');
+    } else {
+        return response()->json(['error' => 'User not found.'], 404);
     }
+
+    return redirect()->route('partners.index')->with('success', 'Partner updated successfully!');
+}
+
 
     // Delete a partner
     public function destroy($id)

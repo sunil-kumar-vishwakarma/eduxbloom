@@ -58,6 +58,17 @@
         </li>
         @endif
 
+         {{-- ✅ Mentor Applications --}}
+        @if($isAdmin || $user->can('View Applynow'))
+        <li class="menu-item">
+            <a href="{{ route('admin.applynow.program') }}" class="{{ request()->routeIs('admin.applynow.program') ? 'active' : '' }}">
+                <i class="fas fa-chalkboard-teacher icon"></i> Apply Program Applications
+            </a>
+        </li>
+        @endif
+
+        
+
         {{-- ✅ Webinars --}}
         @if($isAdmin || $user->can('View Webinar'))
         <li class="menu-item">

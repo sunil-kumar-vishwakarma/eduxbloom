@@ -460,167 +460,788 @@
     <div class="main-content">
         @include('frontent_partials.userdash_nav')
 
-    <div class="container">
-        <div class="header">
-            <img src="images/student-mockup.png" alt="Profile Picture" />
-            <div>
-                <h1>Institut Teccart-Brossard</h1>
-                <p>Brossard, Quebec, CA</p>
+     <style>
+        .school-hero {
+            background: linear-gradient(135deg, #1e293b, #0f172a);
+            padding: 80px 20px;
+            margin-top: 5%;
+            color: #e2e8f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .hero-left {
+            flex: 0 0 100px;
+            text-align: center;
+        }
+
+        .hero-left img {
+            max-width: 100%;
+            border-radius: 12px;
+        }
+
+        .hero-right {
+            flex: 1;
+            min-width: 280px;
+        }
+
+        .hero-right h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #fff;
+        }
+
+        .school-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            padding: 60px 20px;
+            max-width: 1200px;
+            margin: auto;
+            color: #e2e8f0;
+        }
+
+        .school-content {
+            flex: 2;
+            min-width: 300px;
+        }
+
+        .school-sidebar {
+            flex: 1;
+            background: rgb(184 198 223 / 25%);
+            padding: 24px;
+            border-radius: 12px;
+            border: 1px solid rgb(169 169 169);
+            min-width: 280px;
+        }
+
+        .school-sidebar h3 {
+            font-size: 1.2rem;
+            margin-bottom: 16px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.356);
+            padding-bottom: 8px;
+            color: black;
+        }
+
+        .school-sidebar td {
+            padding: 8px 0;
+            font-size: 0.95rem;
+            color: #111;
+        }
+
+        .school-content h2 {
+            font-size: 1.6rem;
+            margin-bottom: 16px;
+            color: #111;
+        }
+
+        .school-content p {
+            line-height: 1.6;
+            font-size: 1.05rem;
+            color: #111;
+        }
+
+        .apply-section {
+            margin-top: 40px;
+        }
+
+        .apply-section button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(90deg, #0644a6, #2764c5);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .apply-section button:hover {
+            transform: translateY(-3px);
+        }
+
+        @media (max-width: 768px) {
+            .school-container {
+                flex-direction: column;
+            }
+
+            .school-hero {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .hero-left,
+            .hero-right {
+                width: 100%;
+                text-align: center;
+            }
+
+            .hero-right h1 {
+                font-size: 2rem;
+            }
+        }
+
+        .related-programs {
+            /* background: #f8fafc; */
+            padding: 60px 20px;
+        }
+
+        .related-programs .container {
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            color: #1e293b;
+            text-align: center;
+        }
+
+
+        /* Modal styles */
+        .modal-overlay {
+            position: fixed;
+            z-index: 9999;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(6px);
+        }
+
+        .modal-content {
+            background: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            width: 100%;
+            max-width: 500px;
+            position: relative;
+            animation: fadeInUp 0.4s ease-in-out;
+            text-align: left;
+        }
+
+        .modal-content h2 {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 12px;
+            right: 16px;
+            background: transparent;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .apply-note {
+            font-size: 14px;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .apply-form input,
+        .apply-form select {
+            width: 100%;
+            margin-bottom: 16px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-family: inherit;
+        }
+
+        .apply-form input:focus {
+            border-color: #0b5ada;
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(11, 90, 218, 0.2);
+        }
+
+        .submit-btn {
+            width: 100%;
+            background: linear-gradient(90deg, #0644a6, #2764c5);
+            color: #fff;
+            padding: 12px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+        }
+
+
+
+
+        .programs-container {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(300px, 1fr));
+            gap: 24px;
+            padding: 40px 20px;
+        }
+
+        .program-card {
+            background: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease;
+        }
+
+        .program-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .program-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .program-header a:hover {
+            text-decoration: underline;
+        }
+
+        .program-logo {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        .program-header h3 {
+            font-size: 16px;
+            margin: 0;
+            color: #1a1a1a;
+            font-weight: 700;
+            line-height: 1.4;
+        }
+
+        .program-badges {
+            margin: 10px 0;
+            display: flex;
+            gap: 10px;
+        }
+
+        .badge {
+            background-color: #2764c5;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+        }
+
+        .program-details small {
+            color: #888;
+            font-size: 13px;
+        }
+
+        .program-details p {
+            margin: 6px 0;
+            font-weight: 500;
+        }
+
+        .program-details a:hover {
+            text-decoration: underline
+        }
+
+        .program-details table {
+            width: 100%;
+            font-size: 14px;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        .program-details td {
+            padding: 10px 0;
+            color: #333;
+            vertical-align: top;
+        }
+
+        .program-details tr {
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .program-details tr:last-child {
+            border-bottom: none;
+        }
+
+        .program-details tr td:first-child {
+            font-weight: 600;
+            width: 50%;
+        }
+
+
+
+
+        .success-btn {
+            background-color: rgb(230, 239, 254);
+            color: rgb(10, 90, 218);
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            padding: 6px 12px;
+            font-size: 13px;
+            cursor: pointer;
+            margin-left: 8px;
+        }
+
+        @media (max-width: 500px) {
+            .program-footer {
+                flex-direction: row;
+                align-items: stretch;
+            }
+
+            .program-footer .btn {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .filter-search-wrapper {
+                margin-top: 20%;
+            }
+
+
+            .programs-container {
+                grid-template-columns: repeat(2, minmax(300px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .programs-container {
+                grid-template-columns: 1fr;
+                padding: 0;
+            }
+        }
+
+        .program-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 16px;
+        }
+
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            margin-left: 12px;
+        }
+
+
+        .favorite-btn {
+            background: transparent;
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .favorite-btn i {
+            color: #b92151;
+            transition: color 0.3s;
+        }
+
+        .favorite-btn:hover i {
+            color: #db2962;
+        }
+
+
+
+        .program-footer {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            margin-top: auto;
+            padding-top: 20px;
+        }
+
+        .btn {
+            padding: 10px 16px;
+            border-radius: 6px;
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 14px;
+            cursor: pointer;
+            width: 100%;
+            text-align: center;
+        }
+
+        .learn-btn {
+            background-color: transparent;
+            color: #2764c5 !important;
+            border: 2px solid #2764c5;
+            transition: transform 0.3s ease;
+        }
+
+        .learn-btn:hover {
+            transform: translateY(-2px);
+            /* background-color: #60a5fa; */
+            border: 2px solid #2764c5;
+            color: #2764c5;
+        }
+
+        .apply-btn {
+            background: linear-gradient(90deg, #0644a6, #2764c5);
+            color: #fff;
+            border: none;
+            transition: transform 0.3s ease;
+        }
+
+        .apply-btn:hover {
+            transform: translateY(-3px);
+            color: white !important;
+        }
+    </style>
+
+    <!-- Hero Section -->
+    <section class="school-hero">
+        <div class="hero-left">
+            <img src="{{ asset('/public/storage/' . $program->image) }}?v={{ $program->updated_at->timestamp }}"
+                alt="University Logo">
+        </div>
+        <div class="hero-right">
+            <h1>{{ $program->university_name }}</h1>
+        </div>
+    </section>
+
+    <!-- Program Overview -->
+    <div class="school-container">
+        <div class="school-content">
+            <h2>About the Program</h2>
+           <p>
+    The <strong>{{ $program->program_level }}</strong> program in 
+    <strong>{{ $program->college_course }}</strong> offered by 
+    <strong>{{ $program->university_name }}</strong> is designed to prepare students with 
+    in-depth academic knowledge, hands-on experience, and industry-relevant skills. 
+    This program emphasizes a balance between theoretical frameworks and real-world 
+    application, ensuring students are career-ready upon graduation.
+</p>
+
+
+
+            <div class="apply-section">
+                <button class="apply-btn" onclick="openApplyModal('{{ $program->id }}')">
+                    <i class="fas fa-paper-plane"></i> Apply Now
+                </button>
             </div>
         </div>
 
-        <div class="program-title">Attestation d'études collégiales - Design d'animation 3D (NTL.OP)</div>
-        <div class="program-code">106359</div>
-
-        <div class="gallery-wrapper">
-            <div class="gallery">
-                <div class="main-img">
-                    <img src="images/AI-016-1024x512.png" alt="Main Image" />
-                </div>
-
-                <!-- Repeat stacked columns -->
-                <div class="stacked-column">
-                    <div class="small-img"><img src="images/AI-016-1024x512.png" alt="Image 2" /></div>
-                    <div class="small-img"><img src="images/AI-016-1024x512.png" alt="Image 3" /></div>
-                </div>
-
-                <div class="stacked-column">
-                    <div class="small-img"><img src="images/AI-016-1024x512.png" alt="Image 4" /></div>
-                    <div class="small-img"><img src="images/AI-016-1024x512.png" alt="Image 5" /></div>
-                </div>
-                <div class="stacked-column">
-                    <div class="small-img"><img src="images/AI-016-1024x512.png" alt="Image 4" /></div>
-                    <div class="small-img"><img src="images/AI-016-1024x512.png" alt="Image 5" /></div>
-                </div>
-                <div class="stacked-column">
-                    <div class="small-img"><img src="images/AI-016-1024x512.png" alt="Image 4" /></div>
-                    <div class="small-img"><img src="images/AI-016-1024x512.png" alt="Image 5" /></div>
-                </div>
-                <div class="stacked-column">
-                    <div class="small-img"><img src="images/AI-016-1024x512.png" alt="Image 4" /></div>
-                    <div class="small-img"><img src="images/AI-016-1024x512.png" alt="Image 5" /></div>
-                </div>
-
-
-            </div>
+        <div class="school-sidebar">
+            <h3>Quick Facts</h3>
+            <table>
+                <tr>
+                    <td><strong>Language:</strong></td>
+                    <td>{{ $program->language }}</td>
+                </tr>
+                <tr>
+                    <td><strong>Location:</strong></td>
+                    <td>{{ $program->location }}, {{ $program->campus_country }}</td>
+                </tr>
+                <tr>
+                    <td><strong>Tuition (1st Yr):</strong></td>
+                    <td>${{ $program->tuition }} CAD</td>
+                </tr>
+                <tr>
+                    <td><strong>Application Fee:</strong></td>
+                    <td>${{ $program->application_fee }} CAD</td>
+                </tr>
+            </table>
         </div>
     </div>
 
-    <div class="container-overview">
-        <div class="section-header">
-            <h2>Program Summary</h2>
-            <button class="eligibility-btn">Check Eligibility Now</button>
-        </div>
+    <!-- Related Programs Section -->
+    @if (isset($relatedPrograms) && count($relatedPrograms))
+        <section class="related-programs">
 
-        <div class="summary">
-            <div class="summary-text">
-                <p><strong>Program Description</strong></p>
+            <h2 class="section-title">Related Programs You Might Like</h2>
 
-                <div class="description-wrapper">
-                    <div class="description-content" id="descContent">
-                        <p>
-                            This program trains individuals to work as 3D animation and computer graphics designers.
-                            These professionals primarily work in computer animation studios (short and feature films),
-                            television studios, as well as companies specializing in multimedia production, video games,
-                            post-production, and special effects.
-                        </p>
-                        <p>
-                            This program trains individuals to work as 3D animation and computer graphics designers.
-                            These professionals primarily work in computer animation studios (short and feature films),
-                            television studios, as well as companies specializing in multimedia production, video games,
-                            post-production, and special effects.
-                        </p>
-                        <p>
-                            This program trains individuals to work as 3D animation and computer graphics designers.
-                            These professionals primarily work in computer animation studios (short and feature films),
-                            television studios, as well as companies specializing in multimedia production, video games,
-                            post-production, and special effects.
-                        </p>
+            <div class="programs-container">
+                @foreach ($relatedPrograms as $value)
+                    <div class="program-card">
+                        <div class="program-header">
+                            <img src="{{ asset('/public/storage/' . $value->image) }}?v={{ $value->updated_at->timestamp }}"
+                                alt="University Logo" class="program-logo" />
+
+                            <div class="header-content">
+                                <h3>{{ $value->university_name }}</h3>
+
+                                <button class="favorite-btn" title="Add to favourite"
+                                    onclick="this.querySelector('i').classList.toggle('fa-solid'); this.querySelector('i').classList.toggle('fa-regular');">
+                                    <i class="fa-regular fa-heart"></i>
+                                </button>
+
+
+                            </div>
+                        </div>
+
+                        <div class="program-details">
+                            <table>
+                                <tbody>
+                                    {{-- <tr>
+                                            <td>School</td>
+                                            <td>{{ $value->college_name }}</td>
+                                        </tr> --}}
+                                    <tr>
+                                        <td>Tuition</td>
+                                        <td>${{ $value->tuition }} CAD</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Application Fee</td>
+                                        <td>${{ $value->application_fee }} CAD</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Language</td>
+                                        <td>{{ $value->language }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Location</td>
+                                        <td>{{ $value->location }}, {{ $value->campus_country }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="program-footer">
+                            <a href="{{ route('user.programdetails', $value->id) }}" class="btn learn-btn">
+                                <i class="fas fa-book-open"></i> Learn More
+                            </a>
+
+                            <button class="btn apply-btn" onclick="openApplyModal('{{ $value->id }}')">
+                                <i class="fas fa-paper-plane"></i> Apply Now
+                            </button>
+                        </div>
+
                     </div>
-
-
-                    <div class="fade-shadow"></div>
-
-                    <!-- <button id="toggleDesc" class="show-more-btn">Show More</button> -->
-                </div>
-                <button id="toggleDesc" class="show-more-btn">Show More</button>
+                @endforeach
             </div>
+        <div id="js-alert-container"></div>
 
-            <div class="summary-details">
-                <ul class="details-list">
-                    <li>
-                        <span class="detail-icon"><i class="fa-solid fa-graduation-cap"></i></span>
-                        <div class="detail-content">
-                            <h4>Program Type</h4>
-                            <p>2-Year Undergraduate Diploma</p>
-                        </div>
-                    </li>
-                    <li>
-                        <span class="detail-icon"><i class="fa-solid fa-calendar"></i></span>
-                        <div class="detail-content">
-                            <h4>Duration</h4>
-                            <p>20-month Attestation d'études collégiales including internship</p>
-                        </div>
-                    </li>
-                    <li>
-                        <span class="detail-icon"><i class="fa-solid fa-money-bill"></i></span>
-                        <div class="detail-content">
-                            <h4>Tuition Fee</h4>
-                            <p>$20,635.00 CAD / Year</p>
-                        </div>
-                    </li>
-                    <li>
-                        <span class="detail-icon"><i class="fa-solid fa-file-invoice-dollar"></i></span>
-                        <div class="detail-content">
-                            <h4>First Year Cost</h4>
-                            <p>$20,850.00 CAD</p>
-                        </div>
-                    </li>
-                    <li>
-                        <span class="detail-icon"><i class="fa-solid fa-file-contract"></i></span>
-                        <div class="detail-content">
-                            <h4>Application Fee</h4>
-                            <p>$250.00 CAD</p>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-
-        </div>
-
-
-        <div class="requirement-section">
-            <div class="req-header">
-                <h2>Admission Requirements</h2>
-                <p class="subtext">Requirements may vary based on the student and education background</p>
-            </div>
-
-            <div class="requirement-block">
-                <h3 class="req-subtitle">Academic Background</h3>
-                <div class="requirements">
-                    <div class="requirement-card">
-                        <h4><i class="fa-solid fa-school"></i> Minimum Level of Education</h4>
-                        <p>Grade 12 / High School</p>
-                    </div>
-                    <div class="requirement-card">
-                        <h4><i class="fa-solid fa-percent"></i> Minimum CGPA</h4>
-                        <p class="highlight">50%</p>
-                    </div>
-                </div>
-            </div>
+        </section>
+    @endif
+<meta name="csrf-token" content="{{ csrf_token() }}">
+    <!-- Apply Now Modal -->
+    <div id="applyModal" class="modal-overlay" style="display: none;">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeApplyModal()">&times;</button>
+            <h2>Apply to this School</h2>
+            <p class="apply-note">
+                Note: You can apply to this school directly for free using our app EduBloom or complete this form and an
+                advisor will contact you.
+            </p>
+             <form id="mentorApplicationForm" class="apply-form">
+                           
+                        <input type="text" placeholder="Full Name" name="full_name" id="full_name" required>
+                        <input type="date" placeholder="Birthdate" name="dob" id="dob" required>
+                        <input type="text" placeholder="Location"  name="location" id="location" required>
+                        <input type="number" placeholder="WhatsApp Number" name="whats_app_number" id="whats_app_number" required>
+                        <input type="email" placeholder="Email Address" name="email" id="email" required>
+                        <select required name="studies_level" id="studies_level">
+                            <option value="">Level of Studies</option>
+                            <option value="Undergraduate">Undergraduate</option>
+                            <option value="Postgraduate">Postgraduate</option>
+                            <option value="Diploma">Diploma</option>
+                        </select>
+                        <input type="hidden" name="program_id" id="program_id">
+                        <button type="submit" class="submit-btn">Submit Application</button>
+                    </form>
         </div>
     </div>
-    </div>
+<!-- <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById("dob").setAttribute('max', today);
+    });
+</script> -->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const today = new Date();
+        const year = today.getFullYear() - 5;
+        const month = String(today.getMonth() + 1).padStart(2, '0');
+        const day = String(today.getDate()).padStart(2, '0');
+        const maxDate = `${year}-${month}-${day}`;
+
+        const dobInput = document.getElementById("dob");
+        dobInput.setAttribute("max", maxDate);
+        dobInput.onkeydown = () => false; // optional: disable typing
+    });
+</script>
     <script>
-        const toggleBtn = document.getElementById("toggleDesc");
-        const wrapper = document.querySelector(".description-wrapper");
+        function openApplyModal(schoolId) {
+            const modal = document.getElementById('applyModal');
+            
+             const programInput = document.getElementById('program_id');
+                if (programInput) {
+                    programInput.value = schoolId;
+                }
+            modal.style.display = 'flex';
+            setTimeout(() => {
+                window.addEventListener('click', outsideClickHandler);
+            }, 0);
+        }
 
-        toggleBtn.addEventListener("click", () => {
-            wrapper.classList.toggle("expanded");
-            toggleBtn.textContent = wrapper.classList.contains("expanded") ? "Show Less" : "Show More";
-        });
+        function closeApplyModal() {
+            const modal = document.getElementById('applyModal');
+            modal.style.display = 'none';
+            window.removeEventListener('click', outsideClickHandler);
+        }
 
+        function outsideClickHandler(event) {
+            const modalContent = document.querySelector('.modal-content');
+            const modal = document.getElementById('applyModal');
+            if (!modalContent.contains(event.target)) {
+                closeApplyModal();
+            }
+        }
     </script>
+
+
+  <!-- Custom JS Alert -->
+    <script>
+        function showJsAlert(type, message) {
+            const container = document.getElementById('js-alert-container');
+            if (!container) return;
+
+            container.innerHTML = ''; // Clear previous alert
+
+            const alertDiv = document.createElement('div');
+            alertDiv.className = `alert alert-${type === 'error' ? 'danger' : 'success'}`;
+            alertDiv.innerHTML = `
+            <i class="fas ${type === 'error' ? 'fa-times-circle' : 'fa-check-circle'}"></i>
+            ${message}
+        `;
+
+            // Inline styling
+            Object.assign(alertDiv.style, {
+                position: 'fixed',
+                top: '20px',
+                left: '40%',
+                transform: 'translateX(-50%)',
+                padding: '12px 25px',
+                fontSize: '16px',
+                fontFamily: "'Roboto', sans-serif",
+                borderRadius: '6px',
+                boxShadow: '0 10px 20px rgba(0, 0, 0, 0.1)',
+                zIndex: '1000',
+                backgroundColor: type === 'error' ? '#b92151' : '#28a745',
+                color: 'white',
+                transition: 'opacity 0.6s ease',
+                opacity: 1,
+            });
+
+            container.appendChild(alertDiv);
+
+            setTimeout(() => {
+                alertDiv.style.opacity = 0;
+                setTimeout(() => alertDiv.remove(), 600);
+            }, 3000);
+        }
+    </script>
+
+    <!-- Form Submission -->
+    <script>
+        document.getElementById('mentorApplicationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const formData = {
+                full_name: document.getElementById('full_name').value,
+                dob: document.getElementById('dob').value,
+                location: document.getElementById('location').value,
+                whats_app_number: document.getElementById('whats_app_number').value,
+                email: document.getElementById('email').value,
+                studies_level: document.getElementById('studies_level').value,
+                program_id: document.getElementById('program_id').value,
+            };
+
+            const csrfToken = document.querySelector('meta[name="csrf-token"]');
+            if (!csrfToken) {
+                showJsAlert('error', 'CSRF token missing.');
+                return;
+            }
+
+            fetch("/apply/now", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "X-CSRF-TOKEN": csrfToken.getAttribute("content")
+                    },
+                    body: JSON.stringify(formData)
+                })
+                .then(async (response) => {
+                    const contentType = response.headers.get("content-type");
+                    if (!response.ok) {
+                        if (contentType && contentType.includes("application/json")) {
+                            const errorData = await response.json();
+                            throw new Error(errorData.message || "Validation failed.");
+                        } else {
+                            throw new Error("Unexpected response format.");
+                        }
+                    }
+
+                    const data = await response.json();
+                    showJsAlert('success', data.message || 'Application submitted!');
+                    document.getElementById("mentorApplicationForm").reset();
+                    closeMentorForm();
+                })
+                .catch(error => {
+                    showJsAlert('error', error.message || 'There was an error submitting the form.');
+                    console.error(error);
+                });
+        });
+    </script>
+     <script>
+        function openMentorForm() {
+            document.getElementById("applyModal").style.display = "flex";
+        }
+
+        function closeMentorForm() {
+            document.getElementById("applyModal").style.display = "none";
+        }
+
+        // Optional: Click outside to close
+        window.onclick = function(event) {
+            const popup = document.getElementById("applyModal");
+            if (event.target === popup) {
+                closeMentorForm();
+            }
+        }
+    </script>
+
+
+    </div>
 
 </body>
 

@@ -1,3 +1,4 @@
+            <meta name="csrf-token" content="{{ csrf_token() }}">
             @if ($programs->count())
                 <div class="programs-container">
                     @foreach ($programs as $value)
@@ -134,7 +135,7 @@
                 <p>No programs found.</p>
             @endif
             </div>
-
+            <div id="js-alert-container"></div>
 
             <!-- Apply Now Modal -->
             <div id="applyModal" class="modal-overlay" style="display: none;">
@@ -145,18 +146,24 @@
                         Note: You can apply to this school directly for free using our app EduBloom
                         or complete this form and an advisor will contact you.
                     </p>
-                    <form class="apply-form">
-                        <input type="text" placeholder="Full Name" required>
-                        <input type="date" placeholder="Birthdate" required>
-                        <input type="text" placeholder="Location" required>
-                        <input type="text" placeholder="WhatsApp Number" required>
-                        <input type="email" placeholder="Email Address" required>
-                        <select required>
+                    <div id="applyNowFormSuccess">
+
+                    </div>
+                    
+                         <form id="mentorApplicationForm" class="apply-form">
+                           
+                        <input type="text" placeholder="Full Name" name="full_name" id="full_name" required>
+                        <input type="date" placeholder="Birthdate" name="dob" id="dob" required>
+                        <input type="text" placeholder="Location"  name="location" id="location" required>
+                        <input type="number" placeholder="WhatsApp Number" name="whats_app_number" id="whats_app_number" required>
+                        <input type="email" placeholder="Email Address" name="email" id="email" required>
+                        <select required name="studies_level" id="studies_level">
                             <option value="">Level of Studies</option>
                             <option value="Undergraduate">Undergraduate</option>
                             <option value="Postgraduate">Postgraduate</option>
                             <option value="Diploma">Diploma</option>
                         </select>
+                        <input type="hidden" name="program_id" id="program_id">
                         <button type="submit" class="submit-btn">Submit Application</button>
                     </form>
                 </div>
@@ -166,9 +173,29 @@
                 {{ $programs->withQueryString()->links() }}
                 <!-- {{ $programs->appends(request()->input())->links() }} -->
             </div>
+            
+            <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+             <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const today = new Date();
+        const year = today.getFullYear() - 5;
+        const month = String(today.getMonth() + 1).padStart(2, '0');
+        const day = String(today.getDate()).padStart(2, '0');
+        const maxDate = `${year}-${month}-${day}`;
+
+        const dobInput = document.getElementById("dob");
+        dobInput.setAttribute("max", maxDate);
+        dobInput.onkeydown = () => false; // optional: disable typing
+    });
+</script>
             <script>
                 function openApplyModal(schoolId) {
                     const modal = document.getElementById('applyModal');
+                    const programInput = document.getElementById('program_id');
+                if (programInput) {
+                    programInput.value = schoolId;
+                }
+                
                     modal.style.display = 'flex';
 
                     // Attach one-time event to detect click outside modal content
@@ -195,3 +222,116 @@
                     }
                 }
             </script>
+               
+
+                
+    <!-- Custom JS Alert -->
+    <script>
+        function showJsAlert(type, message) {
+            const container = document.getElementById('js-alert-container');
+            if (!container) return;
+
+            container.innerHTML = ''; // Clear previous alert
+
+            const alertDiv = document.createElement('div');
+            alertDiv.className = `alert alert-${type === 'error' ? 'danger' : 'success'}`;
+            alertDiv.innerHTML = `
+            <i class="fas ${type === 'error' ? 'fa-times-circle' : 'fa-check-circle'}"></i>
+            ${message}
+        `;
+
+            // Inline styling
+            Object.assign(alertDiv.style, {
+                position: 'fixed',
+                top: '20px',
+                left: '40%',
+                transform: 'translateX(-50%)',
+                padding: '12px 25px',
+                fontSize: '16px',
+                fontFamily: "'Roboto', sans-serif",
+                borderRadius: '6px',
+                boxShadow: '0 10px 20px rgba(0, 0, 0, 0.1)',
+                zIndex: '1000',
+                backgroundColor: type === 'error' ? '#b92151' : '#28a745',
+                color: 'white',
+                transition: 'opacity 0.6s ease',
+                opacity: 1,
+            });
+
+            container.appendChild(alertDiv);
+
+            setTimeout(() => {
+                alertDiv.style.opacity = 0;
+                setTimeout(() => alertDiv.remove(), 600);
+            }, 3000);
+        }
+    </script>
+
+    <!-- Form Submission -->
+    <script>
+        document.getElementById('mentorApplicationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const formData = {
+                full_name: document.getElementById('full_name').value,
+                dob: document.getElementById('dob').value,
+                location: document.getElementById('location').value,
+                whats_app_number: document.getElementById('whats_app_number').value,
+                email: document.getElementById('email').value,
+                studies_level: document.getElementById('studies_level').value,
+                program_id: document.getElementById('program_id').value,
+            };
+
+            const csrfToken = document.querySelector('meta[name="csrf-token"]');
+            if (!csrfToken) {
+                showJsAlert('error', 'CSRF token missing.');
+                return;
+            }
+
+            fetch("/apply/now", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "X-CSRF-TOKEN": csrfToken.getAttribute("content")
+                    },
+                    body: JSON.stringify(formData)
+                })
+                .then(async (response) => {
+                    const contentType = response.headers.get("content-type");
+                    if (!response.ok) {
+                        if (contentType && contentType.includes("application/json")) {
+                            const errorData = await response.json();
+                            throw new Error(errorData.message || "Validation failed.");
+                        } else {
+                            throw new Error("Unexpected response format.");
+                        }
+                    }
+
+                    const data = await response.json();
+                    showJsAlert('success', data.message || 'Application submitted!');
+                    document.getElementById("mentorApplicationForm").reset();
+                    closeMentorForm();
+                })
+                .catch(error => {
+                    showJsAlert('error', error.message || 'There was an error submitting the form.');
+                    console.error(error);
+                });
+        });
+    </script>
+     <script>
+        function openMentorForm() {
+            document.getElementById("applyModal").style.display = "flex";
+        }
+
+        function closeMentorForm() {
+            document.getElementById("applyModal").style.display = "none";
+        }
+
+        // Optional: Click outside to close
+        window.onclick = function(event) {
+            const popup = document.getElementById("applyModal");
+            if (event.target === popup) {
+                closeMentorForm();
+            }
+        }
+    </script>

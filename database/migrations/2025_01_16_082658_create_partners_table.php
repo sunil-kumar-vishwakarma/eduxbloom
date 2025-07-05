@@ -15,6 +15,7 @@ class CreatePartnersTable extends Migration
             $table->string('email')->unique();
             $table->string('contact');
             $table->string('category');
+            $table->string('user_id');
             $table->date('joined_date');
             $table->enum('status', ['Active', 'Inactive']);
             $table->timestamps();

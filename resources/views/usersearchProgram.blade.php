@@ -21,8 +21,7 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
 
-
-   <style>
+ <style>
         .filter-search-wrapper {
             margin-top: 10%;
         }
@@ -39,7 +38,7 @@
             display: flex;
             flex-wrap: wrap;
             gap: 16px;
-            width: 90%;
+            width: 100%;
             /* max-width: 1150px; */
             border-radius: 8px;
             padding: 16px 20px;
@@ -110,7 +109,7 @@
             .search-container {
                 flex-direction: column;
                 align-items: stretch;
-                padding: 20px;
+                padding: 16px 35px !important;
             }
 
             .custom-dropdown {
@@ -196,6 +195,7 @@
             .filters {
                 flex-direction: column;
                 align-items: stretch;
+                padding: 0px 35px !important;
             }
 
             .filter-item,
@@ -319,13 +319,7 @@
         }
 
 
-        .program-footer {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            margin-top: auto;
-            /* push footer to bottom */
-        }
+      
 
         .success-btn {
             background-color: rgb(230, 239, 254);
@@ -338,28 +332,8 @@
             margin-left: 8px;
         }
 
-        .apply-btn {
-            /* background: #2764c5; */
-            background: linear-gradient(90deg, #0644a6, #2764c5);
-            color: #fff;
-            border: none;
-            padding: 10px 16px;
-            border-radius: 8px;
-            font-size: 14px;
-            margin-top: 10px;
-            cursor: pointer;
-            width: 100%;
-            text-align: center;
-        }
+      
 
-
-        .apply-btn:hover {
-            background: #1f4fa1;
-        }
-.apply-btn a{
-    color: white;
-    text-decoration: none;
-}
         @media (max-width: 1024px) {
             .filter-search-wrapper {
                 margin-top: 20%;
@@ -377,123 +351,177 @@
             }
         }
 
-        /* Modal base styling */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s ease;
-            overflow-y: auto;
-            padding: 20px;
-        }
+        .program-header {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    margin-bottom: 16px;
+                }
 
-        .modal.show {
-            display: block;
-            opacity: 1;
-            pointer-events: auto;
-        }
 
-        /* Modal content box */
-        .modal-content {
-            background-color: #fff;
-            margin: 60px auto;
-            padding: 30px 24px;
-            border-radius: 16px;
-            width: 100%;
-            max-width: 550px;
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-            position: relative;
-            animation: slideUp 0.4s ease;
-        }
+                .header-content {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    width: 100%;
+                    margin-left: 12px;
+                }
 
-        /* Slide up effect */
-        @keyframes slideUp {
-            from {
-                transform: translateY(50px);
-                opacity: 0;
-            }
 
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
+                .favorite-btn {
+                    background: transparent;
+                    border: none;
+                    font-size: 18px;
+                    cursor: pointer;
+                    transition: color 0.3s;
+                }
 
-        .close-btn {
-            position: absolute;
-            top: 14px;
-            right: 18px;
-            font-size: 26px;
-            font-weight: bold;
-            color: #999;
-            cursor: pointer;
-        }
+                .favorite-btn i {
+                    color: #b92151;
+                    transition: color 0.3s;
+                }
 
-        .close-btn:hover {
-            color: #000;
-        }
+                .favorite-btn:hover i {
+                    color: #db2962;
+                }
 
-        .note {
-            font-size: 13px;
-            color: #666;
-            margin-bottom: 20px;
-        }
 
-        /* Accordion */
-        .accordion-item {
-            margin-bottom: 10px;
-        }
 
-        .accordion-btn {
-            background-color: #2764c5;
-            color: #fff;
-            cursor: pointer;
-            padding: 12px 16px;
-            width: 100%;
-            border: none;
-            text-align: left;
-            font-size: 15px;
-            font-weight: 600;
-            border-radius: 8px;
-            transition: background-color 0.3s ease;
-        }
+                .program-footer {
+                    display: flex;
+                    justify-content: space-between;
+                    gap: 10px;
+                    margin-top: auto;
+                    padding-top: 20px;
+                }
 
-        .accordion-btn:hover {
-            background-color: #1f4fa1;
-        }
+                .btn {
+                    padding: 10px 16px;
+                    border-radius: 6px;
+                    font-weight: 600;
+                    text-decoration: none;
+                    font-size: 14px;
+                    cursor: pointer;
+                    width: 100%;
+                    text-align: center;
+                }
 
-        .accordion-panel {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.4s ease, padding 0.3s ease;
-            background: #f7f9fc;
-            border-radius: 0 0 8px 8px;
-            margin-top: 4px;
-            padding: 0 16px;
-        }
+                .learn-btn {
+                    background-color: transparent;
+                    color: #2764c5 !important;
+                    border: 2px solid #2764c5 !important;
+                    transition: transform 0.3s ease;
+                }
 
-        .accordion-panel p {
-            margin: 10px 0;
-            font-size: 14px;
-        }
+                .learn-btn:hover {
+                    transform: translateY(-2px);
+                    /* background-color: #60a5fa; */
+                    border: 2px solid #2764c5 !important;
+                    color: #2764c5;
+                }
 
-        .accordion-item.open .accordion-panel {
-            max-height: 300px;
-            padding: 12px 16px;
-        }
+                .apply-btn {
+                    background: linear-gradient(90deg, #0644a6, #2764c5) !important;
+                    color: #fff !important;
+                    border: none;
+                    transition: transform 0.3s ease !important;
+                }
 
-        /* Additional Info */
-        .info-note {
-            font-size: 13px;
-            color: #555;
-            margin-top: 20px;
-        }
+                .apply-btn:hover {
+                    transform: translateY(-3px);
+                    color: white !important;
+                }
+
+                .modal-overlay {
+                    position: fixed;
+                    z-index: 9999;
+                    top: 0;
+                    left: 0;
+                    height: 100%;
+                    width: 100%;
+                    background: rgba(0, 0, 0, 0.5);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    backdrop-filter: blur(6px);
+                }
+
+                .modal-content {
+                    background: #fff;
+                    padding: 30px;
+                    border-radius: 12px;
+                    width: 100%;
+                    max-width: 500px;
+                    position: relative;
+                    animation: fadeInUp 0.4s ease-in-out;
+                    text-align: left;
+                }
+
+                .modal-content h2 {
+                    font-size: 20px;
+                    font-weight: bold;
+                    margin-bottom: 10px;
+                }
+
+                @keyframes fadeInUp {
+                    from {
+                        opacity: 0;
+                        transform: translateY(40px);
+                    }
+
+                    to {
+                        opacity: 1;
+                        transform: translateY(0);
+                    }
+                }
+
+                .close-modal {
+                    position: absolute;
+                    top: 12px;
+                    right: 16px;
+                    background: transparent;
+                    border: none;
+                    font-size: 24px;
+                    cursor: pointer;
+                }
+
+                .apply-note {
+                    font-size: 14px;
+                    margin-bottom: 20px;
+                    line-height: 1.5;
+                }
+
+                .apply-form input,
+                .apply-form select {
+                    width: 100%;
+                    margin-bottom: 16px;
+                    padding: 10px;
+                    border: 1px solid #ccc;
+                    border-radius: 6px;
+                    font-family: inherit;
+                }
+
+                .apply-form input:focus {
+                    border-color: #0b5ada;
+                    outline: none;
+                    box-shadow: 0 0 0 2px rgba(11, 90, 218, 0.2);
+                }
+
+
+                .submit-btn {
+                    width: 100%;
+                    background: linear-gradient(90deg, #0644a6, #2764c5);
+                    color: #fff;
+                    padding: 12px;
+                    border: none;
+                    border-radius: 6px;
+                    cursor: pointer;
+                    transition: transform 0.3s ease;
+                }
+
+                .submit-btn:hover {
+                    transform: translateY(-2px);
+                }
 
         /* Responsive breakpoints */
 
@@ -503,56 +531,34 @@
                 margin-top: 20%;
             }
 
-            .modal-content {
-                padding: 24px 20px;
-                width: 95%;
-                margin: 40px auto;
-            }
-
-            .accordion-btn {
-                font-size: 14px;
-                padding: 10px 14px;
-            }
-
-            .accordion-panel p {
-                font-size: 13px;
-            }
-
-            .note,
-            .info-note {
-                font-size: 12px;
-            }
+           
         }
 
         /* Small phones */
         @media (max-width: 480px) {
-            .notification-icon{
-                margin-left: 35px;
+            .search-container {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                padding: 16px 14px !important;
+                text-align: center;
             }
+
+            .filters {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                padding: 0 14px !important;
+                text-align: center;
+            }
+
             .filter-search-wrapper {
                 margin-top: 20%;
             }
 
-            .modal-content {
-                padding: 20px 16px;
-                width: 100%;
-                margin: 30px auto;
-                border-radius: 12px;
-            }
-
-            .close-btn {
-                top: 10px;
-                right: 12px;
-                font-size: 22px;
-            }
-
-            .accordion-btn {
-                font-size: 13px;
-            }
-
-            .accordion-panel {
-                padding: 10px 14px;
-            }
+          
         }
 
         /* Main wrapper */
@@ -665,6 +671,11 @@
             pointer-events: none;
             background-color: #f5f5f5;
         }
+
+       
+    </style>
+
+  <style>
 
         .sidebar {
     background-color: white;
@@ -1091,149 +1102,114 @@
         @include('frontent_partials.userdash_nav')
         
       <div class="filter-search-wrapper">
-       
-
-            
-                    <div class="form-container">
-                        <div class="row filterdata">
-                            <div class="col-md-6 custom-dropdown">
-
-                                <div class="form-group">
-                                
-                                    <label for="study-input">What would you like to study?</label>
-                                    <div class="relative">
-                                        <input type="search" id="study-input" placeholder="e.g., Computer Science">
-                                        <div class="icon-wrapper">
-                                            <svg fill="none" stroke="currentColor" stroke-width="2"
-                                                viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                    d="M21 21l-4.35-4.35M17 11a6 6 0 11-12 0 6 6 0 0112 0z" />
-                                            </svg>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3 custom-dropdown">
-                                <div class="form-group">
-                                    <label for="destination">Destination</label>
-                                    <div class="relative">
-                                        <select id="destination">
-                                            <option value="">Select Destination</option>
-                                            <option value="usa">USA</option>
-                                            <option value="canada">Canada</option>
-                                            <option value="uk">UK</option>
-                                            <option value="australia">Australia</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-md-3 custom-dropdown">
-                                <div class="form-group">
-                                    <label for="institution">Institution (School)</label>
-                                    <div class="relative">
-                                        <select id="institution">
-                                            <option value="">Select Institution</option>
-                                            <option value="harvard">Harvard University</option>
-                                            <option value="mit">MIT</option>
-                                            <option value="stanford">Stanford University</option>
-                                            <option value="oxford">Oxford University</option>
-                                        </select>
-                                    </div>
-
-                            </div>
-                        </div>
-                   </div>
+        {{-- Search and Top Filters --}}
+        <div class="search-container">
+            {{-- Keyword Search --}}
+            <div class="search-box">
+                <svg aria-hidden="true" viewBox="0 0 24 24" class="search-icon" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                        d="M16.386 18.211C14.885 19.335 13.02 20 11 20 6.03 20 2 15.971 2 11 2 6.03 6.03 2 11 2c4.971 0 9 4.03 9 9 0 2.228-.81 4.267-2.151 5.839l4.827 4.424-1.351 1.474-4.938-4.526ZM18 11c0 3.866-3.134 7-7 7s-7-3.134-7-7 3.134-7 7-7 7 3.134 7 7Z">
+                    </path>
+                </svg>
+                <input type="text" id="keyword" class="search-bar" placeholder="What would you like to study?" />
+            </div>
 
            
+            <div class="custom-dropdown">
+                <select class="dropdown" id="countries">
+                    <option value="">Select Destination</option>
+                    <option value="USA">USA</option>
+                    <option value="Canada">Canada</option>
+                </select>
+                <i class="fas fa-chevron-down dropdown-icon"></i>
+            </div>
 
-    <div class="filter-container">
-   
+         
+            <div class="custom-dropdown">
+                <select class="dropdown" id="institute">
+                    <option value="">Select Institute</option>
+                    {{-- Dynamic example --}}
+                    {{-- @foreach ($schools as $value) --}}
+                    {{-- <option value="{{ $value->name }}">{{ $value->name }}</option> --}}
+                    {{-- @endforeach --}}
+                    <option value="MIT">MIT</option>
+                    <option value="Stanford">Stanford</option>
+                </select>
+                <i class="fas fa-chevron-down dropdown-icon"></i>
+            </div>
+        </div>
 
+        {{-- Advanced Filters --}}
+        <div class="filters">
+            {{-- Program Level --}}
+            <div class="filter-item custom-dropdown">
+                <select id="program_level">
+                    <option value="">Program Level</option>
+                    <option value="Undergraduate">Undergraduate</option>
+                    <option value="Postgraduate">Postgraduate</option>
+                    <option value="9th-12th Grade">9th–12th Grade</option>
+                    <option value="Preparatory Courses">Preparatory Courses</option>
+                    <option value="ESL">ESL + Bridging</option>
+                    <option value="Gap Year">Gap Year</option>
+                </select>
+                <i class="fas fa-chevron-down dropdown-icon"></i>
+            </div>
 
-    <form action="{{ route('usersearchProgram') }}" method="GET" class="filter-container">
+            {{-- Field of Study --}}
+            <div class="filter-item custom-dropdown">
+                <select id="field_of_study">
+                    <option value="">Field of Study</option>
+                    <option value="Engineering">Engineering</option>
+                    <option value="Business">Business</option>
+                    <option value="Health Sciences">Health Sciences</option>
+                    <option value="Arts & Humanities">Arts & Humanities</option>
+                    <option value="STEM">STEM</option>
+                </select>
+                <i class="fas fa-chevron-down dropdown-icon"></i>
+            </div>
 
-     <div class="filter-dropdown">
-        <label for="program-level">Program Level</label>
-        <select id="program-level" >
-            <option value="">Select Program Level</option>
-            <option value="bachelors">Bachelors</option>
-            <option value="masters">Masters</option>
-            <option value="phd">PhD</option>
-        </select>
+            {{-- Language --}}
+            <div class="filter-item custom-dropdown">
+                <select id="language">
+                    <option value="">Language</option>
+                    <option value="English">English</option>
+                    <option value="French">French</option>
+                </select>
+                <i class="fas fa-chevron-down dropdown-icon"></i>
+            </div>
+
+            {{-- Program Tag / Delivery Mode --}}
+            <div class="filter-item custom-dropdown">
+                <select id="program_tag">
+                    <option value="">Delivery Mode</option>
+                    <option value="Online">Online</option>
+                    <option value="In-Person">In-Person</option>
+                    <option value="Hybrid">Hybrid</option>
+                </select>
+                <i class="fas fa-chevron-down dropdown-icon"></i>
+            </div>
+        </div>
     </div>
 
-    <!-- Field of Study (multi-select) -->
-    <div class="filter-dropdown">
-        <label for="field_of_study">Field of Study</label>
-        <select name="field_of_study[]" id="field_of_study">
-            <option value="cs">Computer Science</option>
-            <option value="business">Business</option>
-            <option value="engineering">Engineering</option>
-            <option value="medicine">Medicine</option>
-        </select>
+    <hr>
+
+    {{-- Program Sort Dropdown --}}
+    <div class="program-section">
+        <div class="sort-dropdown-wrapper">
+            <button class="sort-btn" onclick="toggleDropdown3()">
+                Sort <i class="fa-solid fa-arrow-down-short-wide"></i>
+            </button>
+
+            <div class="dropdown-content1" id="sortDropdown">
+                <p class="dropdown-header">Sort By</p>
+                <a href="#" class="active"><i class="fa-solid fa-circle-check"></i> Best Match (Default)</a>
+                <a href="#"><i class="fa-solid fa-dollar-sign"></i> Tuition Cost (Low to High)</a>
+                <a href="#"><i class="fa-solid fa-dollar-sign"></i> Tuition Cost (High to Low)</a>
+                <a href="#"><i class="fa-solid fa-file-invoice"></i> Application Fee (Low to High)</a>
+                <a href="#"><i class="fa-solid fa-file-invoice"></i> Application Fee (High to Low)</a>
+            </div>
+        </div>
     </div>
-
-    <!-- Intakes (multi-select) -->
-    <div class="filter-dropdown">
-        <label for="intakes">Intakes</label>
-        <select name="intakes[]" id="intakes">
-            <option value="jan">January</option>
-            <option value="may">May</option>
-            <option value="sep">September</option>
-        </select>
-    </div>
-
-    <!-- Program Tag (multi-select) -->
-    <div class="filter-dropdown">
-    <label for="program_tag">Program Tag</label>
-    <select cls name="program_tag[]" id="program_tag">
-        <option value="popular">Popular</option>
-        <option value="new">New</option>
-        <option value="scholarship">Scholarship</option>
-    </select>
-    
-</div>
-
-
-    <!-- Submit Button -->
-    <div class="filter-button">
-        <button type="submit">
-            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round"
-                    d="M6.126 8C6.57 9.73 8.14 11 10 11s3.43-1.27 3.874-3H21V6h-7.126C13.43 4.27 11.86 3 10 3S6.57 4.27 6.126 6H3v2h3.126zM8 7c0-1.1.895-2 2-2s2 .9 2 2-0.895 2-2 2-2-.9-2-2z" />
-                <path stroke-linecap="round" stroke-linejoin="round"
-                    d="M16.874 18H21v-2h-4.126C16.43 14.27 14.86 13 13 13s-3.43 1.27-3.874 3H3v2h6.126C9.57 19.73 11.14 21 13 21s3.43-1.27 3.874-3zM15 17c0-1.1-.895-2-2-2s-2 .9-2 2 .895 2 2 2 2-.9 2-2z" />
-            </svg>
-            <span>Apply Filters</span>
-        </button>
-    </div>
-</form>
-
-
-</div>
-
-            <hr>
-
-                    {{-- Program Sort Dropdown --}}
-
-
-                    <div class="program-section">
-                        <div class="sort-dropdown-wrapper">
-                            <button class="sort-btn" onclick="toggleDropdown3()">
-                                Sort <i class="fa-solid fa-arrow-down-short-wide"></i>
-                            </button>
-
-                            <div class="dropdown-content1" id="sortDropdown">
-                                <p class="dropdown-header">Sort By</p>
-                                <a href="#" class="active"><i class="fa-solid fa-circle-check"></i> Best Match (Default)</a>
-                                <a href="#"><i class="fa-solid fa-dollar-sign"></i> Tuition Cost (Low to High)</a>
-                                <a href="#"><i class="fa-solid fa-dollar-sign"></i> Tuition Cost (High to Low)</a>
-                                <a href="#"><i class="fa-solid fa-file-invoice"></i> Application Fee (Low to High)</a>
-                                <a href="#"><i class="fa-solid fa-file-invoice"></i> Application Fee (High to Low)</a>
-                            </div>
-                        </div>
-                    </div>
 
                     @if(session('success'))
                         <div id="success-alert" class="alert alert-success alert-dismissible fade show mt-2" role="alert">
@@ -1258,69 +1234,71 @@
             @if ($programs->count())
                 <div class="programs-container">
                     @foreach ($programs as $value)
-                        <div class="program-card">
+                        
+                         <div class="program-card">
                             <div class="program-header">
                                 <img src="{{ asset('/public/storage/' . $value->image) }}?v={{ $value->updated_at->timestamp }}"
                                     alt="University Logo" class="program-logo" />
-                                <!-- <img src="{{ asset('Dashboard/dp.webp') }}" alt="Program Image" class="program-logo" /> -->
-                                <a href="{{ route('details', $value->id) }}">
-                                    <h3>{{ $value->university_name }}</h3>
-                                </a>
-                            </div>
 
-                            <div class="program-badges">
-                                <span class="badge">High Job Demand</span>
-                                <span class="badge">Popular</span>
+                                <div class="header-content">
+                                    <h3>{{ $value->university_name }}</h3>
+
+                                    <button class="favorite-btn" title="Add to favourite"
+                                        onclick="this.querySelector('i').classList.toggle('fa-solid'); this.querySelector('i').classList.toggle('fa-regular');">
+                                        <i class="fa-regular fa-heart"></i>
+                                    </button>
+
+
+                                </div>
                             </div>
 
                             <div class="program-details">
-                                <small>{{ $value->certificate }}</small>
-                                <a href="#">
-                                    <p>{{ $value->college_name }}</p>
-                                </a>
-                                <hr />
                                 <table>
                                     <tbody>
+                                        {{-- <tr>
+                                            <td>School</td>
+                                            <td>{{ $value->college_name }}</td>
+                                        </tr> --}}
+                                        <tr>
+                                            <td>Tuition</td>
+                                            <td>${{ $value->tuition }} CAD</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Application Fee</td>
+                                            <td>${{ $value->application_fee }} CAD</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Language</td>
+                                            <td>{{ $value->language }}</td>
+                                        </tr>
                                         <tr>
                                             <td>Location</td>
-                                            <td>{{ $value->college_name }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Campus city</td>
-                                            <td>{{ $value->location }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Tuition (1st year)</td>
-                                            <td> ${{ $value->tuition }}CAD</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Application fee</td>
-                                            <td>${{ $value->application_fee }}CAD</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Duration</td>
-                                            <td> {{ $value->duration }} months</td>
+                                            <td>{{ $value->location }}, {{ $value->campus_country }}</td>
                                         </tr>
                                     </tbody>
                                 </table>
                             </div>
 
                             <div class="program-footer">
-                                <p>Success prediction <button class="success-btn"
-                                        onclick="openModal()">Details</button>
-                                </p>
+                                <a href="{{ route('user.programdetails', $value->id) }}" class="btn learn-btn">
+                                    <i class="fas fa-book-open"></i> Learn More
+                                </a>
+                                
 
-
-                        <button class="apply-btn" data-bs-toggle="modal" data-id="{{ $value->id }}"
+                                <!-- <button class="btn apply-btn" data-bs-toggle="modal" data-id="{{ $value->id }}"
                         data-name="{{ $value->university_name }}"
                         data-image="{{ asset('/public/storage/' . $value->image) }}?v={{ $value->updated_at->timestamp }}"
                         data-college="{{ $value->college_name }}" data-application_fee="{{ $value->application_fee }}" data-duration="{{ $value->duration }}" data-bs-target="#applicationModal">
-                                            Create Application
-                        </button>
-                               
+                                            <i class="fas fa-paper-plane"></i> Apply Now
+                        </button> -->
+
+                        <button class="btn apply-btn" onclick="openApplyModal('{{ $value->id }}')">
+                                <i class="fas fa-paper-plane"></i> Apply Now
+                            </button>
+
                             </div>
+
                         </div>
-                        
 
                     @endforeach
                 </div>
@@ -1330,9 +1308,10 @@
                     {{ $programs->appends(request()->input())->links() }}
                 </div>
 
+<div id="js-alert-container"></div>
 
           <!-- Application Modal -->
-            <div class="modal fade" id="applicationModal" tabindex="-1" aria-labelledby="applicationModalLabel" aria-hidden="true">
+            <!-- <div class="modal fade" id="applicationModal" tabindex="-1" aria-labelledby="applicationModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <form action="{{ route('my_applications.store') }}" method="POST">
@@ -1351,8 +1330,7 @@
 
                                 <input type="hidden" name="program_id" id="modal-program-id">
                 
-                                <!-- <input type="text" dissabled name="program_id" id="program_id" placeholder="Program ID" class="form-control mb-2" required value="{{ $value->id }}"> -->
-                                <input type="hidden" dissabled name="payment_status" id="payment_status" placeholder="Program ID" class="form-control mb-2" value="Pending">
+                                  <input type="hidden" dissabled name="payment_status" id="payment_status" placeholder="Program ID" class="form-control mb-2" value="Pending">
 
                             </div>
 
@@ -1363,11 +1341,197 @@
                         </form>
                     </div>
                 </div>
+            </div> -->
+
+
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <!-- Apply Now Modal -->
+    <div id="applyModal" class="modal-overlay" style="display: none;">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeApplyModal()">&times;</button>
+            <h2>Apply to this School</h2>
+            <p class="apply-note">
+                Note: You can apply to this school directly for free using our app EduBloom or complete this form and an
+                advisor will contact you.
+            </p>
+             <form id="mentorApplicationForm" class="apply-form">
+                           
+                        <input type="text" placeholder="Full Name" name="full_name" id="full_name" required>
+                        <input type="date" placeholder="Birthdate" name="dob" id="dob" required>
+                        <input type="text" placeholder="Location"  name="location" id="location" required>
+                        <input type="number" placeholder="WhatsApp Number" name="whats_app_number" id="whats_app_number" required>
+                        <input type="email" placeholder="Email Address" name="email" id="email" required>
+                        <select required name="studies_level" id="studies_level">
+                            <option value="">Level of Studies</option>
+                            <option value="Undergraduate">Undergraduate</option>
+                            <option value="Postgraduate">Postgraduate</option>
+                            <option value="Diploma">Diploma</option>
+                        </select>
+                        <input type="hidden" name="program_id" id="program_id">
+                        <button type="submit" class="submit-btn">Submit Application</button>
+                    </form>
+        </div>
             </div>
         </div>
 
 
         <!-- jQuery -->
+
+        <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const today = new Date();
+        const year = today.getFullYear() - 5;
+        const month = String(today.getMonth() + 1).padStart(2, '0');
+        const day = String(today.getDate()).padStart(2, '0');
+        const maxDate = `${year}-${month}-${day}`;
+
+        const dobInput = document.getElementById("dob");
+        dobInput.setAttribute("max", maxDate);
+        dobInput.onkeydown = () => false; // optional: disable typing
+    });
+</script>
+    <script>
+        function openApplyModal(schoolId) {
+            const modal = document.getElementById('applyModal');
+            
+             const programInput = document.getElementById('program_id');
+                if (programInput) {
+                    programInput.value = schoolId;
+                }
+            modal.style.display = 'flex';
+            setTimeout(() => {
+                window.addEventListener('click', outsideClickHandler);
+            }, 0);
+        }
+
+        function closeApplyModal() {
+            const modal = document.getElementById('applyModal');
+            modal.style.display = 'none';
+            window.removeEventListener('click', outsideClickHandler);
+        }
+
+        function outsideClickHandler(event) {
+            const modalContent = document.querySelector('.modal-content');
+            const modal = document.getElementById('applyModal');
+            if (!modalContent.contains(event.target)) {
+                closeApplyModal();
+            }
+        }
+    </script>
+
+
+  <!-- Custom JS Alert -->
+    <script>
+        function showJsAlert(type, message) {
+            const container = document.getElementById('js-alert-container');
+            if (!container) return;
+
+            container.innerHTML = ''; // Clear previous alert
+
+            const alertDiv = document.createElement('div');
+            alertDiv.className = `alert alert-${type === 'error' ? 'danger' : 'success'}`;
+            alertDiv.innerHTML = `
+            <i class="fas ${type === 'error' ? 'fa-times-circle' : 'fa-check-circle'}"></i>
+            ${message}
+        `;
+
+            // Inline styling
+            Object.assign(alertDiv.style, {
+                position: 'fixed',
+                top: '20px',
+                left: '40%',
+                transform: 'translateX(-50%)',
+                padding: '12px 25px',
+                fontSize: '16px',
+                fontFamily: "'Roboto', sans-serif",
+                borderRadius: '6px',
+                boxShadow: '0 10px 20px rgba(0, 0, 0, 0.1)',
+                zIndex: '1000',
+                backgroundColor: type === 'error' ? '#b92151' : '#28a745',
+                color: 'white',
+                transition: 'opacity 0.6s ease',
+                opacity: 1,
+            });
+
+            container.appendChild(alertDiv);
+
+            setTimeout(() => {
+                alertDiv.style.opacity = 0;
+                setTimeout(() => alertDiv.remove(), 600);
+            }, 3000);
+        }
+    </script>
+
+    <!-- Form Submission -->
+    <script>
+        document.getElementById('mentorApplicationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const formData = {
+                full_name: document.getElementById('full_name').value,
+                dob: document.getElementById('dob').value,
+                location: document.getElementById('location').value,
+                whats_app_number: document.getElementById('whats_app_number').value,
+                email: document.getElementById('email').value,
+                studies_level: document.getElementById('studies_level').value,
+                program_id: document.getElementById('program_id').value,
+            };
+
+            const csrfToken = document.querySelector('meta[name="csrf-token"]');
+            if (!csrfToken) {
+                showJsAlert('error', 'CSRF token missing.');
+                return;
+            }
+
+            fetch("/apply/now", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "X-CSRF-TOKEN": csrfToken.getAttribute("content")
+                    },
+                    body: JSON.stringify(formData)
+                })
+                .then(async (response) => {
+                    const contentType = response.headers.get("content-type");
+                    if (!response.ok) {
+                        if (contentType && contentType.includes("application/json")) {
+                            const errorData = await response.json();
+                            throw new Error(errorData.message || "Validation failed.");
+                        } else {
+                            throw new Error("Unexpected response format.");
+                        }
+                    }
+
+                    const data = await response.json();
+                    showJsAlert('success', data.message || 'Application submitted!');
+                    document.getElementById("mentorApplicationForm").reset();
+                    closeMentorForm();
+                })
+                .catch(error => {
+                    showJsAlert('error', error.message || 'There was an error submitting the form.');
+                    console.error(error);
+                });
+        });
+    </script>
+     <script>
+        function openMentorForm() {
+            document.getElementById("applyModal").style.display = "flex";
+        }
+
+        function closeMentorForm() {
+            document.getElementById("applyModal").style.display = "none";
+        }
+
+        // Optional: Click outside to close
+        window.onclick = function(event) {
+            const popup = document.getElementById("applyModal");
+            if (event.target === popup) {
+                closeMentorForm();
+            }
+        }
+    </script>
+
+
 
    
 <script>
@@ -1440,11 +1604,10 @@ $(document).ready(function() {
     <script src="{{ asset('js/programs.js') }}" defer></script>
 
     <!-- Bootstrap 5 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Bootstrap 5 JS (for modal functionality) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script> -->
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
@@ -1471,6 +1634,8 @@ $(document).ready(function() {
         });
     </script>
     </body>
+
+
     <script>
 
         $('#keyword').on('keyup', function() {

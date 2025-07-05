@@ -17,6 +17,8 @@ class Partner extends Model
         'designation',
         'email',
         'password', 
+        'user_id',
+        'status'
         // 'contact',
         // 'category', 
         // 'joined_date',
@@ -30,5 +32,8 @@ class Partner extends Model
     // If you're not using them, set the following property to false.
     public $timestamps = true;
 
-    // You can define other methods here for relationships, scopes, or custom functionality.
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

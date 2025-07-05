@@ -157,9 +157,22 @@ class UserDashController extends Controller
 
       public function details($id)
     {
+        // print_r($id);die;
         $program = Program::findOrFail($id);
          $country= Country::all();
-         return view('user_program_details', compact('program'));
+
+         $program = Program::findOrFail($id);
+
+    $relatedPrograms = Program::where('id', '!=', $id)
+        ->where(function ($query) use ($program) {
+            $query->where('program_level', $program->program_level)
+                  ->orWhere('college_course', $program->college_course)
+                  ->orWhere('campus_country', $program->campus_country);
+        })
+        ->take(6)
+        ->get();
+
+         return view('user_program_details', compact('program','relatedPrograms'));
         // return response()->json($program);
     }
 

@@ -14,17 +14,17 @@
 
             <div class="form-group">
                 <label for="designation">Designation:</label>
-                <input type="text" id="designation" name="designation" placeholder="Enter designation" required>
+                <input type="text" id="designation" name="designation" value="{{ $partner->designation }}" placeholder="Enter designation" required>
             </div>
 
             <div class="form-group">
                 <label for="email">Email :</label>
-                <input type="email" id="email" name="email" placeholder="Enter email address" required>
+                <input type="email" id="email" name="email" value="{{ $partner->email }}" placeholder="Enter email address" required>
             </div>
 
             <div class="form-group">
                 <label for="password">Password:</label>
-                <input type="password" id="password" name="password" placeholder="Enter password" required>
+                <input type="text" id="password" name="password" value="{{ $partner->password }}" placeholder="Enter password" required>
             </div>
 
             {{-- <div class="form-group">
@@ -42,6 +42,14 @@
             <label for="joined_date">Joined Date:</label>
             <input type="date" id="joined_date" name="joined_date" value="{{ old('joined_date', $partner->joined_date->format('Y-m-d')) }}" required>
         </div> --}}
+
+        <label for="role">Role:</label>
+            <select id="role_id" name="role_id" required>
+                @foreach($roles as $role)
+                    <option value="{{$role->id}}" {{ $partner->user->role_id == $role->id ? 'selected' : '' }}>{{$role->name}}</option>
+                @endforeach
+                
+            </select> 
 
             <div class="form-group">
                 <label for="status">Status:</label>

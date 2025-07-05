@@ -27,7 +27,15 @@
         
             <label for="joined_date">Joined Date:</label>
             <input type="date" id="joined_date" name="joined_date" required>
-        
+
+            <label for="role">Role:</label>
+            <select id="role_id" name="role_id" required>
+                @foreach($roles as $role)
+                    <option value="{{$role->id}}">{{$role->name}}</option>
+                @endforeach
+                
+            </select> 
+
             <label for="status">Status:</label>
             <select id="status" name="status" required>
                 <option value="Active">Active</option>

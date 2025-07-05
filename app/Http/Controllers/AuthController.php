@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Users;
+use App\Models\Partner;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use App\Models\User;
@@ -75,9 +76,14 @@ class AuthController extends Controller
     $credentials = $request->only('email', 'password');
 
     $user = User::where('email', $request->email)->first();
-
+   $userPartner = Partner::where('user_id', $user->id)->first();
+    
     if (empty($user)) {
         return response()->json(['success' => false, 'message' => 'No user exists with the provided email.'], 401);
+    }
+
+    if ($userPartner->status != 'Active') {
+        return response()->json(['success' => false, 'message' => 'Your account is currently inactive. Please contact support for admin.'], 401);
     }
    
     if (!$user || $user->role_id != 2) {

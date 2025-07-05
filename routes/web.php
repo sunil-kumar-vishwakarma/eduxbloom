@@ -36,6 +36,7 @@ use App\Http\Controllers\RolePermissionController;
 use App\Http\Controllers\StatController;
 use App\Http\Controllers\StripeController;
 use App\Http\Controllers\ConsultationBookController;
+use App\Http\Controllers\ProgramApplyNowController;
 use App\Http\Controllers\api\ApiController;
 
 
@@ -172,7 +173,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/logout_user', [AuthController::class, 'userLogout'])->name('logout_user');
 
 
-    Route::get('/program_details/{id}', [UserDashController::class, 'details'])->name('details');
+    Route::get('/program_details/{id}', [UserDashController::class, 'details'])->name('user.programdetails');
     
     Route::get('/create-stripe-session/{id}', [StripeController::class, 'createSession']);
 Route::get('/payment-success/{id}', [StripeController::class, 'paymentSuccess'])->name('payment.success');
@@ -238,7 +239,9 @@ Route::get('/admin/login', function () {
 })->name('adminlogin');
 
 Route::post('/admin/login', [AuthController::class, 'login'])->name('login.submit');
-
+Route::post('/apply/now', [ProgramApplyNowController::class, 'store']);
+Route::get('/admin/apply/program', [ProgramApplyNowController::class, 'index'])->name('admin.applynow.program');
+Route::delete('/admin/apply/delete/{id}', [ProgramApplyNowController::class, 'destroy'])->name('admin.applynow.delete');
 
 Route::middleware(['auth'])->group(function () {
 
