@@ -75,4 +75,9 @@ class User extends Authenticatable implements JWTSubject, MustVerifyEmail
     {
         return $this->hasMany(UserTestScore::class);
     }
+
+    public function favouritePrograms()
+{
+    return $this->hasMany(FavouriteProgram::class);
+}
 }

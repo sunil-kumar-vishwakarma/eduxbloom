@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
-
+use App\Models\FavouriteProgram;
 class UserDashController extends Controller
 {
 
@@ -78,11 +78,27 @@ class UserDashController extends Controller
 
             $programs = $query->orderBy('id', 'desc')->paginate(12)->withQueryString();
 
+            $user = auth()->user();
+            $favouriteProgram = [];
+            if(!empty($user)){
+           $favouriteProgram = FavouriteProgram::where('user_id', auth()->id())
+                    ->pluck('program_id')
+                    ->toArray();
+                }
+
             // Return only program cards in AJAX
             if ($request->ajax()) {
-                return view('partials.programs', compact('programs','schools'))->render();
+                return view('partials.programs', compact('programs','schools','favouriteProgram'))->render();
             }
 
+
+            $user = auth()->user();
+            $favouriteProgram = [];
+            if(!empty($user)){
+           $favouriteProgram = FavouriteProgram::where('user_id', auth()->id())
+                    ->pluck('program_id')
+                    ->toArray();
+                }
     //         $query = Program::query();
 
     // if ($request->filled('keyword')) {
@@ -103,7 +119,9 @@ class UserDashController extends Controller
 
     // $programs = $query->get();
 
-            return view('usersearchProgram', compact('programs','schools'));
+     
+
+            return view('usersearchProgram', compact('programs','schools','favouriteProgram'));
         
 
 

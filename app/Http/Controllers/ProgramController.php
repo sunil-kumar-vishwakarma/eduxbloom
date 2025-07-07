@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
+use App\Models\FavouriteProgram;
 
 class ProgramController extends Controller
 {
@@ -79,6 +80,13 @@ class ProgramController extends Controller
 
             $query = Program::query();
 
+            $user = auth()->user();
+            $favouriteProgram = [];
+            if(!empty($user)){
+           $favouriteProgram = FavouriteProgram::where('user_id', auth()->id())
+                    ->pluck('program_id')
+                    ->toArray();
+                }
             if ($keyword) {
                 $query->where('college_course', 'like', '%' . $keyword . '%');
             }
@@ -114,10 +122,10 @@ class ProgramController extends Controller
 
             // Return only program cards in AJAX
             if ($request->ajax()) {
-                return view('partials.programs', compact('programs','schools'))->render();
+                return view('partials.programs', compact('programs','schools','favouriteProgram'))->render();
             }
 
-            return view('search', compact('programs','schools'));
+            return view('search', compact('programs','schools','favouriteProgram'));
         }
 
 

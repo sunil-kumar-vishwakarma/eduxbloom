@@ -82,10 +82,22 @@
                                 <div class="header-content">
                                     <h3>{{ $value->university_name }}</h3>
 
-                                    <button class="favorite-btn" title="Add to favourite"
-                                        onclick="this.querySelector('i').classList.toggle('fa-solid'); this.querySelector('i').classList.toggle('fa-regular');">
+                                    
+                                @if(in_array($value->id, $favouriteProgram))
+                                    <button class="favorite-btn" 
+                                            title="Remove from favourite"
+                                            onclick="addToFavourite(this)" 
+                                            data-program-id="{{ $value->id }}">
+                                        <i class="fa-solid fa-heart"></i>
+                                    </button>
+                                @else
+                                    <button class="favorite-btn" 
+                                            title="Add to favourite"
+                                            onclick="addToFavourite(this)" 
+                                            data-program-id="{{ $value->id }}">
                                         <i class="fa-regular fa-heart"></i>
                                     </button>
+                                @endif
 
 
                                 </div>
@@ -335,3 +347,96 @@
             }
         }
     </script>
+
+  <script>
+    function addToFavourite(button) {
+    const programId = button.getAttribute('data-program-id');
+
+    const csrfToken = document.querySelector('meta[name="csrf-token"]');
+    if (!csrfToken) {
+        showJsAlert('error', 'CSRF token missing.');
+        return;
+    }
+
+    fetch("/favourite/program/add", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "X-CSRF-TOKEN": csrfToken.getAttribute("content")
+        },
+        body: JSON.stringify({ program_id: programId })
+    })
+    .then(async (response) => {
+
+
+           if (response.status === 401) {
+            alert(response);
+            window.location.href = "/student-login"; // redirect to your login page
+            return;
+        }
+
+
+        const contentType = response.headers.get("content-type");
+        if (!response.ok) {
+            if (contentType && contentType.includes("application/json")) {
+                const errorData = await response.json();
+                throw new Error(errorData.message || "Validation failed.");
+            } else {
+                throw new Error("Unexpected response format.");
+            }
+        }
+
+        const data = await response.json();
+        showJsAlert('success', data.message || 'Added to favourites!');
+
+        // Toggle heart icon on success
+        const icon = button.querySelector('i');
+        icon.classList.toggle('fa-solid');
+        icon.classList.toggle('fa-regular');
+    })
+   .catch(error => {
+    // Create container if needed
+    const container = document.body;
+    const type = 'error';
+    const message = 'Something went wrong. Please login again.';
+
+    const alertDivData = document.createElement('div');
+    alertDivData.className = `alert alert-${type === 'error' ? 'danger' : 'success'}`;
+    alertDivData.innerHTML = `
+        <i class="fas ${type === 'error' ? 'fa-times-circle' : 'fa-check-circle'}"></i>
+        ${message}
+    `;
+
+    // Styling
+    Object.assign(alertDivData.style, {
+        position: 'fixed',
+        top: '20px',
+        left: '50%',
+        transform: 'translateX(-50%)',
+        padding: '12px 25px',
+        fontSize: '16px',
+        fontFamily: "'Roboto', sans-serif",
+        borderRadius: '6px',
+        boxShadow: '0 10px 20px rgba(0, 0, 0, 0.1)',
+        zIndex: '1000',
+        backgroundColor: type === 'error' ? '#b92151' : '#28a745',
+        color: 'white',
+        transition: 'opacity 0.6s ease',
+        opacity: 1,
+    });
+
+    container.appendChild(alertDivData);
+
+    // Fade out after 3 seconds, then redirect
+    setTimeout(() => {
+        alertDivData.style.opacity = 0;
+        setTimeout(() => {
+            alertDivData.remove();
+            window.location.href = "/student-login";
+        }, 600);
+    }, 3000);
+});
+
+}
+
+  </script>

@@ -37,6 +37,7 @@ use App\Http\Controllers\StatController;
 use App\Http\Controllers\StripeController;
 use App\Http\Controllers\ConsultationBookController;
 use App\Http\Controllers\ProgramApplyNowController;
+use App\Http\Controllers\FavouriteProgramController;
 use App\Http\Controllers\api\ApiController;
 
 
@@ -176,7 +177,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/program_details/{id}', [UserDashController::class, 'details'])->name('user.programdetails');
     
     Route::get('/create-stripe-session/{id}', [StripeController::class, 'createSession']);
-Route::get('/payment-success/{id}', [StripeController::class, 'paymentSuccess'])->name('payment.success');
+    Route::get('/payment-success/{id}', [StripeController::class, 'paymentSuccess'])->name('payment.success');
+    Route::post('/favourite/program/add', [FavouriteProgramController::class, 'store']);
 
 });
 
