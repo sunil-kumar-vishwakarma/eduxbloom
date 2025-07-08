@@ -54,7 +54,26 @@
                         <option value="Language">Language</option>
                         <option value="English">English</option>
                         <option value="French">French</option>
-                    </select>
+                </select>
+                <label for="language">Field of Study:</label>
+                <select id="field_of_study" name="field_of_study" onchange="updateSubcategories()" required>
+                    <option value="">Field of Study</option>
+                    <option value="Engineering and Technology">Engineering and Technology</option>
+                    <option value="Sciences">Sciences</option>
+                    <option value="Art">Art</option>
+                    <option value="Business">Business,Management and Economics</option>
+                    <option value="Law">Law,Politics,Community Service and Teaching</option>
+                    <option value="Language">Language Proficiency</option>
+                    <option value="Health">Health Sciences</option>
+                    <option value="High School">High School</option>
+                </select>
+                <!-- <i class="fas fa-chevron-down dropdown-icon"></i> -->
+
+                 <label for="language">Field of Study Sub-Category:</label>
+                <select id="program_tag" name="program_tag" required>
+                    <option value="">Field of Study Sub-Category</option>
+                </select>
+                <!-- <i class="fas fa-chevron-down dropdown-icon"></i> -->
             <!-- </div> -->
 
             <!-- <input type="text" id="campus_country" name="campus_country" placeholder="Enter campus city" required> -->
@@ -87,4 +106,122 @@
             <button type="submit">Create Program</button>
         </form>
     </div>
+
+    <script>
+        const subcategories = {
+            "Engineering and Technology": [
+                "Aero Space, Aviation and Pilot Technology",
+                "Agriculture",
+                "Architecture",
+                "Biomedical Engineering",
+                "Chemical Engineering",
+                "Civil Engineering, Construction",
+                "Electrical Engineering",
+                "Electronic",
+                "Environmental Engineering",
+                "Game Design, Game Animation, Game Creation",
+                "General Engineering",
+                "Industrial",
+                "Material Engineering",
+                "Mechanical, Manufacturing, Robotic Engineering",
+                "Radiography",
+                "Technology, Software, Computer, IT"
+            ],
+            "Sciences": [
+                "Astronomy",
+                "Biochemistry",
+                "Biology",
+                "Chemistry",
+                "Computer Science",
+                "Dental",
+                "Environmental, Earth Sciences",
+                "Food, Nutrition, Exercise",
+                "General Science",
+                "Geology",
+                "Humanitarian Sciences",
+                "Mathematics",
+                "Optometry",
+                "Pharmacy",
+                "Physics",
+                "Political",
+                "Psychology, Philosophy, Therapy",
+                "Veterinarian"
+            ],
+            "Art": [
+                "Animation",
+                "Anthropology",
+                "Communication",
+                "English Literature",
+                "Fashion, Esthetics",
+                "Fine Arts",
+                "Food and Culinary",
+                "Gender Studies",
+                "General Art",
+                "Geography",
+                "Global Studies",
+                "Graphic Design, Interior Design",
+                "History",
+                "Journalism",
+                "Languages",
+                "Liberal Arts",
+                "Media, Photography, Film, Theatre, Performance",
+                "Music, Audio",
+                "Planning (Urban)",
+                "Religion",
+                "Sociology"
+            ],
+            "Business": [
+                "Accounting",
+                "Entrepreneurship",
+                "Finance, Economics",
+                "Hospitality and Tourism, Recreation",
+                "Human Resources",
+                "International Business",
+                "Management, Administration, General",
+                "Marketing, Analyst, Advertising",
+                "Public Relation",
+                "Supply Chain"
+            ],
+            "Law": [
+                "Community, Social Service",
+                "Law, Politics, Police, Security",
+                "Teaching, Early Development, Child Care"
+            ],
+            "Language": [
+                "General English",
+                "Professional English",
+                "Intensive English",
+                "General French",
+                "Professional French",
+                "Intensive French"
+            ],
+            "Health": [
+                "Health Sciences, Medicine, Nursing, Paramedic and Kinesiology",
+                "Assistant Nurse, Lab Technician",
+                "Optometry"
+            ],
+            "High School": [
+                "Online High school diploma, Canada, US IB",
+                "High school, English",
+                "High school, French"
+            ]
+        };
+
+        function updateSubcategories() {
+            const category = document.getElementById("field_of_study").value;
+            const subcategorySelect = document.getElementById("program_tag");
+
+            // Clear previous options
+            subcategorySelect.innerHTML = '<option value="">Field of Study Sub-Category</option>';
+
+            if (subcategories[category]) {
+                subcategories[category].forEach(sub => {
+                    const option = document.createElement("option");
+                    option.value = sub;
+                    option.textContent = sub;
+                    subcategorySelect.appendChild(option);
+                });
+            }
+        }
+    </script>
 @endsection

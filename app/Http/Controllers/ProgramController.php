@@ -107,7 +107,13 @@ class ProgramController extends Controller
             }
 
             if ($request->filled('field_of_study') && $request->field_of_study != 'Study') {
-                $query->where('college_course', $request->field_of_study);
+                // $query->where('college_course', $request->field_of_study);
+                $query->where('field_of_study', $request->field_of_study);
+            }
+
+            if ($request->filled('program_tag')) {
+                // $query->where('college_course', $request->field_of_study);
+                $query->where('field_of_study_sub_catagory', $request->program_tag);
             }
 
             if ($request->filled('language') && $request->language != 'Language') {
@@ -140,6 +146,7 @@ class ProgramController extends Controller
     // Store a newly created program
     public function store(Request $request)
     {
+        // print_r($request->all());die;
         // Validate the request
         $validated = $request->validate([
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
@@ -157,6 +164,8 @@ class ProgramController extends Controller
             'details' => 'required|string',
             'program_level' => 'required|string',
             'language' => 'required|string',
+            'field_of_study' => 'required|string',
+            'program_tag' => 'required',
             // 'status' => 'required|string|in:Active,Inactive',
         ]);
 
@@ -182,6 +191,8 @@ class ProgramController extends Controller
         $program->details = $validated['details'];
         $program->program_level = $validated['program_level'];
         $program->language = $validated['language'];
+        $program->field_of_study = $validated['field_of_study'];
+        $program->field_of_study_sub_catagory = $validated['program_tag'];
 
         // Store the image path
         if ($imagePath) {
@@ -212,6 +223,7 @@ class ProgramController extends Controller
     // Update a specific program
     public function update(Request $request, $id)
     {
+        // print_r($request->all());die;
         $program = Program::findOrFail($id);
 
         try {
@@ -228,6 +240,8 @@ class ProgramController extends Controller
                 // Store new image
                 $imagePath = $request->file('image')->store('program_thumbs', 'public');
                 $program->image = $imagePath;
+                $program->field_of_study = $request['field_of_study'];
+                $program->field_of_study_sub_catagory = $request['program_tag'];
                 $program->save();
             }
 

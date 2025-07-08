@@ -24,6 +24,8 @@ return new class extends Migration {
             $table->string('image');
             $table->string('language');
             $table->string('program_level');
+            $table->string('field_of_study');
+            $table->string('field_of_study_sub_catagory');
             // $table->enum('status', ['Active', 'Inactive'])->default('Active');
             $table->timestamps();
         });

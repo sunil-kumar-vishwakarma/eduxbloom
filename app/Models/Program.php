@@ -26,6 +26,8 @@ class Program extends Model
         'image',
         'language',
         'program_level',
+        'field_of_study',
+        'field_of_study_sub_catagory',
         // 'status'
     ];
 
