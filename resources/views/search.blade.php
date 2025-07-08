@@ -127,6 +127,10 @@
             flex: 1 1 200px;
             position: relative;
         }
+        .filter-size {
+            flex: 1 1 330px;
+            position: relative;
+        }
 
         .custom-dropdown select {
             width: 100%;
@@ -306,7 +310,7 @@
         }
 
 
-      
+
 
         .success-btn {
             background-color: rgb(230, 239, 254);
@@ -319,7 +323,7 @@
             margin-left: 8px;
         }
 
-      
+
 
         @media (max-width: 1024px) {
             .filter-search-wrapper {
@@ -339,176 +343,176 @@
         }
 
         .program-header {
-                    display: flex;
-                    align-items: center;
-                    justify-content: space-between;
-                    margin-bottom: 16px;
-                }
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 16px;
+        }
 
 
-                .header-content {
-                    display: flex;
-                    align-items: center;
-                    justify-content: space-between;
-                    width: 100%;
-                    margin-left: 12px;
-                }
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            margin-left: 12px;
+        }
 
 
-                .favorite-btn {
-                    background: transparent;
-                    border: none;
-                    font-size: 18px;
-                    cursor: pointer;
-                    transition: color 0.3s;
-                }
+        .favorite-btn {
+            background: transparent;
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
 
-                .favorite-btn i {
-                    color: #b92151;
-                    transition: color 0.3s;
-                }
+        .favorite-btn i {
+            color: #b92151;
+            transition: color 0.3s;
+        }
 
-                .favorite-btn:hover i {
-                    color: #db2962;
-                }
-
-
-
-                .program-footer {
-                    display: flex;
-                    justify-content: space-between;
-                    gap: 10px;
-                    margin-top: auto;
-                    padding-top: 20px;
-                }
-
-                .btn {
-                    padding: 10px 16px;
-                    border-radius: 6px;
-                    font-weight: 600;
-                    text-decoration: none;
-                    font-size: 14px;
-                    cursor: pointer;
-                    width: 100%;
-                    text-align: center;
-                }
-
-                .learn-btn {
-                    background-color: transparent;
-                    color: #2764c5 !important;
-                    border: 2px solid #2764c5;
-                    transition: transform 0.3s ease;
-                }
-
-                .learn-btn:hover {
-                    transform: translateY(-2px);
-                    /* background-color: #60a5fa; */
-                    border: 2px solid #2764c5;
-                    color: #2764c5;
-                }
-
-                .apply-btn {
-                    background: linear-gradient(90deg, #0644a6, #2764c5);
-                    color: #fff;
-                    border: none;
-                    transition: transform 0.3s ease;
-                }
-
-                .apply-btn:hover {
-                    transform: translateY(-3px);
-                    color: white !important;
-                }
-
-                .modal-overlay {
-                    position: fixed;
-                    z-index: 9999;
-                    top: 0;
-                    left: 0;
-                    height: 100%;
-                    width: 100%;
-                    background: rgba(0, 0, 0, 0.5);
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    backdrop-filter: blur(6px);
-                }
-
-                .modal-content {
-                    background: #fff;
-                    padding: 30px;
-                    border-radius: 12px;
-                    width: 100%;
-                    max-width: 500px;
-                    position: relative;
-                    animation: fadeInUp 0.4s ease-in-out;
-                    text-align: left;
-                }
-
-                .modal-content h2 {
-                    font-size: 20px;
-                    font-weight: bold;
-                    margin-bottom: 10px;
-                }
-
-                @keyframes fadeInUp {
-                    from {
-                        opacity: 0;
-                        transform: translateY(40px);
-                    }
-
-                    to {
-                        opacity: 1;
-                        transform: translateY(0);
-                    }
-                }
-
-                .close-modal {
-                    position: absolute;
-                    top: 12px;
-                    right: 16px;
-                    background: transparent;
-                    border: none;
-                    font-size: 24px;
-                    cursor: pointer;
-                }
-
-                .apply-note {
-                    font-size: 14px;
-                    margin-bottom: 20px;
-                    line-height: 1.5;
-                }
-
-                .apply-form input,
-                .apply-form select {
-                    width: 100%;
-                    margin-bottom: 16px;
-                    padding: 10px;
-                    border: 1px solid #ccc;
-                    border-radius: 6px;
-                    font-family: inherit;
-                }
-
-                .apply-form input:focus {
-                    border-color: #0b5ada;
-                    outline: none;
-                    box-shadow: 0 0 0 2px rgba(11, 90, 218, 0.2);
-                }
+        .favorite-btn:hover i {
+            color: #db2962;
+        }
 
 
-                .submit-btn {
-                    width: 100%;
-                    background: linear-gradient(90deg, #0644a6, #2764c5);
-                    color: #fff;
-                    padding: 12px;
-                    border: none;
-                    border-radius: 6px;
-                    cursor: pointer;
-                    transition: transform 0.3s ease;
-                }
 
-                .submit-btn:hover {
-                    transform: translateY(-2px);
-                }
+        .program-footer {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            margin-top: auto;
+            padding-top: 20px;
+        }
+
+        .btn {
+            padding: 10px 16px;
+            border-radius: 6px;
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 14px;
+            cursor: pointer;
+            width: 100%;
+            text-align: center;
+        }
+
+        .learn-btn {
+            background-color: transparent;
+            color: #2764c5 !important;
+            border: 2px solid #2764c5;
+            transition: transform 0.3s ease;
+        }
+
+        .learn-btn:hover {
+            transform: translateY(-2px);
+            /* background-color: #60a5fa; */
+            border: 2px solid #2764c5;
+            color: #2764c5;
+        }
+
+        .apply-btn {
+            background: linear-gradient(90deg, #0644a6, #2764c5);
+            color: #fff;
+            border: none;
+            transition: transform 0.3s ease;
+        }
+
+        .apply-btn:hover {
+            transform: translateY(-3px);
+            color: white !important;
+        }
+
+        .modal-overlay {
+            position: fixed;
+            z-index: 9999;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(6px);
+        }
+
+        .modal-content {
+            background: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            width: 100%;
+            max-width: 500px;
+            position: relative;
+            animation: fadeInUp 0.4s ease-in-out;
+            text-align: left;
+        }
+
+        .modal-content h2 {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 12px;
+            right: 16px;
+            background: transparent;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .apply-note {
+            font-size: 14px;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .apply-form input,
+        .apply-form select {
+            width: 100%;
+            margin-bottom: 16px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-family: inherit;
+        }
+
+        .apply-form input:focus {
+            border-color: #0b5ada;
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(11, 90, 218, 0.2);
+        }
+
+
+        .submit-btn {
+            width: 100%;
+            background: linear-gradient(90deg, #0644a6, #2764c5);
+            color: #fff;
+            padding: 12px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+        }
 
         /* Responsive breakpoints */
 
@@ -518,7 +522,7 @@
                 margin-top: 20%;
             }
 
-           
+
         }
 
         /* Small phones */
@@ -545,7 +549,7 @@
                 margin-top: 20%;
             }
 
-          
+
         }
 
         /* Main wrapper */
@@ -658,8 +662,6 @@
             pointer-events: none;
             background-color: #f5f5f5;
         }
-
-       
     </style>
 
 
@@ -718,17 +720,29 @@
             </div>
 
             {{-- Field of Study --}}
-            <div class="filter-item custom-dropdown">
-                <select id="field_of_study">
+            <div class="filter-item filter-size custom-dropdown">
+                <select id="field_of_study" onchange="updateSubcategories()">
                     <option value="">Field of Study</option>
-                    <option value="Engineering">Engineering</option>
-                    <option value="Business">Business</option>
-                    <option value="Health Sciences">Health Sciences</option>
-                    <option value="Arts & Humanities">Arts & Humanities</option>
-                    <option value="STEM">STEM</option>
+                    <option value="Engineering and Technology">Engineering and Technology</option>
+                    <option value="Sciences">Sciences</option>
+                    <option value="Art">Art</option>
+                    <option value="Business">Business,Management and Economics</option>
+                    <option value="Law">Law,Politics,Community Service and Teaching</option>
+                    <option value="Language">Language Proficiency</option>
+                    <option value="Health">Health Sciences</option>
+                    <option value="High School">High School</option>
                 </select>
                 <i class="fas fa-chevron-down dropdown-icon"></i>
             </div>
+
+            <div class="filter-item filter-size custom-dropdown">
+                <select id="program_tag">
+                    <option value="">Field of Study Sub-Category</option>
+                </select>
+                <i class="fas fa-chevron-down dropdown-icon"></i>
+            </div>
+
+
 
             {{-- Language --}}
             <div class="filter-item custom-dropdown">
@@ -740,16 +754,7 @@
                 <i class="fas fa-chevron-down dropdown-icon"></i>
             </div>
 
-            {{-- Program Tag / Delivery Mode --}}
-            <div class="filter-item custom-dropdown">
-                <select id="program_tag">
-                    <option value="">Delivery Mode</option>
-                    <option value="Online">Online</option>
-                    <option value="In-Person">In-Person</option>
-                    <option value="Hybrid">Hybrid</option>
-                </select>
-                <i class="fas fa-chevron-down dropdown-icon"></i>
-            </div>
+
         </div>
     </div>
 
@@ -777,6 +782,127 @@
     <div id="program-results">
         @include('partials.programs', ['programs' => $programs])
     </div>
+
+    <script>
+        const subcategories = {
+            "Engineering and Technology": [
+                "Aero Space, Aviation and Pilot Technology",
+                "Agriculture",
+                "Architecture",
+                "Biomedical Engineering",
+                "Chemical Engineering",
+                "Civil Engineering, Construction",
+                "Electrical Engineering",
+                "Electronic",
+                "Environmental Engineering",
+                "Game Design, Game Animation, Game Creation",
+                "General Engineering",
+                "Industrial",
+                "Material Engineering",
+                "Mechanical, Manufacturing, Robotic Engineering",
+                "Radiography",
+                "Technology, Software, Computer, IT"
+            ],
+            "Sciences": [
+                "Astronomy",
+                "Biochemistry",
+                "Biology",
+                "Chemistry",
+                "Computer Science",
+                "Dental",
+                "Environmental, Earth Sciences",
+                "Food, Nutrition, Exercise",
+                "General Science",
+                "Geology",
+                "Humanitarian Sciences",
+                "Mathematics",
+                "Optometry",
+                "Pharmacy",
+                "Physics",
+                "Political",
+                "Psychology, Philosophy, Therapy",
+                "Veterinarian"
+            ],
+            "Art": [
+                "Animation",
+                "Anthropology",
+                "Communication",
+                "English Literature",
+                "Fashion, Esthetics",
+                "Fine Arts",
+                "Food and Culinary",
+                "Gender Studies",
+                "General Art",
+                "Geography",
+                "Global Studies",
+                "Graphic Design, Interior Design",
+                "History",
+                "Journalism",
+                "Languages",
+                "Liberal Arts",
+                "Media, Photography, Film, Theatre, Performance",
+                "Music, Audio",
+                "Planning (Urban)",
+                "Religion",
+                "Sociology"
+            ],
+            "Business": [
+                "Accounting",
+                "Entrepreneurship",
+                "Finance, Economics",
+                "Hospitality and Tourism, Recreation",
+                "Human Resources",
+                "International Business",
+                "Management, Administration, General",
+                "Marketing, Analyst, Advertising",
+                "Public Relation",
+                "Supply Chain"
+            ],
+            "Law": [
+                "Community, Social Service",
+                "Law, Politics, Police, Security",
+                "Teaching, Early Development, Child Care"
+            ],
+            "Language": [
+                "General English",
+                "Professional English",
+                "Intensive English",
+                "General French",
+                "Professional French",
+                "Intensive French"
+            ],
+            "Health": [
+                "Health Sciences, Medicine, Nursing, Paramedic and Kinesiology",
+                "Assistant Nurse, Lab Technician",
+                "Optometry"
+            ],
+            "High School": [
+                "Online High school diploma, Canada, US IB",
+                "High school, English",
+                "High school, French"
+            ]
+        };
+
+        function updateSubcategories() {
+            const category = document.getElementById("field_of_study").value;
+            const subcategorySelect = document.getElementById("program_tag");
+
+            // Clear previous options
+            subcategorySelect.innerHTML = '<option value="">Field of Study Sub-Category</option>';
+
+            if (subcategories[category]) {
+                subcategories[category].forEach(sub => {
+                    const option = document.createElement("option");
+                    option.value = sub;
+                    option.textContent = sub;
+                    subcategorySelect.appendChild(option);
+                });
+            }
+        }
+    </script>
+
+
+
     <script src="{{ asset('js/programs.js') }}" defer></script>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
