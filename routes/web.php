@@ -38,6 +38,7 @@ use App\Http\Controllers\StripeController;
 use App\Http\Controllers\ConsultationBookController;
 use App\Http\Controllers\ProgramApplyNowController;
 use App\Http\Controllers\FavouriteProgramController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\api\ApiController;
 
 
@@ -351,7 +352,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/admin/stats/create', [StatController::class, 'create'])->name('stats.create');
     Route::post('/stats', [StatController::class, 'store'])->name('stats.store'); 
 
-
+Route::get('/category', [CategoryController::class, 'index'])->name('category.index');
+Route::get('/subcategory', [CategoryController::class, 'sub'])->name('subcategory.index');
 
     // discover_program Routes
     Route::get('/discover_program-list', [ProgramController::class, 'index'])->name('discover_program-list');

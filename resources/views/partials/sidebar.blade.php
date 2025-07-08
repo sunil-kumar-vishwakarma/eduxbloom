@@ -115,6 +115,17 @@
         </li>
         @endif
 
+         <li class="menu-item">
+            <a href="{{ route('category.index') }}" class="{{ request()->routeIs('category.index') ? 'active' : '' }}">
+                <i class="fas fa-book-reader icon"></i> Category
+            </a>
+        </li>
+         <li class="menu-item">
+            <a href="{{ route('subcategory.index') }}" class="{{ request()->routeIs('subcategory.index') ? 'active' : '' }}">
+                <i class="fas fa-book-reader icon"></i> Sub Category
+            </a>
+        </li>
+
         {{-- ✅ Program List --}}
         @if($isAdmin || $user->can('View Program'))
         <li class="menu-item">
