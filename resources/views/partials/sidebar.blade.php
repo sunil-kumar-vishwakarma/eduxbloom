@@ -1,11 +1,13 @@
 @php
 use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Permission;
+$user = auth()->user();
+if(!empty($user)){
 
 $user = auth()->user();
 $isAdmin = $user && $user->is_admin == 1;
 
-// ✅ Get grouped permissions
+// âœ… Get grouped permissions
 if ($isAdmin) {
     // Admin: get all permissions grouped by module
     $permissions = Permission::orderBy('module')->get()->groupBy('module');
@@ -18,7 +20,7 @@ if ($isAdmin) {
 
     $permissionIds = DB::table('role_has_permissions')
     ->whereIn('role_id', [$user->role_id]) // Wrap in array to make it iterable
-    ->pluck('permission_id'); // ✅ Get only the column you need (not full rows)
+    ->pluck('permission_id'); // âœ… Get only the column you need (not full rows)
 
 $permissions = Permission::whereIn('id', $permissionIds)
     ->orderBy('module')
@@ -37,7 +39,7 @@ $permissions = Permission::whereIn('id', $permissionIds)
     </div>
 
     <ul class="sidebar-menu">
-        {{-- ✅ Static Dashboard link always at the top --}}
+        {{-- âœ… Static Dashboard link always at the top --}}
         <li class="menu-item">
             <a href="{{ route('dashboard') }}" class="{{ request()->routeIs('dashboard') ? 'active' : '' }}">
                 <i class="fas fa-chart-line icon"></i> Dashboard
@@ -52,11 +54,11 @@ $permissions = Permission::whereIn('id', $permissionIds)
         @endphp
 
         @if($module === 'Payment')
-            {{-- 🔻 Payment with dropdown --}}
+            {{-- ðŸ”» Payment with dropdown --}}
             <li class="menu-item dropdown {{ request()->routeIs('received-payments', 'failed-payments', 'payment-setup') ? 'active' : '' }}">
                 <a href="javascript:void(0);">
                     <i class="{{ $firstPerm->icon ?? 'fas fa-wallet' }} icon"></i>
-                    {{ $module }} ▼
+                    {{ $module }} â–¼
                 </a>
                 <ul class="submenu">
                     <li class="submenu-item">
@@ -77,7 +79,7 @@ $permissions = Permission::whereIn('id', $permissionIds)
                 </ul>
             </li>
         @else
-            {{-- 🔸 Regular single module item --}}
+            {{-- ðŸ”¸ Regular single module item --}}
             <li class="menu-item">
                 <a href="{{ route($firstPerm->route_name ?? 'dashboard') }}"
                    class="{{ request()->routeIs($firstPerm->route_name ?? '') ? 'active' : '' }}">
@@ -91,5 +93,7 @@ $permissions = Permission::whereIn('id', $permissionIds)
 
     </ul>
 </aside>
+@php } 
 
+@endphp
 
