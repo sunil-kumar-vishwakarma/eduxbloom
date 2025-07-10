@@ -58,6 +58,7 @@ class PermissionSeeder extends Seeder
             ['id' => 44, 'name' => 'View button', 'guard_name' => 'Settings'],
             ['id' => 45, 'name' => 'create button', 'guard_name' => 'Settings'],
             ['id' => 46, 'name' => 'edit button', 'guard_name' => 'Settings'],
+             ['id' => 47, 'name' => 'View Applynow', 'guard_name' => 'Applynow'],
         ];
 
         foreach ($permissions as $permission) {

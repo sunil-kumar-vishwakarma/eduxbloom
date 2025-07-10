@@ -10,7 +10,7 @@ class Permission extends SpatiePermission
 {
     use HasFactory;
     
-    protected $fillable = ['name', 'guard_name'];
+    protected $fillable = ['name', 'guard_name','icon','route_name'];
 
 //     public function roles()
 // {

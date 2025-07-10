@@ -1,11 +1,34 @@
+@php
+use Illuminate\Support\Facades\DB;
+use Spatie\Permission\Models\Permission;
 
-@auth
-   
+$user = auth()->user();
+$isAdmin = $user && $user->is_admin == 1;
 
- @php
-    $user = auth()->user();
-    $isAdmin = $user && $user->is_admin == 1;
+// ✅ Get grouped permissions
+if ($isAdmin) {
+    // Admin: get all permissions grouped by module
+    $permissions = Permission::orderBy('module')->get()->groupBy('module');
+} else {
+    // Team User: fetch permissions assigned via roles
+    $roleIds = DB::table('model_has_roles')
+        ->where('model_type', 'App\Models\User')
+        ->where('model_id', $user->id)
+        ->pluck('role_id');
+
+    $permissionIds = DB::table('role_has_permissions')
+    ->whereIn('role_id', [$user->role_id]) // Wrap in array to make it iterable
+    ->pluck('permission_id'); // ✅ Get only the column you need (not full rows)
+
+$permissions = Permission::whereIn('id', $permissionIds)
+    ->orderBy('module')
+    ->get()
+    ->groupBy('module');
+       
+}
+
 @endphp
+
 <aside id="sidebar" class="sidebar">
     <div class="sidebar-logo">
         <a href="{{ route('dashboard') }}" style="text-decoration: none; color: inherit;">
@@ -13,185 +36,60 @@
         </a>
     </div>
 
-  
-
     <ul class="sidebar-menu">
-        {{-- ✅ Dashboard --}}
-     
-
-
-
-@if(!empty($isAdmin))
-    {{-- Admin view --}}
-    <li class="menu-item">
-        <a href="{{ route('dashboard') }}">
-            <i class="fas fa-chart-line icon"></i> Dashboard
-        </a>
-    </li>
-@else
-@can('View Dashboard')
-
-    <li class="menu-item">
-        <a href="{{ route('dashboard') }}">
-            <i class="fas fa-chart-line icon"></i> Dashboard
-        </a>
-    </li>
-    @endcan
-@endif
-
-
-        {{-- ✅ Student List --}}
-        @if($isAdmin || $user->can('View Student'))
+        {{-- ✅ Static Dashboard link always at the top --}}
         <li class="menu-item">
-            <a href="{{ route('students-list') }}" class="{{ request()->routeIs('students-list') ? 'active' : '' }}">
-                <i class="fas fa-user-graduate icon"></i> Student List
+            <a href="{{ route('dashboard') }}" class="{{ request()->routeIs('dashboard') ? 'active' : '' }}">
+                <i class="fas fa-chart-line icon"></i> Dashboard
             </a>
         </li>
-        @endif
-
-        {{-- ✅ Mentor Applications --}}
-        @if($isAdmin || $user->can('View Mentor'))
-        <li class="menu-item">
-            <a href="{{ route('admin.mentors') }}" class="{{ request()->routeIs('admin.mentors') ? 'active' : '' }}">
-                <i class="fas fa-chalkboard-teacher icon"></i> Mentor Applications
-            </a>
-        </li>
-        @endif
-
-         {{-- ✅ Mentor Applications --}}
-        @if($isAdmin || $user->can('View Applynow'))
-        <li class="menu-item">
-            <a href="{{ route('admin.applynow.program') }}" class="{{ request()->routeIs('admin.applynow.program') ? 'active' : '' }}">
-                <i class="fas fa-chalkboard-teacher icon"></i> Apply Program Applications
-            </a>
-        </li>
-        @endif
 
         
+        @foreach($permissions as $module => $modulePermissions)
+    @if(strtolower($module) !== 'dashboard') {{-- skip dashboard --}}
+        @php
+            $firstPerm = $modulePermissions->first();
+        @endphp
 
-        {{-- ✅ Webinars --}}
-        @if($isAdmin || $user->can('View Webinar'))
-        <li class="menu-item">
-            <a href="{{ route('webinars.index') }}" class="{{ request()->routeIs('webinars.index') ? 'active' : '' }}">
-                <i class="fas fa-video icon"></i> Webinar's List
-            </a>
-        </li>
+        @if($module === 'Payment')
+            {{-- 🔻 Payment with dropdown --}}
+            <li class="menu-item dropdown {{ request()->routeIs('received-payments', 'failed-payments', 'payment-setup') ? 'active' : '' }}">
+                <a href="javascript:void(0);">
+                    <i class="{{ $firstPerm->icon ?? 'fas fa-wallet' }} icon"></i>
+                    {{ $module }} ▼
+                </a>
+                <ul class="submenu">
+                    <li class="submenu-item">
+                        <a href="{{ route('received-payments') }}" class="{{ request()->routeIs('received-payments') ? 'active' : '' }}">
+                            Received
+                        </a>
+                    </li>
+                    <li class="submenu-item">
+                        <a href="{{ route('failed-payments') }}" class="{{ request()->routeIs('failed-payments') ? 'active' : '' }}">
+                            Failed / Pending
+                        </a>
+                    </li>
+                    <li class="submenu-item">
+                        <a href="{{ route('payment-setup') }}" class="{{ request()->routeIs('payment-setup') ? 'active' : '' }}">
+                            Setup Method
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        @else
+            {{-- 🔸 Regular single module item --}}
+            <li class="menu-item">
+                <a href="{{ route($firstPerm->route_name ?? 'dashboard') }}"
+                   class="{{ request()->routeIs($firstPerm->route_name ?? '') ? 'active' : '' }}">
+                    <i class="{{ $firstPerm->icon ?? 'fas fa-folder' }} icon"></i>
+                    {{ $module }}
+                </a>
+            </li>
         @endif
+    @endif
+@endforeach
 
-        {{-- ✅ Roles Permission --}}
-        @if($isAdmin || $user->can('Roles Permission'))
-        <li class="menu-item">
-            <a href="{{ route('roles_permission.index') }}" class="{{ request()->routeIs('roles_permission.index') ? 'active' : '' }}">
-                <i class="fas fa-user-shield icon"></i> Roles Permission
-            </a>
-        </li>
-        @endif
-
-        {{-- ✅ Contact Info --}}
-        @if($isAdmin || $user->can('View Contact Info'))
-        <li class="menu-item">
-            <a href="{{ route('contact-infos.index') }}" class="{{ request()->routeIs('contact-infos.index') ? 'active' : '' }}">
-                <i class="fas fa-envelope icon"></i> Contact Info
-            </a>
-        </li>
-        @endif
-
-        @if($isAdmin || $user->can('View Contact Info'))
-        <li class="menu-item">
-            <a href="{{ route('consultation.booking') }}" class="{{ request()->routeIs('consultation.booking') ? 'active' : '' }}">
-                <i class="fas fa-envelope icon"></i> Consultation Booking
-            </a>
-        </li>
-        @endif
-
-        
-
-        {{-- ✅ Stats --}}
-        @if($isAdmin || $user->can('View State'))
-        <li class="menu-item">
-            <a href="{{ route('stats.index') }}" class="{{ request()->routeIs('stats.index') ? 'active' : '' }}">
-                <i class="fas fa-chart-line icon"></i> State's
-            </a>
-        </li>
-        @endif
-
-        
-
-        {{-- ✅ Program List --}}
-        @if($isAdmin || $user->can('View Program'))
-        <li class="menu-item">
-            <a href="{{ route('discover_program-list') }}" class="{{ request()->routeIs('discover_program-list') ? 'active' : '' }}">
-                <i class="fas fa-book-reader icon"></i> Program List
-            </a>
-        </li>
-        @endif
-
-        {{-- ✅ EduX Team --}}
-        @if($isAdmin || $user->can('View Team'))
-        <li class="menu-item">
-            <a href="{{ route('partners-list') }}" class="{{ request()->routeIs('partners-list') ? 'active' : '' }}">
-                <i class="fas fa-users icon"></i> Edu-x Team
-            </a>
-        </li>
-        @endif
-
-        {{-- ✅ Privacy Policy --}}
-        @if($isAdmin || $user->can('View Privacy Policy'))
-        <li class="menu-item">
-            <a href="{{ route('pages.edit_privacy') }}" class="{{ request()->routeIs('pages.edit_privacy') ? 'active' : '' }}">
-                <i class="fas fa-user-secret icon"></i> Privacy Policy
-            </a>
-        </li>
-        @endif
-
-        {{-- ✅ Terms and Conditions --}}
-        @if($isAdmin || $user->can('View Term and Condition'))
-        <li class="menu-item">
-            <a href="{{ route('pages.edit_term') }}" class="{{ request()->routeIs('pages.edit_term') ? 'active' : '' }}">
-                <i class="fas fa-file-contract icon"></i> Term and Condition
-            </a>
-        </li>
-        @endif
-
-        {{-- ✅ Blog List --}}
-        @if($isAdmin || $user->can('View Blog'))
-        <li class="menu-item">
-            <a href="{{ route('blog.index') }}" class="{{ request()->routeIs('blog.index') ? 'active' : '' }}">
-                <i class="fas fa-newspaper icon"></i> Blog List
-            </a>
-        </li>
-        @endif
-
-        {{-- ✅ Payment Dropdown --}}
-        @if($isAdmin || $user->can('View Payment'))
-        <li class="menu-item dropdown">
-            <i class="fas fa-wallet icon"></i> Payment ▼
-            <ul class="submenu">
-                <li class="submenu-item"><a href="{{ route('received-payments') }}" class="{{ request()->routeIs('received-payments') ? 'active' : '' }}">Received</a></li>
-                <li class="submenu-item"><a href="{{ route('failed-payments') }}" class="{{ request()->routeIs('failed-payments') ? 'active' : '' }}">Failed/Pending</a></li>
-                <li class="submenu-item"><a href="{{ route('payment-setup') }}" class="{{ request()->routeIs('payment-setup') ? 'active' : '' }}">Setup Method</a></li>
-            </ul>
-        </li>
-        @endif
-
-        {{-- ✅ Notifications --}}
-        @if($isAdmin || $user->can('View Notification'))
-        <li class="menu-item">
-            <a href="{{ route('notifications') }}" class="{{ request()->routeIs('notifications') ? 'active' : '' }}">
-                <i class="fas fa-bell icon"></i> Notification
-            </a>
-        </li>
-        @endif
-
-        {{-- ✅ Settings --}}
-        @if($isAdmin || $user->can('View Settings'))
-        <li class="menu-item">
-            <a href="{{ route('settings.index') }}" class="{{ request()->routeIs('settings.index') ? 'active' : '' }}">
-                <i class="fas fa-sliders-h icon"></i> Settings
-            </a>
-        </li>
-        @endif
     </ul>
 </aside>
 
-@endauth
+
