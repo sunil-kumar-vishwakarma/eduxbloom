@@ -1246,8 +1246,9 @@
                                 alt="University Logo" class="program-logo" />
 
                             <div class="header-content">
-                                <h3>{{ $value->university_name }}</h3>
-
+                                <!-- <h3>{{ $value->university_name }}</h3> -->
+                            <a href="{{$value->college_url}}" target="_blank"><h3>{{$value->college_name}}</h3></a>
+                                    
                                 <!-- <button class="favorite-btn" title="Add to favourite"
                                         onclick="this.querySelector('i').classList.toggle('fa-solid'); this.querySelector('i').classList.toggle('fa-regular');">
                                         <i class="fa-regular fa-heart"></i>
