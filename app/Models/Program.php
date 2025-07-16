@@ -14,6 +14,7 @@ class Program extends Model
         'university_name',
         'certificate',
         'college_name',
+        'college_url',
         'college_course',
         'location',
         'campus_country',

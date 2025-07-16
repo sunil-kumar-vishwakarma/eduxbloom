@@ -38,6 +38,12 @@
             <label for="college_name">College Name:</label>
             <input type="text" id="college_name" name="college_name" value="{{ old('college_name', $program->college_name) }}" required>
         </div>
+
+        <div class="form-group">
+            <label for="college_url">College URL:</label>
+            <input type="text" id="college_url" name="college_url" value="{{ old('college_url', $program->college_url) }}" required>
+        </div>
+
         <div class="form-group">
             <label for="college_course">College Course:</label>
             <input type="text" id="college_course" name="college_course" value="{{ old('college_course', $program->college_course) }}" required>

@@ -8,7 +8,10 @@
                                     alt="University Logo" class="program-logo" />
 
                                 <div class="header-content">
-                                    <h3>{{ $value->university_name }}</h3>
+                                    <!-- <h3>{{ $value->university_name }}</h3> -->
+                                    
+                                        <a href="{{$value->college_url}}" target="_blank"><h3>{{$value->college_name}}</h3></a>
+                                    
 
                                     
                                 @if(in_array($value->id, $favouriteProgram))

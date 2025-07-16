@@ -23,6 +23,11 @@
 
             <label for="college_name">College Name:</label>
             <input type="text" id="college_name" name="college_name" placeholder="Enter college name" required>
+           
+            <label for="college_url">College URl:</label>
+            <input type="text" id="college_url" name="college_url" placeholder="Enter college url" required>
+           
+
             <label for="college_course">College Course:</label>
             <input type="text" id="college_course" name="college_course" placeholder="Enter college Cource" required>
 

@@ -12,6 +12,7 @@ return new class extends Migration {
             $table->string('university_name');
             $table->string('certificate');
             $table->string('college_name');
+            $table->string('college_url');
             $table->string('college_course');
             $table->string('location');
             $table->string('campus_country');

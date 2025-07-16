@@ -153,6 +153,7 @@ class ProgramController extends Controller
             'university_name' => 'required|string|max:255',
             'certificate' => 'required|string|max:255',
             'college_name' => 'required|string|max:255',
+            'college_url' => 'required|string|max:255',
             'college_course' => 'required|string|max:255',
             'location' => 'required|string|max:255',
             'campus_country' => 'required|string|max:255',
@@ -180,6 +181,7 @@ class ProgramController extends Controller
         $program->university_name = $validated['university_name'];
         $program->certificate = $validated['certificate'];
         $program->college_name = $validated['college_name'];
+        $program->college_url = $validated['college_url'];
         $program->college_course = $validated['college_course'];
         $program->location = $validated['location'];
         $program->campus_country = $validated['campus_country'];
